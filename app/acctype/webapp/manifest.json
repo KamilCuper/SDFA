@@ -1,0 +1,183 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "ns.acctype",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap-ux/fiori-elements-writer:lrop",
+            "version": "0.3.6",
+            "toolsId": "39d1db3f-2207-456f-8ff5-800002bf4217"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sevice/SDFA/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.acctype.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ACC_TYPE_MAPPINGList",
+                    "target": "ACC_TYPE_MAPPINGList"
+                },
+                {
+                    "pattern": "ACC_TYPE_MAPPING({key}):?query:",
+                    "name": "ACC_TYPE_MAPPINGObjectPage",
+                    "target": "ACC_TYPE_MAPPINGObjectPage"
+                }
+            ],
+            "targets": {
+                "ACC_TYPE_MAPPINGList": {
+                    "type": "Component",
+                    "id": "ACC_TYPE_MAPPINGList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ACC_TYPE_MAPPING",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "ACC_TYPE_MAPPING": {
+                                    "detail": {
+                                        "route": "ACC_TYPE_MAPPINGObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "NewPage"
+                                        }
+                                    },
+                                    "columns": {
+                                        "DataField::Company_RBUKRS": {
+                                            "availability": "Default",
+                                            "width": "30%"
+                                        },
+                                        "DataField::RACCT": {
+                                            "availability": "Default",
+                                            "width": "15%"
+                                        },
+                                        "DataField::RACCT_TYPE": {
+                                            "availability": "Default",
+                                            "width": "15%"
+                                        },
+                                        "DataField::GF_INDICATOR": {
+                                            "availability": "Default",
+                                            "width": "15%"
+                                        },
+                                        "DataField::Comment": {
+                                            "availability": "Default",
+                                            "width": "25%"
+                                        },
+                                        "DataField::RACCT_TYPE_code": {
+                                            "width": "15%"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ACC_TYPE_MAPPINGObjectPage": {
+                    "type": "Component",
+                    "id": "ACC_TYPE_MAPPINGObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "ACC_TYPE_MAPPING",
+                            "showRelatedApps": true,
+                            "sectionLayout": "Page"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

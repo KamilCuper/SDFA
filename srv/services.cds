@@ -24,6 +24,10 @@ using {
     SCREEN_CRITER_TEMPLT as screencriter,
     ECON_CRITER_APPL as criterappl
 } from '../db/ReferenceData';
+using {
+    AcctTypeObject as accounttype
+} from '../db/commonTypes';
+
 
 @path     : 'sevice/SDFA'
 
@@ -36,16 +40,19 @@ service DataService {
         annotate ecoactmapping with @odata.draft.enabled;
     @odata.draft.enabled
     entity EUTObject as projection on Eobject order by ID;
-    //@odata.draft.enabled
+   // @odata.draft.enabled
     entity EUT_Activities as projection on Eactivities;
-    @odata.draft.enabled
+    //@odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
+    //@odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
+    @odata.draft.enabled
     entity CorporateMD as projection on corporatemd;
     entity ProfitCenterObject as projection on profitcenter;
     entity PlantObject as projection on plant;
     entity SECTOR_OBJECT as projection on sector;
     entity ECO_ACT_OBJECT as projection on ecoobject;
     entity SCREEN_CRITER_TEMPLT as projection on screencriter;
-    entity ECON_CRITER_APPL as projection on criterappl
+    entity ECON_CRITER_APPL as projection on criterappl;
+    entity AcctTypeObject as projection on accounttype
 }

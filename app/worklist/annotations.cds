@@ -333,7 +333,7 @@ annotate service.FINANCIAL_INPUT with @(
         },
          {
             $Type : 'UI.DataField',
-            Value : RACCT_TYPE          
+            Value : RACCT_TYPE_code          
         },
          {
             $Type : 'UI.DataField',
@@ -415,7 +415,7 @@ annotate service.FINANCIAL_INPUT with @(
         },
          {
             $Type : 'UI.DataField',
-            Value : RACCT_TYPE          
+            Value : RACCT_TYPE_code          
         },
          {
             $Type : 'UI.DataField',
@@ -444,13 +444,26 @@ annotate service.EUT_SCREENING_INPUT with @(
         },
         {
             $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+        },
+        {
+            $Type : 'UI.DataField',
             Value : INDICATOR_IV
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE
         },
-
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+        },
     ]
 );
 

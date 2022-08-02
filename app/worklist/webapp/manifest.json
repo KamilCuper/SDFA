@@ -164,7 +164,13 @@
                                     }
                                 }
                             },
-                            "sectionLayout": "Page"
+                            "sectionLayout": "Page",
+                            "showRelatedApps": true,
+                            "content": {
+                                "header": {
+                                    "visible": false
+                                }
+                            }
                         }
                     }
                 },
@@ -174,7 +180,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": false,
+                            "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
                             "navigation": {
                                 "Financial_Input": {
@@ -187,7 +193,8 @@
                                         "route": "EUT_SCREENING_INPUTObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "sectionLayout": "Tabs"
                         }
                     }
                 },

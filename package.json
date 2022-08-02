@@ -16,7 +16,9 @@
   "scripts": {
     "start": "cds run",
     "watch-eutaxonomy": "cds watch --open eutaxonomy/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-worklist": "cds watch --open worklist/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-worklist": "cds watch --open worklist/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-acctype": "cds watch --open acctype/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-corporatemd": "cds watch --open corporatemd/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -45,6 +47,8 @@
   },
   "sapux": [
     "app/eutaxonomy",
-    "app/worklist"
+    "app/worklist",
+    "app/acctype",
+    "app/corporatemd"
   ]
 }

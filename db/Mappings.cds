@@ -16,7 +16,8 @@ using {
     GFIndicator,
     ProfitCenter,
     Plant,
-    FiscalYear
+    FiscalYear,
+    AcctTypeObject
 } from './commonTypes';
 using {
     CorporateMD,
@@ -30,7 +31,7 @@ entity ACC_TYPE_MAPPING : managed {
     key ID      : GUID;
     Company     : Association to CorporateMD @title : 'Company';
     RACCT       : Account;
-    RACCT_TYPE  : AccountType;
+    RACCT_TYPE  : Association to  AcctTypeObject @title : 'Account Type';
     GF_INDICATOR: GFIndicator;
     Comment     : Comment;
 }

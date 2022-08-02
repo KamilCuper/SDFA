@@ -9,9 +9,23 @@ type GSCEN : String @title : 'Scenario for Reporting';
 type Plant : String @title : 'Plant';
 type Comment : String @title : 'Comment';
 type Account : String @title : 'GL Account';
-type AccountType @(assert.range) : String @title : 'Account Type' enum {
-    C = 'Capex';
-    O = 'Opex';
-    T = 'Turnover';
-};
 type GFIndicator : Boolean @title : 'Green Finance Indicator';
+
+
+aspect myCodeList @(
+    cds.odata.valuelist,
+    cds.autoexpose,
+    cds.persistence.skip : 'if-unused'
+) {
+    name  : String(255)     @title : '{i18n>Name}';
+    descr : String(1000)    @title : '{i18n>Description}'
+}
+
+entity AcctTypeObject : myCodeList {
+    key code : AccountType
+};
+type AccountType @(assert.range) : String @title : 'Account Type' enum {
+    Capex = 'C';
+    Opex = 'O';
+    Turnover = 'T';
+};
