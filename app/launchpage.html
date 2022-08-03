@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{appTitle}}</title>
+
+        <script>
+            window['sap-ushell-config'] = {
+                defaultRenderer: 'fiori2',
+                applications: {
+                    "eut-app": {
+                        title: 'EU Taxonomy Reporting',
+                        description: 'Run Application to maintain EU Taxonomy Reporting Objects',
+                        additionalInformation: 'SAPUI5.Component=ns.worklist',
+                        applicationType: 'URL',
+                        url: "./worklist/webapp",
+                        navigationMode: 'embedded'
+                    },
+                    "AccTypeMapping-app": {
+                        title: "Account Type Mapping",
+                        description: "Run Application to maintain Account Type Mappings",
+                        additionalInformation: "SAPUI5.Component=ns.acctype",
+                        applicationType: "URL",
+                        url: "./acctype/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "ActivetiesMapping-app": {
+                        title: "Economic Activities Mapping",
+                        description: "Run Application to maintain Economic Activities Mappings",
+                        additionalInformation: "SAPUI5.Component=ns.activitiesmapping",
+                        applicationType: "URL",
+                        url: "./activitiesmapping/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "CorporateMD-app": {
+                        title: "Company Master Data",
+                        description: "Run Application to maintain Company Master Data",
+                        additionalInformation: "SAPUI5.Component=ns.corporatemd",
+                        applicationType: "URL",
+                        url: "./corporatemd/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "EcoActivities-app": {
+                        title: "Economic Activities",
+                        description: "Run Application to maintain Economic Activities Data",
+                        additionalInformation: "SAPUI5.Component=ns.ecoactivities",
+                        applicationType: "URL",
+                        url: "./ecoactivities/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "Plants-app": {
+                        title: "Plants",
+                        description: "Run Application to maintain Plant Data",
+                        additionalInformation: "SAPUI5.Component=ns.plants",
+                        applicationType: "URL",
+                        url: "./plants/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "ProfitCenters-app": {
+                        title: "Profit Centers",
+                        description: "Run Application to maintain Profit Centers Data",
+                        additionalInformation: "SAPUI5.Component=ns.profitcenters",
+                        applicationType: "URL",
+                        url: "./profitcenters/webapp",
+                        navigationMode: "embedded"
+                        },
+                        "Sectors-app": {
+                        title: "Sectors",
+                        description: "Run Application to maintain Sectors Data",
+                        additionalInformation: "SAPUI5.Component=ns.sectors",
+                        applicationType: "URL",
+                        url: "./sectors/webapp",
+                        navigationMode: "embedded"
+                        },
+                }
+            };
+        </script>
+
+        <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+        <script
+            src="https://ui5.sap.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-theme="sap_fiori_3"
+            data-sap-ui-frameOptions="allow"
+            data-sap-ui-bindingSyntax="complex"
+        ></script>
+        <script>
+            sap.ui.getCore().attachInit(function() {
+                sap.ushell.Container.createRenderer().placeAt('content');
+            });
+        </script>
+    </head>
+    <body class="sapUiBody" id="content"></body>
+</html>

@@ -1,0 +1,172 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "ns.ecoactivities",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap-ux/fiori-elements-writer:worklist",
+            "version": "0.3.6",
+            "toolsId": "8a34c927-0093-4840-8ff2-047f6b9085b4"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sevice/SDFA/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.ecoactivities.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ECO_ACT_OBJECTList",
+                    "target": "ECO_ACT_OBJECTList"
+                },
+                {
+                    "pattern": "ECO_ACT_OBJECT({key}):?query:",
+                    "name": "ECO_ACT_OBJECTObjectPage",
+                    "target": "ECO_ACT_OBJECTObjectPage"
+                }
+            ],
+            "targets": {
+                "ECO_ACT_OBJECTList": {
+                    "type": "Component",
+                    "id": "ECO_ACT_OBJECTList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ECO_ACT_OBJECT",
+                            "variantManagement": "Page",
+                            "hideFilterBar": true,
+                            "navigation": {
+                                "ECO_ACT_OBJECT": {
+                                    "detail": {
+                                        "route": "ECO_ACT_OBJECTObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "NewPage"
+                                        }
+                                    },
+                                    "columns": {
+                                        "DataField::EUT_Eligible": {
+                                            "width": "10%"
+                                        },
+                                        "DataField::Description": {
+                                            "width": "30%"
+                                        },
+                                        "DataField::Comment": {
+                                            "width": "25%"
+                                        },
+                                        "DataField::ENB_ACT": {
+                                            "width": "14%"
+                                        },
+                                        "DataField::SECTOR_SECTOR": {
+                                            "width": "21%"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ECO_ACT_OBJECTObjectPage": {
+                    "type": "Component",
+                    "id": "ECO_ACT_OBJECTObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "ECO_ACT_OBJECT"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
