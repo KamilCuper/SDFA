@@ -18,7 +18,12 @@
     "watch-eutaxonomy": "cds watch --open eutaxonomy/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-worklist": "cds watch --open worklist/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-acctype": "cds watch --open acctype/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-corporatemd": "cds watch --open corporatemd/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-corporatemd": "cds watch --open corporatemd/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-profitcenters": "cds watch --open profitcenters/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-plants": "cds watch --open plants/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-sectors": "cds watch --open sectors/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ecoactivities": "cds watch --open ecoactivities/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-activitiesmapping": "cds watch --open activitiesmapping/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -49,6 +54,11 @@
     "app/eutaxonomy",
     "app/worklist",
     "app/acctype",
-    "app/corporatemd"
+    "app/corporatemd",
+    "app/profitcenters",
+    "app/plants",
+    "app/sectors",
+    "app/ecoactivities",
+    "app/activitiesmapping"
   ]
 }

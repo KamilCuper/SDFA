@@ -1,4 +1,4 @@
-type GUID : UUID @title : 'ID'  @odata.Type : 'Edm.String'  @UI.Hidden;
+type GUID : UUID @title : 'ID'  @odata.Type : 'Edm.String';  //@UI.Hidden;
 type Description : String @title : 'Description'  @mandatory  @assert.notNull; //  @Core.Immutable woud bring it up in creation popup as well
 type Documentation : LargeString @title : 'Documentation'  @mandatory  @assert.notNull; //  @Core.Immutable woud bring it up in creation popup as well
 type ProfitCenter :String @title : 'Profit Center';

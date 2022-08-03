@@ -39,8 +39,8 @@ entity ACC_TYPE_MAPPING : managed {
 entity EA_MAPPING : managed {
     key ID          : GUID;
     Company         : Association to one CorporateMD @title : 'Company';
-    PRCTR           : Association to one ProfitCenterObject;
-    WERKS           : Association to one PlantObject;
+    PRCTR           : Association to one ProfitCenterObject @title : 'Profit Center';
+    WERKS           : Association to one PlantObject @title : 'Plant';
     GJAHR           : FiscalYear;
     ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
 }

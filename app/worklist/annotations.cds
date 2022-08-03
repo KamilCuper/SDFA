@@ -145,14 +145,15 @@ annotate service.EUT_Activities with {
 };
 
 annotate service.EUT_Activities with @(
-    UI.HeaderFacets : [
+    // Wanted to add a facet showing EUT Details in header, but EUT_Object/@UI.FieldGroup#GeneratedGroup1 does not show any values when it's in Header Facet. Find another way to show it
+    /*UI.HeaderFacets : [
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet2',
             Label : 'EUT Reporting Object',
             Target : 'EUT_Object/@UI.FieldGroup#GeneratedGroup1'
         }
-    ],
+    ],*/
     UI.HeaderInfo : {
         TypeName : 'Economic Activity',
         TypeNamePlural : 'Economic Activities',
@@ -464,6 +465,54 @@ annotate service.EUT_SCREENING_INPUT with @(
             Value : CRITER.CRIT_L,
             Label : 'Lower Limit'
         },
+    ],
+    UI.FieldGroup #ScreenGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : GJAHR
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.SUBST,
+            Label : 'Substance'
+            },
+        ]
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Financial Input Details',
+            Target : '@UI.FieldGroup#ScreenGroup'
+        }
     ]
 );
 
