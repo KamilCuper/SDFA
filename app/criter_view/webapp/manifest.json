@@ -1,7 +1,7 @@
 {
     "_version": "1.40.0",
     "sap.app": {
-        "id": "ns.activitiesmapping",
+        "id": "ns.criterview",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -11,9 +11,9 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:worklist",
+            "id": "@sap-ux/fiori-elements-writer:lrop",
             "version": "0.3.6",
-            "toolsId": "b02de969-0dcb-4892-a38b-64a04f9b6a32"
+            "toolsId": "bb89769c-5e36-4882-937f-1c39f05a2f90"
         },
         "dataSources": {
             "mainService": {
@@ -71,7 +71,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ns.activitiesmapping.i18n.i18n"
+                    "bundleName": "ns.criterview.i18n.i18n"
                 }
             },
             "": {
@@ -96,43 +96,44 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "EA_MAPPINGList",
-                    "target": "EA_MAPPINGList"
+                    "name": "CriterViewList",
+                    "target": "CriterViewList"
                 },
                 {
-                    "pattern": "EA_MAPPING({key}):?query:",
-                    "name": "EA_MAPPINGObjectPage",
-                    "target": "EA_MAPPINGObjectPage"
+                    "pattern": "CriterView({key}):?query:",
+                    "name": "CriterViewObjectPage",
+                    "target": "CriterViewObjectPage"
                 }
             ],
             "targets": {
-                "EA_MAPPINGList": {
+                "CriterViewList": {
                     "type": "Component",
-                    "id": "EA_MAPPINGList",
+                    "id": "CriterViewList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "EA_MAPPING",
+                            "entitySet": "CriterView",
                             "variantManagement": "Page",
-                            "hideFilterBar": true,
                             "navigation": {
-                                "EA_MAPPING": {
+                                "CriterView": {
                                     "detail": {
-                                        "route": "EA_MAPPINGObjectPage"
+                                        "route": "CriterViewObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "hideFilterBar": false,
+                            "initialLoad": "Enabled"
                         }
                     }
                 },
-                "EA_MAPPINGObjectPage": {
+                "CriterViewObjectPage": {
                     "type": "Component",
-                    "id": "EA_MAPPINGObjectPage",
+                    "id": "CriterViewObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "EA_MAPPING"
+                            "entitySet": "CriterView"
                         }
                     }
                 }

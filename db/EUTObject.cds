@@ -43,9 +43,9 @@ entity EUT_Activities : managed {
     Scenario          : GSCEN;
     EUT_Object        : Association to one EUTObject @title : 'EUT Reporting Object';
     EA_Object         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
-    Financial_Input   : Composition of many FINANCIAL_INPUT 
+    Financial_Input   : Association to many FINANCIAL_INPUT 
                             on Financial_Input.EUT_ACTIVITIES =$self @title : 'Financial Inputs';
-    Screening_Input   : Composition of many EUT_SCREENING_INPUT 
+    Screening_Input   : Association to many EUT_SCREENING_INPUT 
                             on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';                            
 };
 

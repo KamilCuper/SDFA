@@ -13,3 +13,9 @@ using from './sectors/annotations';
 using from './ecoactivities/annotations';
 
 using from './activitiesmapping/annotations';
+
+using from './criteria/annotations';
+
+using from './criteria/annotations';
+
+using from './criter_view/annotations';

@@ -58,5 +58,14 @@ service DataService {
     entity ECO_ACT_OBJECT as projection on ecoobject;
     entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     entity ECON_CRITER_APPL as projection on criterappl;
-    entity AcctTypeObject as projection on accounttype
+    entity AcctTypeObject as projection on accounttype;
+    entity CriterView as 
+        select  
+                EcoActivity.SECTOR.Description as Sector, 
+                EcoActivity.Description as EcoActivity,
+                EcoActivity.EUT_Eligible,
+                CRITER.CRITER_DESC as Criterion,
+                TYP_CONT as ContributionType 
+        from ECON_CRITER_APPL
+    ;
 }

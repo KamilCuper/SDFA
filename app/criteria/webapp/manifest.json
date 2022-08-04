@@ -1,7 +1,7 @@
 {
     "_version": "1.40.0",
     "sap.app": {
-        "id": "ns.activitiesmapping",
+        "id": "ns.criteria",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -11,9 +11,9 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:worklist",
+            "id": "@sap-ux/fiori-elements-writer:lrop",
             "version": "0.3.6",
-            "toolsId": "b02de969-0dcb-4892-a38b-64a04f9b6a32"
+            "toolsId": "60030f64-8076-4b3a-9e32-c6aee426eed6"
         },
         "dataSources": {
             "mainService": {
@@ -71,7 +71,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ns.activitiesmapping.i18n.i18n"
+                    "bundleName": "ns.criteria.i18n.i18n"
                 }
             },
             "": {
@@ -96,43 +96,42 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "EA_MAPPINGList",
-                    "target": "EA_MAPPINGList"
+                    "name": "ECON_CRITER_APPLList",
+                    "target": "ECON_CRITER_APPLList"
                 },
                 {
-                    "pattern": "EA_MAPPING({key}):?query:",
-                    "name": "EA_MAPPINGObjectPage",
-                    "target": "EA_MAPPINGObjectPage"
+                    "pattern": "ECON_CRITER_APPL({key}):?query:",
+                    "name": "ECON_CRITER_APPLObjectPage",
+                    "target": "ECON_CRITER_APPLObjectPage"
                 }
             ],
             "targets": {
-                "EA_MAPPINGList": {
+                "ECON_CRITER_APPLList": {
                     "type": "Component",
-                    "id": "EA_MAPPINGList",
+                    "id": "ECON_CRITER_APPLList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "EA_MAPPING",
+                            "entitySet": "ECON_CRITER_APPL",
                             "variantManagement": "Page",
-                            "hideFilterBar": true,
                             "navigation": {
-                                "EA_MAPPING": {
+                                "ECON_CRITER_APPL": {
                                     "detail": {
-                                        "route": "EA_MAPPINGObjectPage"
+                                        "route": "ECON_CRITER_APPLObjectPage"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "EA_MAPPINGObjectPage": {
+                "ECON_CRITER_APPLObjectPage": {
                     "type": "Component",
-                    "id": "EA_MAPPINGObjectPage",
+                    "id": "ECON_CRITER_APPLObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "EA_MAPPING"
+                            "entitySet": "ECON_CRITER_APPL"
                         }
                     }
                 }

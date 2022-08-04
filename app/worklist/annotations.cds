@@ -231,35 +231,6 @@ annotate service.EUT_Activities with @(
     }
 )
 ;
-/*annotate service.ECO_ACT_OBJECT with @(
-    UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Value : ECO_ACT
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : Description
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : EUT_Eligible,
-            Label : 'EUT Eligible'
-        },{
-            $Type : 'UI.DataField',
-            Value : SECTOR_SECTOR
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : ENB_ACT,
-            Label : 'Enabling Activity'
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : Comment
-        },
-    ]    
-);*/
 annotate service.FINANCIAL_INPUT with @(
     UI.LineItem #FinInputs: [
         {

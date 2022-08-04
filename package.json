@@ -23,7 +23,9 @@
     "watch-plants": "cds watch --open plants/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-sectors": "cds watch --open sectors/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-ecoactivities": "cds watch --open ecoactivities/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-activitiesmapping": "cds watch --open activitiesmapping/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-activitiesmapping": "cds watch --open activitiesmapping/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-criteria": "cds watch --open criteria/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-criter_view": "cds watch --open criter_view/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -59,6 +61,9 @@
     "app/plants",
     "app/sectors",
     "app/ecoactivities",
-    "app/activitiesmapping"
+    "app/activitiesmapping",
+    "app/criteria",
+    "app/criteria",
+    "app/criter_view"
   ]
 }
