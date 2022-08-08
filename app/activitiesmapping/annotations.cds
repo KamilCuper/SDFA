@@ -31,7 +31,7 @@ annotate service.EA_MAPPING with @(
     ],
 );
 annotate service.EA_MAPPING with @(
-        UI.HeaderInfo : {
+    UI.HeaderInfo : {
         TypeName : 'Economic Activity Mapping',
         TypeNamePlural : 'Economic Activity Mappings',
         Description : {

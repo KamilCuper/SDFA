@@ -164,11 +164,11 @@
                                     }
                                 }
                             },
-                            "sectionLayout": "Page",
+                            "sectionLayout": "Tabs",
                             "showRelatedApps": true,
                             "content": {
                                 "header": {
-                                    "visible": false
+                                    "visible": true
                                 }
                             }
                         }

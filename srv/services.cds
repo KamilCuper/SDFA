@@ -40,11 +40,11 @@ service DataService {
         annotate ecoactmapping with @odata.draft.enabled;
     @odata.draft.enabled
     entity EUTObject as projection on Eobject order by ID;
-   // @odata.draft.enabled
+    //@odata.draft.enabled
     entity EUT_Activities as projection on Eactivities;
-    //@odata.draft.enabled
+    @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
-    //@odata.draft.enabled
+    @odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled
     entity CorporateMD as projection on corporatemd;
@@ -65,7 +65,8 @@ service DataService {
                 EcoActivity.Description as EcoActivity,
                 EcoActivity.EUT_Eligible,
                 CRITER.CRITER_DESC as Criterion,
-                TYP_CONT as ContributionType 
+                TYP_CONT as ContributionType,
+                key CRITER 
         from ECON_CRITER_APPL
     ;
 }

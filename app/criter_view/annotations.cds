@@ -28,6 +28,7 @@ annotate service.CriterView with @(
             Value : ContributionType
         },
     ],
+    UI.SelectionFields : [Sector,EcoActivity,EUT_Eligible,Criterion,ContributionType],
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -51,14 +52,43 @@ annotate service.CriterView with @(
                 $Type : 'UI.DataField',
                 Value : ContributionType,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.COMB_UNIT,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_L,
+            },
         ],
     },
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'General Information',
+            Label : 'Technical Screening Criterion Details',
             Target : '@UI.FieldGroup#GeneratedGroup1',
         },
     ]
 );
+annotate service.CriterView with {
+    Sector @(
+        Common: {
+            Text : Sector,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Sectors',
+                CollectionPath: 'SECTOR_OBJECT',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:Sector,
+                    ValueListProperty: 'SECTOR'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'Description'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'Comment'}
+                ]
+            }
+        }
+    );
+};

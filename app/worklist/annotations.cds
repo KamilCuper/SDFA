@@ -45,16 +45,18 @@ annotate service.EUTObject with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'EUT Reporting Object',
-            Target : '@UI.FieldGroup#GeneratedGroup1'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
             Label : 'Economic Activities',
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
         }
+    ],
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'EUT Reporting Object',
+            Target : '@UI.FieldGroup#GeneratedGroup1'
+        },
     ]
 );
 
