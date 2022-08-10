@@ -76,6 +76,7 @@ annotate service.CriterView with {
         Common: {
             Text : Sector,
             TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true,
             ValueList: {
                 Label: 'Sectors',
                 CollectionPath: 'SECTOR_OBJECT',
@@ -89,6 +90,24 @@ annotate service.CriterView with {
                     ValueListProperty: 'Comment'}
                 ]
             }
-        }
+        },
     );
+    Criterion @(
+        Common: {
+            Text : Criterion,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true,
+            ValueList: {
+                Label: 'Screening Criteria',
+                CollectionPath: 'SCREEN_CRITER_TEMPLT',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:Criterion,
+                    ValueListProperty: 'CRITER_DESC'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CONT_MEAS'}
+                ]
+            }
+        }
+    )
 };

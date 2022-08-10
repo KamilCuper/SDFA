@@ -133,7 +133,7 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "SCREEN_CRITER_TEMPLT"
+                            "entitySet": "CriterView"
                         }
                     }
                 }

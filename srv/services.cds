@@ -66,7 +66,7 @@ service DataService {
                 EcoActivity.EUT_Eligible,
                 CRITER.CRITER_DESC as Criterion,
                 TYP_CONT as ContributionType,
-                key CRITER 
+                key CRITER
         from ECON_CRITER_APPL
     ;
 }
