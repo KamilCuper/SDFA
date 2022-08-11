@@ -216,7 +216,12 @@
                     "options": {
                         "settings": {
                             "entitySet": "EUT_SCREENING_INPUT",
-                            "navigation": {}
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "visible": true
+                                }
+                            }
                         }
                     }
                 }

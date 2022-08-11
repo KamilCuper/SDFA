@@ -46,7 +46,7 @@ entity EUT_Activities : managed {
     Financial_Input   : Association to many FINANCIAL_INPUT 
                             on Financial_Input.EUT_ACTIVITIES =$self @title : 'Financial Inputs';
     Screening_Input   : Association to many EUT_SCREENING_INPUT 
-                            on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';                            
+                            on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';  
 };
 
 @Aggregation.CustomAggregate #KSL : 'Edm.Decimal'
@@ -93,7 +93,7 @@ type MaterialNumber     : String @title : 'Material Number';
 type Ledger             : String @title : 'Ledger';
 type PostingPeriod      : String @title : 'Posing Period';
 type GCurrency          : Currency @title : 'Global Currency' @Semantics.currencyCode;
-type AmountGC           : Decimal @title : 'Amount in Global Currency' @Common.IsCurrency @Semantics.amount.currencyCode : 'GCurrency';
+type AmountGC           : Decimal @title : 'Amount in Global Currency' @Common.IsCurrency @Semantics.amount.currencyCode : 'GCurrency' @DefaultAggregation : #SUM;
 type CCurrency          : Currency @title : 'Company Currency' @Semantics.currencyCode;
 type AmountCC           : Decimal @title : 'Amount in Company Currency' @Common.IsCurrency @Semantics.amount.currencyCode : 'CCurrency';
 type ReferenceDocument  : String @title : 'Reference Document';

@@ -77,6 +77,7 @@ annotate service.CriterView with {
             Text : Sector,
             TextArrangement : #TextOnly,
             ValueListWithFixedValues : true,
+            Label : 'Sector',
             ValueList: {
                 Label: 'Sectors',
                 CollectionPath: 'SECTOR_OBJECT',
@@ -92,11 +93,29 @@ annotate service.CriterView with {
             }
         },
     );
+    EcoActivity @(
+        Common: {
+            Text    : EcoActivity,
+            TextArrangement : #TextOnly,
+            Label   : 'Economic Activity',
+            ValueListWithFixedValues : true,
+            ValueList: {
+                Label: 'Economic Activity',
+                CollectionPath: 'ECO_ACT_OBJECT',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:  EcoActivity,
+                    ValueListProperty: 'Description'}
+                ]
+            }
+        }
+    );
     Criterion @(
         Common: {
             Text : Criterion,
             TextArrangement : #TextOnly,
             ValueListWithFixedValues : true,
+            Label : 'Criterion',
             ValueList: {
                 Label: 'Screening Criteria',
                 CollectionPath: 'SCREEN_CRITER_TEMPLT',
@@ -104,8 +123,8 @@ annotate service.CriterView with {
                     { $Type: 'Common.ValueListParameterInOut',
                     LocalDataProperty:Criterion,
                     ValueListProperty: 'CRITER_DESC'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'CONT_MEAS'}
+                    //{$Type: 'Common.ValueListParameterDisplayOnly',
+                    //ValueListProperty: 'CONT_MEAS'}
                 ]
             }
         }

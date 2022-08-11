@@ -19,6 +19,11 @@ annotate service.EUTObject with @(
         {
             $Type : 'UI.DataField',
             Value : WERKS_WERKS
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Activities.EA_Object.Description,
+            Label : 'Assigned Economic Activities'
         }
     ],
     UI.FieldGroup #GeneratedGroup1 : {
@@ -42,21 +47,55 @@ annotate service.EUTObject with @(
             },
         ],
     },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Economic Activities',
-            ID    : 'Activities',
-            Target: 'Activities/@UI.LineItem#Activities'
-        }
-    ],
+    UI.DataPoint #Company :{
+        Value : RBUKRS_RBUKRS ,
+        Title : 'Company'
+    },
+    UI.DataPoint #Year :{
+        Value : GJAHR ,
+        Title : 'Fiscal Year'
+    },
+    UI.DataPoint #ProfitCenter :{
+        Value : PRCTR_PRCTR,
+        Title : 'Profit Center'
+    },
+        UI.DataPoint #Plant :{
+        Value : WERKS_WERKS ,
+        Title : 'Plant'
+    },
+        UI.DataPoint #ID :{
+        Value : ID ,
+        Title : 'EUT Object ID'
+    },
     UI.HeaderFacets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'EUT Reporting Object',
-            Target : '@UI.FieldGroup#GeneratedGroup1'
+            Target : '@UI.DataPoint#ID'
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Company'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Year'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#ProfitCenter'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Plant'
+        },
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            //Label : 'Economic Activities',
+            ID    : 'Activities',
+            Target: 'Activities/@UI.LineItem#Activities'
+        }
     ]
 );
 
@@ -147,27 +186,24 @@ annotate service.EUT_Activities with {
 };
 
 annotate service.EUT_Activities with @(
-    // Wanted to add a facet showing EUT Details in header, but EUT_Object/@UI.FieldGroup#GeneratedGroup1 does not show any values when it's in Header Facet. Find another way to show it
-    /*UI.HeaderFacets : [
+    UI.HeaderFacets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet2',
-            Label : 'EUT Reporting Object',
-            Target : 'EUT_Object/@UI.FieldGroup#GeneratedGroup1'
-        }
-    ],*/
-    UI.HeaderInfo : {
-        TypeName : 'Economic Activity',
-        TypeNamePlural : 'Economic Activities',
-        Title : {
-            $Type : 'UI.DataField',
-            Value : EA_Object_ECO_ACT
+            Target : '@UI.DataPoint#Activity'
         },
-        Description : {
-            $Type : 'UI.DataField',
-            Value : Scenario
-        }
-    },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Company'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Year'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Scenario'
+        },
+    ],
     UI.LineItem #Activities: [
         {
             $Type : 'UI.DataField',
@@ -177,10 +213,10 @@ annotate service.EUT_Activities with @(
             $Type : 'UI.DataField',
             Value : Scenario
         },
-        /*{
+        {
             $Type : 'UI.DataField',
-            Value : EUT_Object_ID
-        }*/
+            Value : Financial_Input.KSL
+        }
         
     ],
     UI.LineItem : [
@@ -230,7 +266,41 @@ annotate service.EUT_Activities with @(
                 Label : 'Scenario',
             }
         ]
-    }
+    },
+    UI.FieldGroup #ActivityHeader : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : EUT_Object.RBUKRS_RBUKRS,
+                Label : 'Company',
+            },{
+                $Type : 'UI.DataField',
+                Value : EUT_Object_ID.GJAHR,
+                Label : 'Fiscal Year',
+            },{
+                $Type : 'UI.DataField',
+                Value : Scenario,
+                Label : 'Scenario',
+            }
+        ]
+    },
+    UI.DataPoint #Company :{
+        Value : EUT_Object.RBUKRS.Description ,
+        Title : 'Company'
+    },
+    UI.DataPoint #Year :{
+        Value : EUT_Object.GJAHR ,
+        Title : 'Fiscal Year'
+    },
+    UI.DataPoint #Scenario :{
+        Value : Scenario ,
+        Title : 'Scenario'
+    },
+    UI.DataPoint #Activity :{
+        Value : EA_Object_ECO_ACT ,
+        Title : 'Economic Activity'
+    },
 )
 ;
 annotate service.FINANCIAL_INPUT with @(
@@ -404,7 +474,19 @@ annotate service.FINANCIAL_INPUT with @(
             Label : 'Financial Input Details',
             Target : '@UI.FieldGroup#Group1'
         }
-    ]
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'Financial Statement',
+        TypeNamePlural : 'Financial Statements',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'Financial Input',
+        },
+    },
 );
 annotate service.EUT_SCREENING_INPUT with @(
     UI.LineItem #ScreenInputs : [
@@ -483,7 +565,7 @@ annotate service.EUT_SCREENING_INPUT with @(
         {
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
-            Label : 'Financial Input Details',
+            Label : 'Technical Screening Input Details',
             Target : '@UI.FieldGroup#ScreenGroup'
         }
     ]
