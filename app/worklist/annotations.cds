@@ -301,8 +301,23 @@ annotate service.EUT_Activities with @(
         Value : EA_Object_ECO_ACT ,
         Title : 'Economic Activity'
     },
-)
-;
+);
+annotate service.EUT_Activities with @(
+    UI.SelectionPresentationVariant : {
+            Text                : 'Open',
+            SelectionVariant    : {
+                Text          : 'Open',
+            },
+            PresentationVariant : ![@UI.PresentationVariant]
+        },
+
+    UI.PresentationVariant : {
+            MaxItems       : 2,
+            SortOrder      : [{Property : EA_Object_ECO_ACT}],
+            Visualizations : ['@UI.LineItem#Activities']
+    }
+);
+
 annotate service.FINANCIAL_INPUT with @(
     UI.LineItem #FinInputs: [
         {

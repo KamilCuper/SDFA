@@ -1,0 +1,195 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "ns.financialinput",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "subTitle": "{{appSubTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap-ux/fiori-elements-writer:lrop",
+            "version": "0.3.6",
+            "toolsId": "60007ed5-e9f6-4e1f-b037-38c799614211"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sevice/SDFA/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.ui.unified": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ns.financialinput.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "../style.css"
+                }
+            ]
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "FINANCIAL_INPUTList",
+                    "target": "FINANCIAL_INPUTList"
+                },
+                {
+                    "pattern": "FINANCIAL_INPUT({key}):?query:",
+                    "name": "FINANCIAL_INPUTObjectPage",
+                    "target": "FINANCIAL_INPUTObjectPage"
+                }
+            ],
+            "targets": {
+                "FINANCIAL_INPUTList": {
+                    "type": "Component",
+                    "id": "FINANCIAL_INPUTList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "FINANCIAL_INPUT",
+                            "navigation": {
+                                "FINANCIAL_INPUT": {
+                                    "detail": {
+                                        "route": "FINANCIAL_INPUTObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": false
+                                        },
+                                        "enableMassEdit": true,
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true,
+                                            "group": true
+                                        },
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                        
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Good"
+                                                },
+                                                {           
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#NotSoGood"
+                                                }  
+                                            ],
+                                            "hideTableTitle": true,
+                                            "showCounts": false
+                                        },
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "enableExport": true
+                                    },
+                                    "actions": {
+                                        "importData": {
+                                            "id": "importDataButton",
+                                            "text": "Import Data",
+                                            "press": "ns.financialinput.controller.ListReportExtController.DataImport",
+                                            "requiresSelection": false
+                                        }
+                                    }
+                                }
+                            },
+                            "hideFilterBar": false
+                        }
+                    }
+                },
+                "FINANCIAL_INPUTObjectPage": {
+                    "type": "Component",
+                    "id": "FINANCIAL_INPUTObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "FINANCIAL_INPUT",
+                            "sectionLayout": "Page"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

@@ -75,6 +75,7 @@ entity FINANCIAL_INPUT : managed {
     RACCT_TYPE          : Association to one AcctTypeObject;
     GF_INDICATOR        : GFIndicator;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
+    criticality         : Integer;
 };
 
 entity EUT_SCREENING_INPUT : managed {
