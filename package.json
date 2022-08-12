@@ -25,7 +25,8 @@
     "watch-ecoactivities": "cds watch --open ecoactivities/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-activitiesmapping": "cds watch --open activitiesmapping/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-criteria": "cds watch --open criteria/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-criter_view": "cds watch --open criter_view/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-criter_view": "cds watch --open criter_view/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eutscreeninginput": "cds watch --open eutscreeninginput/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -64,6 +65,7 @@
     "app/activitiesmapping",
     "app/criteria",
     "app/criteria",
-    "app/criter_view"
+    "app/criter_view",
+    "app/eutscreeninginput"
   ]
 }

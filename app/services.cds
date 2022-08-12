@@ -19,3 +19,5 @@ using from './criteria/annotations';
 using from './criteria/annotations';
 
 using from './criter_view/annotations';
+
+using from './eutscreeninginput/annotations';
