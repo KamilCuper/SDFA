@@ -85,6 +85,9 @@ entity EUT_SCREENING_INPUT : managed {
     GSCEN               : GSCEN;
     CRITER              : Association to one SCREEN_CRITER_TEMPLT @title : 'Screening Criterion';
     EUT_ACTIVITIES      : Association to one EUT_Activities;
+    CRITICALITY : Integer;
+    HELP : Help;
+    HELP_I : Help_I;
 };
 
 
@@ -98,5 +101,7 @@ type CCurrency          : Currency @title : 'Company Currency' @Semantics.curren
 type AmountCC           : Decimal @title : 'Amount in Company Currency' @Common.IsCurrency @Semantics.amount.currencyCode : 'CCurrency';
 type ReferenceDocument  : String @title : 'Reference Document';
 type ReferenceItem      : String @title : 'Reference Item';
-type Indicator_InVal    : Boolean @title : 'Input Value (Y/N)';
+type Indicator_InVal    : String @title : 'Input Value (Y/N)';
 type InputValue         : Decimal @title : 'Input Value';
+type Help         : Boolean @title : 'Help';
+type Help_I         : Boolean @title : 'Help_I';
