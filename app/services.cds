@@ -20,4 +20,6 @@ using from './criteria/annotations';
 
 using from './criter_view/annotations';
 
+using from './financial_input/annotations';
+
 using from './eutscreeninginput/annotations';
