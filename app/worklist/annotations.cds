@@ -92,7 +92,7 @@ annotate service.EUTObject with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            //Label : 'Economic Activities',
+            Label : 'Economic Activities',
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
         }

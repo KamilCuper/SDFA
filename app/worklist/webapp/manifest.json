@@ -129,7 +129,7 @@
                         "settings": {
                             "entitySet": "EUTObject",
                             "variantManagement": "Page",
-                            "hideFilterBar": true,
+                            "hideFilterBar": false,
                             "navigation": {
                                 "EUTObject": {
                                     "detail": {

@@ -55,7 +55,8 @@ annotate service.SECTOR_OBJECT with @(
             //Label : 'Company Form',
             ID : 'SectorForm',
             Target : '@UI.FieldGroup#SectorForm',
-        },]
+        },
+    ]
 );
 
 annotate service.SECTOR_OBJECT with {
