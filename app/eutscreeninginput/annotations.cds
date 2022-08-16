@@ -128,7 +128,15 @@ annotate service.EUT_SCREENING_INPUT with @(
             {
                $Type : 'UI.DataField',
                 Value : CRITER.TYP_PLANT, 
-            },          
+            }, 
+            {
+               $Type : 'UI.DataField',
+                Value : HELP_P, 
+            }, 
+            {
+               $Type : 'UI.DataField',
+                Value : HELP_X, 
+            },         
             
             ],
 
