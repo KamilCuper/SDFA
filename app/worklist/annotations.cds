@@ -215,10 +215,8 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : Financial_Input.KSL,
-            @Aggregation.Default: #SUM
-        }
-        
+            Value : Financial_Input.KSL
+        }   
     ],
     UI.LineItem : [
         {
@@ -304,19 +302,13 @@ annotate service.EUT_Activities with @(
     },
 );
 annotate service.EUT_Activities with @(
-    UI.SelectionPresentationVariant : {
-            Text                : 'Open',
-            SelectionVariant    : {
-                Text          : 'Open',
-            },
-            PresentationVariant : ![@UI.PresentationVariant]
-        },
-
-    UI.PresentationVariant : {
-            MaxItems       : 2,
-            SortOrder      : [{Property : EA_Object_ECO_ACT}],
-            Visualizations : ['@UI.LineItem#Activities']
-    }
+   UI.PresentationVariant #Activities: {
+    Total : [
+        {
+            Property: Financial_Input.KSL
+        }
+    ],
+}
 );
 
 annotate service.FINANCIAL_INPUT with @(
