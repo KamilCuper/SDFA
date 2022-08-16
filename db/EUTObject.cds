@@ -46,7 +46,8 @@ entity EUT_Activities : managed {
     Financial_Input   : Association to many FINANCIAL_INPUT 
                             on Financial_Input.EUT_ACTIVITIES =$self @title : 'Financial Inputs';
     Screening_Input   : Association to many EUT_SCREENING_INPUT 
-                            on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';  
+                            on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';
+                                                   
 };
 
 @Aggregation.CustomAggregate #KSL : 'Edm.Decimal'
@@ -89,6 +90,8 @@ entity EUT_SCREENING_INPUT : managed {
     CRITICALITY : Integer;
     HELP : Help;
     HELP_I : Help_I;
+    HELP_P : Help_P;
+    HELP_X : Help_X;
 };
 
 
@@ -106,3 +109,5 @@ type Indicator_InVal    : String @title : 'Input Value (Y/N)';
 type InputValue         : Decimal @title : 'Input Value';
 type Help         : Boolean @title : 'Help';
 type Help_I         : Boolean @title : 'Help_I';
+type Help_P         : Boolean @title : 'Help_P';
+type Help_X        : String @title : 'Help_X';

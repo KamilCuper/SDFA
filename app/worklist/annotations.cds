@@ -208,6 +208,7 @@ annotate service.EUT_Activities with @(
         {
             $Type : 'UI.DataField',
             Value : EA_Object_ECO_ACT
+            
         },
         {
             $Type : 'UI.DataField',
@@ -215,8 +216,10 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : Financial_Input.KSL
-        }   
+            Value : Financial_Input.KSL,
+            @Aggregation.Default: #SUM 
+        }
+        
     ],
     UI.LineItem : [
         {

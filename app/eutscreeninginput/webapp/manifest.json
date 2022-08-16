@@ -155,7 +155,10 @@
                                         "DataField::CRITER::CRIT_UNIT": {
                                             "width": "7%"
                                         }
-                                    }
+                                    },
+                                    "tableSettings": {
+                                        "enableMassEdit": true
+                                     }
                                 }
                             }
                         }
