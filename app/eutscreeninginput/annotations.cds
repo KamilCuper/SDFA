@@ -339,13 +339,15 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
     Data : [
         {
             $Type : 'UI.DataField',
-            Label : 'Name',
             Value : CRITER
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Name',
             Value : CRITER_DESC
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CONT_MEAS
         },
     ]
  }
@@ -353,5 +355,5 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
 
 annotate service.EUT_SCREENING_INPUT with {
     @Common.SemanticObject:  'Semantic Year'
-    GJAHR
+    CRITER
 }
