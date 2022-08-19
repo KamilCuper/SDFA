@@ -60,7 +60,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -157,8 +158,30 @@
                                         }
                                     },
                                     "tableSettings": {
-                                        "enableMassEdit": true
-                                     }
+                                        "enableMassEdit": true,
+                                        "personalization": {
+                                            "column": true,
+                                            "sort": true,
+                                            "group": true,
+                                            "filter": true
+                                        },
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#All"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Pre"
+                                                }
+                                            ]
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -175,7 +198,8 @@
                         }
                     }
                 }
-            }
+            },
+            "config": {}
         }
     },
     "sap.fiori": {

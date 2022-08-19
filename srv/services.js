@@ -1,26 +1,11 @@
 
 const cds = require('@sap/cds')
 
-/*module.exports = cds.service.impl(async function() {
-    this.after('READ', 'FINANCIAL_INPUT', financialData => {
-        const records = Array.isArray(financialData) ? financialData : [financialData];
-        records.forEach(records => {
-            if (records.KSL >= 400000) {
-                records.criticality = 3;
-            } else if (records.KSL < 400000 && records.KSL >= 100000) {
-                records.criticality = 0;
-            } else {
-                records.criticality = 1;
-            }
-        });
-    });
-}); */
 
 module.exports = cds.service.impl(async function() {
     this.after('READ', 'EUT_SCREENING_INPUT', eutInput => {
         const eut = Array.isArray(eutInput) ? eutInput : [eutInput];
         eut.forEach(eut => {
-            eut.GSCEN = eut.INDICATOR_IV;
             switch (true){
                case (eut.INDICATOR_IV=='YES') :
                 eut.CRITICALITY = 3; 
@@ -49,15 +34,18 @@ module.exports = cds.service.impl(async function() {
                                 break;
                 
             }
-            if(eut.CRITER.COMB_UNIT == null || eut.CRITER.CALC_MEAS == null || eut.CRITER.TYP_PLANT == null ){
-                eut.HELP_P = false;
-                eut.HELP_X = eut.CRITER.TYP_PLANT; 
-            }
-            else {
+           switch(true){
+             case  (eut.CRITER.COMB_UNIT == null &&  eut.CRITER.CALC_MEAS == null && eut.CRITER.TYP_PLANT == null) :
                 eut.HELP_P = true;
-                eut.HELP_X = eut.CRITER.TYP_PLANT;
-            }
-
+                break;
+            case  (eut.CRITER.COMB_UNIT != null ||  eut.CRITER.CALC_MEAS != null && eut.CRITER.TYP_PLANT != null) :
+                    eut.HELP_P = false;
+                    break;
+            default : 
+                    eut.HELP_P = false;
+                    break;    
+            }  
+            
         }        
         );
     });
