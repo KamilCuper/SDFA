@@ -38,7 +38,7 @@ entity PlantObject : managed {
     DESCR               : Description
 }
 
-@UI.Identification : [{Value : Description}]
+//@UI.Identification : [{Value : Description}]
 entity SECTOR_OBJECT : managed {
     key SECTOR      : GUID;
     Description     : Description;

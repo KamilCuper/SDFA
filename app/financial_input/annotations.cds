@@ -8,8 +8,7 @@ annotate service.FINANCIAL_INPUT with @(
         {
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS,
-            Criticality: criticality
-            
+            Criticality: criticality        
         },
         {
             $Type : 'UI.DataField',
@@ -56,16 +55,26 @@ annotate service.FINANCIAL_INPUT with @(
     }   
 );
 
+
+annotate service.FINANCIAL_INPUT with {
+    @Common.SemanticObject : 'SemanticCostCenter'
+    RBUKRS
+};
+
+
 annotate service.FINANCIAL_INPUT with @(
     UI.SelectionFields : [
         RBUKRS_RBUKRS,
     ]
 );
+
+
 annotate service.FINANCIAL_INPUT with {
     RBUKRS @(
         Common : {
             Text  : RBUKRS.Description,
             TextArrangement : #TextFirst,
+            /*ValueListWithFixedValues : true,
             ValueList : {
                 CollectionPath : 'CorporateMD',
                 Parameters : [
@@ -79,7 +88,7 @@ annotate service.FINANCIAL_INPUT with {
                         ValueListProperty: 'LAND1'
                     }
                 ],
-        },
+        }*/
         }
 )};
 annotate service.CorporateMD with {
@@ -88,6 +97,26 @@ annotate service.CorporateMD with {
         ![@UI.TextArrangement] : #TextFirst,
     }
 };
+
+annotate service.CorporateMD with @(UI : {
+    QuickViewFacets             : [
+        {
+            $Type  : 'UI.ReferenceFacet',
+            //Label  : 'Details',
+            Target : '@UI.FieldGroup#SoldToQuickView'
+        }
+    ],
+    FieldGroup #SoldToQuickView : {Data : [
+        {
+            $Type : 'UI.DataField',
+            Value : Description
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : LAND1
+        }
+    ]}
+});
 
 annotate service.FINANCIAL_INPUT with {
     KSL @Measures.ISOCurrency : RKCUR_code

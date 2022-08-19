@@ -1,18 +1,13 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/mvc/ControllerExtension",
 	"sap/m/MessageToast",
 	"sap/ui/core/Fragment"
-], function (Controller, MessageToast, Fragment) {
+], function (ControllerExtension, MessageToast, Fragment) {
 	"use strict";
 
-	return {
+	return ControllerExtension.extend("ns.financialinput.controller.View", {
 
 
-		onCloseDialog : function () {
-			// note: We don't need to chain to the pDialog promise, since this event-handler
-			// is only called from within the loaded dialog itself.
-			this.byId("helloDialog").close();
-		}
-	}
+})
 
 });
