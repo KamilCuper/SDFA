@@ -11,8 +11,9 @@ annotate service.FINANCIAL_INPUT with @(
             Criticality: criticality        
         },
         {
-            $Type : 'UI.DataField',
+            $Type : 'UI.DataFieldWithUrl',
             Value : GJAHR,
+            Url :  './corporatemd/webapp',
             Criticality: criticality
         },
         {
@@ -58,15 +59,15 @@ annotate service.FINANCIAL_INPUT with @(
 
 annotate service.FINANCIAL_INPUT with {
     @Common.SemanticObject : 'SemanticCostCenter'
-    RBUKRS
+    RACCT
 };
 
 
-annotate service.FINANCIAL_INPUT with @(
+/*annotate service.FINANCIAL_INPUT with @(
     UI.SelectionFields : [
         RBUKRS_RBUKRS,
     ]
-);
+);*/
 
 
 annotate service.FINANCIAL_INPUT with {
