@@ -1,4 +1,5 @@
 using DataService as service from '../../srv/services';
+using from '../../srv/services';
 using from '../../db/EUTObject';
 using from '../../db/ReferenceData';
 
@@ -96,6 +97,21 @@ annotate service.EUTObject with @(
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
         }
+        
+    ]
+);
+
+annotate service.EUTObject with {
+  ID @UI.Hidden;
+};
+
+
+annotate service.EUTObject with @(
+    UI.SelectionFields : [
+        RBUKRS_RBUKRS,
+        GJAHR,
+        PRCTR_PRCTR,
+        WERKS_WERKS
     ]
 );
 
@@ -104,6 +120,7 @@ annotate service.EUTObject with {
         Common: {
             Text: RBUKRS.Description,
             TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true,
             ValueList: {
                 Label: 'Companies',
                 CollectionPath: 'CorporateMD',
@@ -117,10 +134,25 @@ annotate service.EUTObject with {
             }
         }
     );
+    GJAHR @(
+        Common: {
+            ValueListWithFixedValues : true,
+            ValueList: {
+                Label: 'Years',
+                CollectionPath: 'YearsListView',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:GJAHR,
+                    ValueListProperty: 'FiscalYear'}
+                ]
+            }
+        }
+    );
     PRCTR @(
         Common: {
             Text: PRCTR.DESCR,
             TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true,
             ValueList: {
                 Label: 'Profit Centers',
                 CollectionPath: 'ProfitCenterObject',
@@ -138,6 +170,7 @@ annotate service.EUTObject with {
         Common: {
             Text: WERKS.DESCR,
             TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true,
             ValueList: {
                 Label: 'Plants',
                 CollectionPath: 'PlantObject',
@@ -218,11 +251,7 @@ annotate service.EUT_Activities with @(
             $Type : 'UI.DataField',
             Value : Financial_Input.KSL,
             @Aggregation.Default: #SUM 
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : AMO, 
-        },
+        }
         
     ],
     UI.LineItem : [
@@ -309,19 +338,13 @@ annotate service.EUT_Activities with @(
     },
 );
 annotate service.EUT_Activities with @(
-    UI.SelectionPresentationVariant : {
-            Text                : 'Open',
-            SelectionVariant    : {
-                Text          : 'Open',
-            },
-            PresentationVariant : ![@UI.PresentationVariant]
-        },
-
-    UI.PresentationVariant : {
-            MaxItems       : 2,
-            SortOrder      : [{Property : EA_Object_ECO_ACT}],
-            Visualizations : ['@UI.LineItem#Activities']
-    }
+   UI.PresentationVariant #Activities: {
+    Total : [
+        {
+            Property: Financial_Input.KSL
+        }
+    ],
+}
 );
 
 annotate service.FINANCIAL_INPUT with @(
@@ -493,7 +516,7 @@ annotate service.FINANCIAL_INPUT with @(
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
             Label : 'Financial Input Details',
-            Target : '@UI.FieldGroup#Group1'
+            Target : '@UI.LineItem#FinInputs'
         }
     ],
     UI.HeaderInfo : {

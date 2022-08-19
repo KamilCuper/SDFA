@@ -63,7 +63,8 @@
                 "sap.ushell": {},
                 "sap.fe.templates": {},
                 "sap.ui.unified": {},
-                "sap.ui.layout": {}
+                "sap.ui.layout": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -99,17 +100,31 @@
                 }
             ]
         },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ListReport.view.View": {
+                        "controllerName": "ns.financialinput.controller.View"
+                    }
+                }
+            }
+        },
         "routing": {
             "routes": [
                 {
                     "pattern": ":?query:",
                     "name": "FINANCIAL_INPUTList",
-                    "target": "FINANCIAL_INPUTList"
+                    "target": [
+                        "FINANCIAL_INPUTList"
+                    ]
                 },
                 {
                     "pattern": "FINANCIAL_INPUT({key}):?query:",
                     "name": "FINANCIAL_INPUTObjectPage",
-                    "target": "FINANCIAL_INPUTObjectPage"
+                    "target": [
+                        "FINANCIAL_INPUTList",
+                        "FINANCIAL_INPUTObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -127,7 +142,8 @@
                                     }
                                 }
                             },
-                            "initialLoad": "Enabled",
+                            "initialLoad": true,
+                            "hideFilterBar": false,
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
@@ -138,22 +154,8 @@
                                         "enableMassEdit": true,
                                         "personalization": {
                                             "sort": true,
-                                            "filter": true,
                                             "column": true,
                                             "group": true
-                                        },
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                        
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Good"
-                                                },
-                                                {           
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#NotSoGood"
-                                                }  
-                                            ],
-                                            "hideTableTitle": true,
-                                            "showCounts": false
                                         },
                                         "type": "ResponsiveTable",
                                         "selectionMode": "Multi",
@@ -163,15 +165,22 @@
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
-                                            "press": "ns.financialinput.controller.ListReportExtController.DataImport",
+                                            "press": "ns.financialinput.controller.ListReportExtController.dataImport",
+                                            "requiresSelection": false
+                                        },
+                                        "openQuickView": {
+                                            "id": "openQuickViewButton",
+                                            "text": "Open Quick View",
+                                            "press": "ns.financialinput.controller.ListReportExtController.openQV",
                                             "requiresSelection": false
                                         }
                                     }
                                 }
-                            },
-                            "hideFilterBar": false
+                            }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -183,9 +192,24 @@
                             "entitySet": "FINANCIAL_INPUT",
                             "sectionLayout": "Page"
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/FINANCIAL_INPUT({key})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.fiori": {

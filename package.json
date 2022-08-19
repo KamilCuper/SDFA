@@ -26,6 +26,10 @@
     "watch-activitiesmapping": "cds watch --open activitiesmapping/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-criteria": "cds watch --open criteria/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-criter_view": "cds watch --open criter_view/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-financial_input": "cds watch --open financial_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eutlistreport": "cds watch --open eutlistreport/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-form_testapp": "cds watch --open form_testapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eut_object_srv": "cds watch --open eut_object_srv/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-eutscreeninginput": "cds watch --open eutscreeninginput/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
@@ -67,6 +71,9 @@
     "app/criteria",
     "app/criter_view",
     "app/financial_input",
-    "app/eutscreeninginput"
+    "app/eutscreeninginput",
+    "app/eutlistreport",
+    "app/form_testapp",
+    "app/eut_object_srv"
   ]
 }
