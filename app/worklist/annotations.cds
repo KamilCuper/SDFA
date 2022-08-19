@@ -249,7 +249,7 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : Financial_Input.KSL,
+            Value : Financial_InputT.KSL,
             @Aggregation.Default: #SUM 
         }
         
