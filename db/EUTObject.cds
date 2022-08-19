@@ -91,7 +91,6 @@ entity EUT_SCREENING_INPUT : managed {
     HELP : Help;
     HELP_I : Help_I;
     HELP_P : Help_P;
-    HELP_X : Help_X;
 };
 
 
@@ -110,4 +109,3 @@ type InputValue         : Decimal @title : 'Input Value';
 type Help         : Boolean @title : 'Help';
 type Help_I         : Boolean @title : 'Help_I';
 type Help_P         : Boolean @title : 'Help_P';
-type Help_X        : String @title : 'Help_X';
