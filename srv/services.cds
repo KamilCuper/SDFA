@@ -91,10 +91,13 @@ service EUTObjectService {
     @odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity CorporateMD as projection on corporatemd;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity ProfitCenterObject as projection on profitcenter;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity PlantObject as projection on plant;
     @odata.draft.enabled
     entity SECTOR_OBJECT as projection on sector;

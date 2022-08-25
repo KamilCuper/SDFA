@@ -11,9 +11,8 @@ annotate service.FINANCIAL_INPUT with @(
             Criticality: criticality        
         },
         {
-            $Type : 'UI.DataFieldWithUrl',
+            $Type : 'UI.DataField',
             Value : GJAHR,
-            Url :  './corporatemd/webapp',
             Criticality: criticality
         },
         {
@@ -46,12 +45,7 @@ annotate service.FINANCIAL_INPUT with @(
             $Type : 'UI.DataField',
             Value : GF_INDICATOR,
             Criticality: criticality
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-            Criticality: criticality
-        },
+        }
     ],
     }   
 );
@@ -59,16 +53,28 @@ annotate service.FINANCIAL_INPUT with @(
 
 annotate service.FINANCIAL_INPUT with {
     @Common.SemanticObject : 'SemanticCostCenter'
-    RACCT
+    RBURKS
 };
 
-
-/*annotate service.FINANCIAL_INPUT with @(
+annotate service.FINANCIAL_INPUT with @(
     UI.SelectionFields : [
         RBUKRS_RBUKRS,
     ]
-);*/
+);
 
+annotate service.FINANCIAL_INPUT with @(
+    UI.PresentationVariant : {
+        GroupBy : [
+            WERKS_WERKS
+        ],
+        Total : [
+            HSL
+        ],
+        Visualizations : [
+            '@UI.LineItem'
+        ]
+    }
+);
 
 annotate service.FINANCIAL_INPUT with {
     RBUKRS @(
@@ -99,11 +105,18 @@ annotate service.CorporateMD with {
     }
 };
 
+annotate service.PlantObject with {
+    WERKS @Common.Text : {
+        $value : DESCR,
+        ![@UI.TextArrangement] : #TextFirst,
+    }
+};
+
 annotate service.CorporateMD with @(UI : {
     QuickViewFacets             : [
         {
             $Type  : 'UI.ReferenceFacet',
-            //Label  : 'Details',
+            Label  : 'Details',
             Target : '@UI.FieldGroup#SoldToQuickView'
         }
     ],
@@ -122,6 +135,7 @@ annotate service.CorporateMD with @(UI : {
 annotate service.FINANCIAL_INPUT with {
     KSL @Measures.ISOCurrency : RKCUR_code
 };
+
 annotate service.FINANCIAL_INPUT with {
     RACCT_TYPE @Common.Text : {
             $value : RACCT_TYPE.descr,
@@ -170,6 +184,25 @@ annotate service.FINANCIAL_INPUT with @(
             }
         ],
         Text : 'Records without EUT Link'
+    }
+);
+
+annotate service.FINANCIAL_INPUT with @(
+    UI.SelectionPresentationVariant #OpenSPVWithPVPath : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        Text                : 'Open',
+        SelectionVariant    : {
+                Text          : 'Open',
+                SelectOptions : []
+            },
+            PresentationVariant : ![@UI.PresentationVariant#PVPath]
+        },
+
+    UI.PresentationVariant #PVPath : {
+        MaxItems       : 10,
+        SortOrder      : [{Property : ID}],
+        GroupBy : [WERKS_WERKS],
+        Visualizations : ['@UI.LineItem']
     }
 );
 

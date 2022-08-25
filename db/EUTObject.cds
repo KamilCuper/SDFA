@@ -31,9 +31,9 @@ using {
 entity EUTObject : managed {
     key ID            : GUID;
     RBUKRS            : Association to one CorporateMD @title : 'Company';
-    PRCTR             : Association to one ProfitCenterObject;
+    PRCTR             : Association to one ProfitCenterObject @title : 'Profit Center';
     GJAHR             : FiscalYear;
-    WERKS             : Association to one PlantObject;
+    WERKS             : Association to one PlantObject @title : 'Plant';
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
 }
@@ -59,7 +59,7 @@ entity FINANCIAL_INPUT : managed {
     RBUKRS              : Association to one CorporateMD @title : 'Company';
     GJAHR               : FiscalYear;
     MATNR               : MaterialNumber;
-    WERKS               : Association to one PlantObject;
+    WERKS               : Association to one PlantObject @title : 'Plant';
     RCNTR               : CostCenter;
     PRCTR               : Association to one ProfitCenterObject;
     RLDNR               : Ledger;

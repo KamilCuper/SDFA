@@ -1,7 +1,7 @@
 {
-    "_version": "1.40.0",
+    "_version": "1.4.0",
     "sap.app": {
-        "id": "ns.worklist",
+        "id": "eut.eutobjectsrv",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -11,13 +11,13 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:worklist",
+            "id": "@sap-ux/fiori-elements-writer:lrop",
             "version": "0.3.6",
-            "toolsId": "a4eafd75-17aa-44e8-b6c7-70308922ac06"
+            "toolsId": "80cdc1aa-4dd5-4f41-871b-34ad9f125429"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sevice/SDFA/",
+                "uri": "/eutobject/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
@@ -72,7 +72,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ns.worklist.i18n.i18n"
+                    "bundleName": "eut.eutobjectsrv.i18n.i18n"
                 }
             },
             "": {
@@ -94,6 +94,13 @@
             "css": []
         },
         "routing": {
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
             "routes": [
                 {
                     "pattern": ":?query:",
@@ -118,20 +125,6 @@
                         "EUTObjectObjectPage",
                         "EUT_ActivitiesObjectPage"
                     ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
-                    "name": "FINANCIAL_INPUTObjectPage",
-                    "target": [
-                        "FINANCIAL_INPUTObjectPage"
-                    ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/Screening_Input({key3}):?query:",
-                    "name": "EUT_SCREENING_INPUTObjectPage",
-                    "target": [
-                        "EUT_SCREENING_INPUTObjectPage"
-                    ]
                 }
             ],
             "targets": {
@@ -154,23 +147,25 @@
                             "initialLoad": "Enabled",
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "columns": {
-                                        "DataField::ID": {
-                                            "availability": "Adaptation"
-                                        }
-                                    },
                                     "tableSettings": {
-                                        "enableMassEdit": true,
+                                        "enableMassEdit": false,
                                         "personalization": {
                                             "sort": true,
                                             "filter": true,
                                             "column": true,
-                                            "group": true,
-                                            "total": true
+                                            "group": true
                                         },
                                         "type": "ResponsiveTable",
                                         "selectionMode": "Multi",
                                         "enableExport": true
+                                    },
+                                    "actions": {
+                                        "importData": {
+                                            "id": "importDataButton",
+                                            "text": "Import Data",
+                                            "press": "ns.financialinput.controller.ListReportExtController.dataImport",
+                                            "requiresSelection": false
+                                        }
                                     }
                                 }
                             }
@@ -185,21 +180,14 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "showRelatedApps": true,
+                            "sectionLayout": "Tabs",
                             "entitySet": "EUTObject",
                             "navigation": {
                                 "Activities": {
                                     "detail": {
                                         "route": "EUT_ActivitiesObjectPage"
                                     }
-                                }
-                            },
-                            "sectionLayout": "Tabs",
-                            "showRelatedApps": true,
-                            "content": {
-                                "header": {
-                                    "editableHeaderContent": true,
-                                    "anchorBarVisible": true,
-                                    "visible": true
                                 }
                             }
                         }
@@ -215,23 +203,27 @@
                         "settings": {
                             "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
+                            "sectionLayout": "Tabs",
                             "navigation": {
-                                "Financial_Input": {
-                                    "detail": {
-                                        "route": "FINANCIAL_INPUTObjectPage"
-                                    }
-                                },
-                                "Screening_Input": {
-                                    "detail": {
-                                        "route": "EUT_SCREENING_INPUTObjectPage"
-                                    }
-                                }
-                            },
-                            "sectionLayout": "Tabs"
+                    
+                            }
                         }
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})"
+                },
+                "EA_ObjectPage": {
+                    "type": "Component",
+                    "id": "EA_ObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ECO_ACT_OBJECT",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/EA_Object({key3})"
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -264,13 +256,6 @@
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Screening_Input({key3})"
                 }
-            },
-            "config": {
-                "flexibleColumnLayout": {
-                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-                },
-                "routerClass": "sap.f.routing.Router"
             }
         },
         "rootView": {

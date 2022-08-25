@@ -61,7 +61,8 @@ module.exports = cds.service.impl(async function() {
                 records.criticality = 1;
             }
         });
-    });   
+    });
+
 }); 
 
 

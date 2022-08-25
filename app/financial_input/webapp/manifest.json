@@ -135,6 +135,7 @@
                     "options": {
                         "settings": {
                             "entitySet": "FINANCIAL_INPUT",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#OpenSPVWithPVPath",
                             "navigation": {
                                 "FINANCIAL_INPUT": {
                                     "detail": {
@@ -143,7 +144,7 @@
                                 }
                             },
                             "initialLoad": true,
-                            "hideFilterBar": true,
+                            "hideFilterBar": false,
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
@@ -166,12 +167,6 @@
                                             "id": "importDataButton",
                                             "text": "Import Data",
                                             "press": "ns.financialinput.controller.ListReportExtController.dataImport",
-                                            "requiresSelection": false
-                                        },
-                                        "openQuickView": {
-                                            "id": "openQuickViewButton",
-                                            "text": "Open Quick View",
-                                            "press": "ns.financialinput.controller.ListReportExtController.openQV",
                                             "requiresSelection": false
                                         }
                                     }
