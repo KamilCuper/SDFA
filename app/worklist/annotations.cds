@@ -516,7 +516,7 @@ annotate service.FINANCIAL_INPUT with @(
             $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
             Label : 'Financial Input Details',
-            Target : '@UI.LineItem#FinInputs'
+            Target : '@UI.FieldGroup#Group1'
         }
     ],
     UI.HeaderInfo : {
