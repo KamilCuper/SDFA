@@ -142,14 +142,9 @@ annotate service.EUTObject with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label: 'Scenario',
-                Value : Activities.Scenario
-            },
-          //  {
-          //      $Type : 'UI.DataField',
-          //      Value : Activities.ID,
-          //      Label : 'Assigned EUT Activities'
-          //  }
+                Value : Activities.EA_Object.Description,
+                Label : 'Assigned EUT Activities'
+            }
         ]
     }
 );
@@ -159,9 +154,15 @@ annotate service.EUTObject with @(
 //                      Annotations for EUT OBJECT Page - Header & Content
 /*************************************************************************************************/
 annotate service.EUTObject with @(
-    UI.DataPoint #Company :{
-        Value : RBUKRS_RBUKRS ,
-        Title : 'Company'
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : RBUKRS_RBUKRS
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : WERKS_WERKS
+        }
     },
     UI.DataPoint #Year :{
         Value : GJAHR ,
@@ -171,15 +172,7 @@ annotate service.EUTObject with @(
         Value : PRCTR_PRCTR,
         Title : 'Profit Center'
     },
-    UI.DataPoint #Plant :{
-        Value : WERKS_WERKS ,
-        Title : 'Plant'
-    },
     UI.HeaderFacets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Company'
-        },
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#Year'
@@ -187,12 +180,8 @@ annotate service.EUTObject with @(
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#ProfitCenter'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Plant'
-        },
-    ],
+        }
+    ],    
     UI.LineItem #ContentGroup2: [
             {
                 $Type : 'UI.DataField',
@@ -217,6 +206,7 @@ annotate service.EUTObject with @(
         {
             $Type : 'UI.ReferenceFacet',
             Label : 'Details on Economic Activities',
+            ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
         }
     ]
@@ -246,7 +236,7 @@ annotate service.EUT_Activities with @(
     },
     UI.DataPoint #Plant:{
         Value : EUT_Object.WERKS,
-        Title : 'Economic Activity'
+        Title : 'Plant'
     },
     UI.HeaderFacets : [
         {
@@ -299,38 +289,199 @@ annotate service.EUT_Activities with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Economic Activities Overview',
-            ID    : 'EAoverview',
-            Target: 'EA_Object/@UI.FieldGroup#EAObjectGroup1'
+            Label : 'Screening Inputs',
+            ID    : 'ScreenInputs',
+            Target: 'Screening_Input/@UI.LineItem#ScreenInputs'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Financial Inputs',
+            ID    : 'FinInputs',
+            Target: 'Financial_Input/@UI.LineItem#FinInputs'
         }
-        
+    ]
+);
+
+
+/*************************************************************************************************/
+//                    Annotations for Financial Input OBJECT Page - Content
+/*************************************************************************************************/
+annotate service.FINANCIAL_INPUT with @(
+    UI.LineItem #FinInputs: [
+        {
+            $Type : 'UI.DataField',
+            Value : RBUKRS_RBUKRS,
+            Label : 'Company Code'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GJAHR,
+            Label : 'Fiscal Year'
+        },{
+            $Type : 'UI.DataField',
+            Value : MATNR,
+            Label : 'Material Number'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : WERKS_WERKS,
+            Label : 'Plant'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RCNTR,
+            Label : 'Cost Center'
+        },
+        /*{
+            $Type : 'UI.DataField',
+            Value : PRCTR_PRCTR,
+            Label : 'Profit Center'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RLDNR,
+            Label : 'Ledger'
+        },*/
+        {
+            $Type : 'UI.DataField',
+            Value : RACCT,
+            Label : 'Account Number'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KSL,
+            Label : 'Amount GC'                 
+        },
+        /*{
+            $Type : 'UI.DataField',
+            Value : POPER,
+            Label : 'Posting Period'             
+        },*/
+        {
+            $Type : 'UI.DataField',
+            Value : RKCUR_code,
+            Label : 'Global Currency'              
+        },
+        /*{
+            $Type : 'UI.DataField',
+            Value : HSL,
+            Label : 'Amount CC'             
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RHCUR_code,
+            Label : 'Company Currency'    
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : AWREF,
+            Label : 'Reference Document'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : AWITEM,
+            Label : 'Reference Item'          
+        },*/
+        {
+            $Type : 'UI.DataField',
+            Value : BUDAT,
+            Label : 'Posting Date'               
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GSCEN,
+            Label : 'Scenario for Reporting'       
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RACCT_TYPE_code,
+            Label : 'Account Type'       
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GF_INDICATOR,
+            Label: 'Green Finance Indicator'     
+        }
     ]
 );
 
 /*************************************************************************************************/
-//                    Annotations for Economic Activity OBJECT Page - Header
+//               Annotations for EUTObject fields display and Value Help lists
 /*************************************************************************************************/
-annotate service.ECO_ACT_OBJECT with @(
-    UI.FieldGroup #EAObjectGroup1 : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : Description
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : EUT_ELIGIBLE
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : EnablingActivity
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Comment
-            },
-        ],
-    }
+annotate service.FINANCIAL_INPUT with {
+    RBUKRS @(
+        Common : {
+            Text  : RBUKRS.Description,
+            TextArrangement : #TextFirst,
+            ValueListWithFixedValues : true
+        }
+    );
+    GJAHR @(
+        Common: {
+            ValueListWithFixedValues : true,
+            ValueList: {
+                Label: 'Years',
+                CollectionPath: 'YearsListView',
+                Parameters: [
+                    { 
+                        $Type: 'Common.ValueListParameterInOut',
+                        LocalDataProperty: GJAHR,
+                        ValueListProperty: 'FiscalYear'
+                    }
+                ]
+            }
+        }
+    );
+    PRCTR @(
+        Common: {
+            Text: PRCTR.DESCR,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true
+        }
+    );
+    WERKS @(
+        Common: {
+            Text: WERKS.DESCR,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true
+        }
+    );
+};
 
+/*************************************************************************************************/
+//                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Content
+/*************************************************************************************************/
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.LineItem #ScreenInputs : [
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GJAHR
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+        },
+    ]
 );

@@ -213,7 +213,6 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
                             "navigation": {
                                 "Financial_Input": {
@@ -227,7 +226,16 @@
                                     }
                                 }
                             },
-                            "sectionLayout": "Tabs"
+                            "sectionLayout": "Tabs",
+                            "showRelatedApps": true,
+                            "editableHeaderContent": true,
+                            "content": {
+                                "header": {
+                                    "editableHeaderContent": true,
+                                    "anchorBarVisible": true,
+                                    "visible": true
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "endColumnPages",

@@ -44,6 +44,7 @@ service DataService {
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
+    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     @odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled
@@ -56,7 +57,6 @@ service DataService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     entity ECON_CRITER_APPL as projection on criterappl;
     entity AcctTypeObject as projection on accounttype;
     entity CriterView as 
@@ -88,6 +88,7 @@ service EUTObjectService {
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
+    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     @odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled
@@ -103,7 +104,7 @@ service EUTObjectService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
+   
     entity ECON_CRITER_APPL as projection on criterappl;
     entity AcctTypeObject as projection on accounttype;
     entity CriterView as 

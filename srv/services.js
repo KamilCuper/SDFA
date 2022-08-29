@@ -34,7 +34,7 @@ module.exports = cds.service.impl(async function() {
                                 break;
                 
             }
-           switch(true){
+           /*switch(true){
              case  (eut.CRITER.COMB_UNIT == null &&  eut.CRITER.CALC_MEAS == null && eut.CRITER.TYP_PLANT == null) :
                 eut.HELP_P = true;
                 break;
@@ -44,7 +44,7 @@ module.exports = cds.service.impl(async function() {
             default : 
                     eut.HELP_P = false;
                     break;    
-            }  
+            } */
             
         }        
         );

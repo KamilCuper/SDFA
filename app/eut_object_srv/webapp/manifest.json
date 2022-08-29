@@ -125,6 +125,20 @@
                         "EUTObjectObjectPage",
                         "EUT_ActivitiesObjectPage"
                     ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
+                    "name": "FINANCIAL_INPUTObjectPage",
+                    "target": [
+                        "FINANCIAL_INPUTObjectPage"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/Screening_Input({key3}):?query:",
+                    "name": "EUT_SCREENING_INPUTObjectPage",
+                    "target": [
+                        "EUT_SCREENING_INPUTObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -147,23 +161,11 @@
                             "initialLoad": "Enabled",
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "tableSettings": {
-                                        "enableMassEdit": false,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
-                                    },
                                     "actions": {
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
-                                            "press": "ns.financialinput.controller.ListReportExtController.dataImport",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.dataImport",
                                             "requiresSelection": false
                                         }
                                     }
@@ -180,7 +182,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "showRelatedApps": true,
+                            "showRelatedApps": true,   
                             "sectionLayout": "Tabs",
                             "entitySet": "EUTObject",
                             "navigation": {
@@ -189,7 +191,38 @@
                                         "route": "EUT_ActivitiesObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "content":{
+                                "header": {
+                                    "editableHeaderContent": false,
+                                    "actions": {
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "Activities/@com.sap.vocabularies.UI.v1.LineItem#Activities": {
+                                    "tableSettings": {
+                                        "enableMassEdit": false,
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true,
+                                            "group": true
+                                        },
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "enableExport": true
+                                    },
+                                     "actions": {
+                                          "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Economic Activity(s)",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
+                                          }
+                                     }
+                                }
+                            }                            
                         }
                     },
                     "controlAggregation": "midColumnPages",
@@ -205,25 +238,45 @@
                             "entitySet": "EUT_Activities",
                             "sectionLayout": "Tabs",
                             "navigation": {
-                    
+                                "Financial_Input": {
+                                    "detail": {
+                                        "route": "FINANCIAL_INPUTObjectPage"
+                                    }
+                                },
+                                "Screening_Input": {
+                                    "detail": {
+                                        "route": "EUT_SCREENING_INPUTObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
+                                    "tableSettings": {
+                                        "enableMassEdit": false,
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true,
+                                            "group": true
+                                        },
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "enableExport": true
+                                    },
+                                     "actions": {
+                                          "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Financial Record(s)",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
+                                          }
+                                     }
+                                }
                             }
                         }
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})"
-                },
-                "EA_ObjectPage": {
-                    "type": "Component",
-                    "id": "EA_ObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "ECO_ACT_OBJECT",
-                            "navigation": {}
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/EA_Object({key3})"
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -232,7 +285,12 @@
                     "options": {
                         "settings": {
                             "entitySet": "FINANCIAL_INPUT",
-                            "navigation": {}
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "visible": true
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "endColumnPages",

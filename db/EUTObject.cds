@@ -73,7 +73,7 @@ entity FINANCIAL_INPUT : managed {
     AWITEM              : ReferenceItem;
     BUDAT               : Date;
     GSCEN               : GSCEN;
-    RACCT_TYPE          : Association to one AcctTypeObject;
+    RACCT_TYPE          : Association to one AcctTypeObject @title : 'Account Type';
     GF_INDICATOR        : GFIndicator;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     criticality         : Integer;
