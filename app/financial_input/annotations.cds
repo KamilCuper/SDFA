@@ -98,13 +98,14 @@ annotate service.FINANCIAL_INPUT with {
         }*/
         }
 )};
-annotate service.CorporateMD with {
+/*annotate service.CorporateMD with {
     RBUKRS @Common.Text : {
         $value : Description,
         ![@UI.TextArrangement] : #TextFirst,
     }
-};
+};*/
 
+<<<<<<< HEAD
 annotate service.PlantObject with {
     WERKS @Common.Text : {
         $value : DESCR,
@@ -113,6 +114,9 @@ annotate service.PlantObject with {
 };
 
 annotate service.CorporateMD with @(UI : {
+=======
+/*annotate service.CorporateMD with @(UI : {
+>>>>>>> 43d3d1b0a66c9664fd3e26c898661fe80be4da2c
     QuickViewFacets             : [
         {
             $Type  : 'UI.ReferenceFacet',
@@ -130,7 +134,7 @@ annotate service.CorporateMD with @(UI : {
             Value : LAND1
         }
     ]}
-});
+});*/
 
 annotate service.FINANCIAL_INPUT with {
     KSL @Measures.ISOCurrency : RKCUR_code

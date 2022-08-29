@@ -17,15 +17,15 @@ annotate service.EUT_SCREENING_INPUT with @(
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,            
         },
-        {
+        /*{
             $Type : 'UI.DataField',
             Value : GJAHR,
-        },
+        }, ** field removed from object 
         
         {
             $Type : 'UI.DataField',
             Value : GSCEN,
-        },
+        }, ** field removed from object */
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -162,10 +162,10 @@ annotate service.EUT_SCREENING_INPUT with @(
                 $Type : 'UI.DataField',
                 Value : CRITER.CRITER_DESC,
             },          
-            {
+            /*{
                 $Type : 'UI.DataField',
                 Value : GJAHR,
-            },           
+            }, ** field removed from object */           
             {
                 $Type : 'UI.DataField',
                 Value : INDICATOR_IV,
@@ -274,7 +274,7 @@ annotate service.SCREEN_CRITER_TEMPLT with {
 };
 annotate service.EUT_SCREENING_INPUT with @(
     UI.SelectionFields : [
-        GJAHR,
+        // GJAHR, ** field removed from object
         CRITER_CRITER,
     ]
 );
@@ -316,18 +316,18 @@ annotate service.EUT_SCREENING_INPUT with @(
 annotate service.SCREEN_CRITER_TEMPLT with {
     CRITER_DESC @Common.FieldControl : #ReadOnly
 };
-annotate service.EUT_SCREENING_INPUT with {
+/*annotate service.EUT_SCREENING_INPUT with {
     GJAHR @Common.FieldControl : #ReadOnly
-};
+}; ** field removed from object */
 annotate service.SCREEN_CRITER_TEMPLT with {
     CRIT_UNIT @Common.FieldControl : #ReadOnly
 };
 
-annotate service.EUT_SCREENING_INPUT.GJAHR with {
+/*annotate service.EUT_SCREENING_INPUT.GJAHR with {
     @Common.SemanticObject : 'GJAHR'
     YY
-};
-
+}; ** field removed from object */
+/*
 annotate service.SCREEN_CRITER_TEMPLT with @(
  UI.QuickViewFacets : [
     {
@@ -351,7 +351,7 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
         },
     ]
  }
-);
+);*/
 
 annotate service.EUT_SCREENING_INPUT with {
     @Common.SemanticObject:  'Semantic Year'

@@ -25,10 +25,10 @@ annotate service.CriterView with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : ContributionType
+            Value : Contribution_Type
         },
     ],
-    UI.SelectionFields : [Sector,EcoActivity,EUT_Eligible,Criterion,ContributionType],
+    UI.SelectionFields : [Sector,EcoActivity,EUT_Eligible,Criterion,Contribution_Type],
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -50,15 +50,19 @@ annotate service.CriterView with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : ContributionType,
+                Value : Contribution_Type,
             },
             {
                 $Type : 'UI.DataField',
-                Value : CRITER.COMB_UNIT,
+                Value : CRITER.CRIT_UNIT,
             },
             {
                 $Type : 'UI.DataField',
                 Value : CRITER.CRIT_L,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_U,
             },
         ],
     },
@@ -84,8 +88,6 @@ annotate service.CriterView with {
                 Parameters: [
                     { $Type: 'Common.ValueListParameterInOut',
                     LocalDataProperty:Sector,
-                    ValueListProperty: 'SECTOR'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty: 'Description'},
                     {$Type: 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty: 'Comment'}
@@ -129,4 +131,71 @@ annotate service.CriterView with {
             }
         }
     )
+};
+annotate SCREEN_CRITER_TEMPLT with @(UI:{
+    ConnectedFields #CritU : {
+        $Type : 'UI.ConnectedFieldsType',
+        Template : '{CritU} / {Unit}',
+        Data : {
+            CritU : {
+                $Type : 'UI.DataField',
+                Value : CRIT_U
+            },
+            Unit : {
+                $Type : 'UI.DataField',
+                Value : CRIT_UNIT
+            },
+            $Type : 'Core.Dictionary'//, <-Required? it was added automatically by intellisense 
+        },
+    },
+    ConnectedFields #CritL : {
+        $Type : 'UI.ConnectedFieldsType',
+        Template : 'CritL / Unit',
+        Data : {
+            CritL : {
+                $Type : 'UI.DataField',
+                Value : CRIT_L
+            },
+            Unit : {
+                $Type : 'UI.DataField',
+                Value : CRIT_UNIT
+            },
+            $Type : 'Core.Dictionary', //<-Required? it was added automatically by intellisense 
+        },
+    },    
+    FieldGroup #BrowserHint : {
+        $Type : 'UI.FieldGroupType',
+        Data:[
+            {
+                $Type: 'UI.DataField',
+                Label: 'Criterion',
+                Value: CRITER_DESC
+            },
+            {
+                $Type: 'UI.DataFieldForAnnotation',
+                Label: 'Upper Limit',
+                Target: '@UI.ConnectedFields#CritU'
+            },
+            {
+                $Type: 'UI.DataFieldForAnnotation',
+                Label: 'Lower Limit',
+                Target: '@UI.ConnectedFields#CritL'
+            }
+        ]
+        
+    },
+    QuickViewFacets  : [
+        {
+            $Type: 'UI.ReferenceFacet',
+            Label: 'Additional Information',
+            Target: '@UI.FieldGroup#BrowserHint'
+        }
+        
+    ],
+
+}
+);
+annotate service.CriterView with {
+    @Common.SemanticObject:  'Criterion'
+    Criterion
 };

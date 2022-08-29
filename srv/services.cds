@@ -22,7 +22,9 @@ using {
     SECTOR_OBJECT as sector,
     ECO_ACT_OBJECT as ecoobject,
     SCREEN_CRITER_TEMPLT as screencriter,
-    ECON_CRITER_APPL as criterappl
+    ECON_CRITER_APPL as criterappl,
+    EnvObjectiveObject as envobjective,
+    ContributionTypeObject as contrtype
 } from '../db/ReferenceData';
 using {
     AcctTypeObject as accounttype
@@ -59,22 +61,24 @@ service DataService {
     entity ECO_ACT_OBJECT as projection on ecoobject;
     entity ECON_CRITER_APPL as projection on criterappl;
     entity AcctTypeObject as projection on accounttype;
+    entity EnvObjectiveObject as projection on envobjective;
+    entity ContributionTypeObject as projection on contrtype;
     entity CriterView as 
         select  
                 EcoActivity.SECTOR.Description as Sector, 
                 EcoActivity.Description as EcoActivity,
                 EcoActivity.EUT_Eligible,
                 CRITER.CRITER_DESC as Criterion,
-                TYP_CONT as ContributionType,
+                TYP_CONT.Description as Contribution_Type,
                 key CRITER
         from ECON_CRITER_APPL
     ;
-    entity YearsListView as
+    /*entity YearsListView as
         select
             key EUT_Object.GJAHR as FiscalYear
         from EUT_Activities
         group by EUT_Object.GJAHR
-    ;
+    ;*/
 }
 
 service EUTObjectService {
@@ -104,7 +108,9 @@ service EUTObjectService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-   
+    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
+    entity EnvObjectiveObject as projection on envobjective;
+    entity ContributionTypeObject as projection on contrtype;
     entity ECON_CRITER_APPL as projection on criterappl;
     entity AcctTypeObject as projection on accounttype;
     entity CriterView as 
@@ -113,14 +119,14 @@ service EUTObjectService {
                 EcoActivity.Description as EcoActivity,
                 EcoActivity.EUT_Eligible,
                 CRITER.CRITER_DESC as Criterion,
-                TYP_CONT as ContributionType,
+                TYP_CONT.Description as Contribution_Type,
                 key CRITER
         from ECON_CRITER_APPL
     ;
-    entity YearsListView as
+    /*entity YearsListView as
         select
             key EUT_Object.GJAHR as FiscalYear
         from EUT_Activities
         group by EUT_Object.GJAHR
-    ;
+    ;*/
 }

@@ -87,16 +87,16 @@ entity SCREEN_CRITER_TEMPLT : managed {
     CALC_MEAS       : CalcMeasure;
     TYP_PLANT       : PlantType;
     SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
-                        on SCREEN_INPUT.CRITER = $self @title : 'Screening Input';
-    EA_APPL         : Association to many ECON_CRITER_APPL
-                        on EA_APPL.CRITER =$self @title : 'Applicability'                    
+                        on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
+    /*EA_APPL         : Association to many ECON_CRITER_APPL
+                        on EA_APPL.CRITER =$self @title : 'Applicability'*/ //not required
 };
 
 entity ECON_CRITER_APPL : managed {
     key ID          : GUID ;
     EcoActivity     : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     CRITER          : Association to one SCREEN_CRITER_TEMPLT @title: 'Screening Criterion';
-    TYP_CONT        : ContributionType;
+    TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
     CCA             : ClimateAdaptation;
     CCM             : ClimateMitigation;
     WAT             : Water;
@@ -104,6 +104,16 @@ entity ECON_CRITER_APPL : managed {
     PPV             : PollutionPrevention;
     BIO             : Biodiversity;
 
+};
+
+entity EnvObjectiveObject : managed {
+    key ID          : EnvironmentalObjective;
+    Description     : Description
+};
+
+entity ContributionTypeObject : managed {
+    key ID          : ContributionTypeLong;
+    Description     : Description
 };
 
 type LAND1 : String @title : 'Country';
@@ -153,3 +163,5 @@ type Water : Boolean @title :'Water';
 type CircularEconomy : Boolean @title :'Circular Economy';
 type PollutionPrevention : Boolean @title :'Pollution Prevention';
 type Biodiversity : Boolean @title :'Biodiversity';
+type EnvironmentalObjective : String @title : 'Environmental Objective';
+type ContributionTypeLong : String @title : 'Environmental Objective';

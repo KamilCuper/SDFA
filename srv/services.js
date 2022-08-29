@@ -3,7 +3,7 @@ const cds = require('@sap/cds')
 
 
 module.exports = cds.service.impl(async function() {
-    this.after('READ', 'EUT_SCREENING_INPUT', eutInput => {
+    /*this.after('READ', 'EUT_SCREENING_INPUT', eutInput => {
         const eut = Array.isArray(eutInput) ? eutInput : [eutInput];
         eut.forEach(eut => {
             switch (true){
@@ -49,7 +49,7 @@ module.exports = cds.service.impl(async function() {
         }        
         );
     });
-
+*/
     this.after('READ', 'FINANCIAL_INPUT', financialData => {
         const records = Array.isArray(financialData) ? financialData : [financialData];
         records.forEach(records => {
