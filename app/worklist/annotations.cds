@@ -9,10 +9,10 @@ annotate service.EUTObject with @(
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS
         },
-        {
+        /*{
             $Type : 'UI.DataField',
             Value : GJAHR
-        },
+        }, field removed from object*/
         {
             $Type : 'UI.DataField',
             Value : PRCTR_PRCTR
@@ -34,10 +34,10 @@ annotate service.EUTObject with @(
                 $Type : 'UI.DataField',
                 Value : RBUKRS_RBUKRS
             },
-            {
+            /*{
                 $Type : 'UI.DataField',
                 Value : GJAHR
-            },
+            }, field removed from object */
             {
                 $Type : 'UI.DataField',
                 Value : PRCTR_PRCTR
@@ -52,10 +52,10 @@ annotate service.EUTObject with @(
         Value : RBUKRS_RBUKRS ,
         Title : 'Company'
     },
-    UI.DataPoint #Year :{
+    /*UI.DataPoint #Year :{
         Value : GJAHR ,
         Title : 'Fiscal Year'
-    },
+    }, field removed from object */
     UI.DataPoint #ProfitCenter :{
         Value : PRCTR_PRCTR,
         Title : 'Profit Center'
@@ -109,7 +109,7 @@ annotate service.EUTObject with {
 annotate service.EUTObject with @(
     UI.SelectionFields : [
         RBUKRS_RBUKRS,
-        GJAHR,
+        //GJAHR, field removed from object
         PRCTR_PRCTR,
         WERKS_WERKS
     ]
@@ -134,7 +134,7 @@ annotate service.EUTObject with {
             }
         }
     );
-    GJAHR @(
+    /*GJAHR @(
         Common: {
             ValueListWithFixedValues : true,
             ValueList: {
@@ -147,7 +147,7 @@ annotate service.EUTObject with {
                 ]
             }
         }
-    );
+    ); field removed from object */
     PRCTR @(
         Common: {
             Text: PRCTR.DESCR,
@@ -250,7 +250,7 @@ annotate service.EUT_Activities with @(
         {
             $Type : 'UI.DataField',
             Value : Financial_Input.KSL,
-            @Aggregation.Default: #SUM 
+            //@Aggregation.Default: #SUM **throwing an error
         }
         
     ],
@@ -311,7 +311,7 @@ annotate service.EUT_Activities with @(
                 Label : 'Company',
             },{
                 $Type : 'UI.DataField',
-                Value : EUT_Object_ID.GJAHR,
+                Value : GJAHR, //used to be taken from EUT Object
                 Label : 'Fiscal Year',
             },{
                 $Type : 'UI.DataField',
@@ -325,7 +325,7 @@ annotate service.EUT_Activities with @(
         Title : 'Company'
     },
     UI.DataPoint #Year :{
-        Value : EUT_Object.GJAHR ,
+        Value : GJAHR , //used to be taken from EUT object
         Title : 'Fiscal Year'
     },
     UI.DataPoint #Scenario :{
@@ -337,7 +337,7 @@ annotate service.EUT_Activities with @(
         Title : 'Economic Activity'
     },
 );
-annotate service.EUT_Activities with @(
+/*annotate service.EUT_Activities with @(
    UI.PresentationVariant #Activities: {
     Total : [
         {
@@ -345,7 +345,7 @@ annotate service.EUT_Activities with @(
         }
     ],
 }
-);
+); ** this annotation strted to throw error after modification in eut activities object definition*/
 
 annotate service.FINANCIAL_INPUT with @(
     UI.LineItem #FinInputs: [
@@ -538,10 +538,10 @@ annotate service.EUT_SCREENING_INPUT with @(
             $Type : 'UI.DataField',
             Value : CRITER_CRITER
         },
-        {
+        /*{
             $Type : 'UI.DataField',
             Value : GJAHR
-        },
+        }, field removed from object*/
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_UNIT
@@ -572,10 +572,10 @@ annotate service.EUT_SCREENING_INPUT with @(
             $Type : 'UI.DataField',
             Value : CRITER_CRITER
             },
-            {
+            /*{
             $Type : 'UI.DataField',
             Value : GJAHR
-            },
+            }, field removed from object*/
             {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_UNIT
