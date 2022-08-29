@@ -8,7 +8,7 @@ annotate service.FINANCIAL_INPUT with @(
         {
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS,
-                     
+            Criticality: criticality        
         },
         {
             $Type : 'UI.DataField',
@@ -58,11 +58,6 @@ annotate service.FINANCIAL_INPUT with @(
 
 
 annotate service.FINANCIAL_INPUT with {
-    @Common.SemanticObject : 'Plant'
-    WERKS_WERKS
-};
-
-annotate service.FINANCIAL_INPUT with {
     @Common.SemanticObject : 'SemanticCostCenter'
     RBUKRS
 };
@@ -101,14 +96,14 @@ annotate service.FINANCIAL_INPUT with {
         }*/
         }
 )};
-annotate service.CorporateMD with {
+/*annotate service.CorporateMD with {
     RBUKRS @Common.Text : {
         $value : Description,
         ![@UI.TextArrangement] : #TextFirst,
     }
-};
+};*/
 
-annotate service.CorporateMD with @(UI : {
+/*annotate service.CorporateMD with @(UI : {
     QuickViewFacets             : [
         {
             $Type  : 'UI.ReferenceFacet',
@@ -126,33 +121,6 @@ annotate service.CorporateMD with @(UI : {
             $Type : 'UI.DataField',
             Value : LAND1
         }
-    ]},
-
-
-
-});
-
-
-
-
-annotate service.PlantObject with @(UI : {
-    QuickViewFacets             : [
-        
-        {
-            $Type  : 'UI.ReferenceFacet',
-            //Label  : 'Details',
-            Target : '@UI.FieldGroup#PlantQuickView'
-        },
-    ],
-   
-
-
-    FieldGroup #PlantQuickView : {Data : [
-        {
-            $Type : 'UI.DataField',
-            Value : DESCR
-        },
-        
     ]}
 
 

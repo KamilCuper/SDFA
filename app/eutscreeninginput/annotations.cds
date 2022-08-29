@@ -18,10 +18,8 @@ annotate service.EUT_SCREENING_INPUT with @(
             Value : CRITER_CRITER,            
         },
         
-        {
-            $Type : 'UI.DataField',
-            Value : GSCEN,
-        },
+        
+    
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -102,7 +100,7 @@ annotate service.EUT_SCREENING_INPUT with @(
     UI.PresentationVariant : {
         Text : 'EUT Screening Inputs - all records',
         GroupBy: [
-             CRITER_CRIT_UNIT          
+             CRITER_CRITER          
         ],
       //  Total : [
        //     KEY_FIGURE
@@ -133,7 +131,15 @@ annotate service.EUT_SCREENING_INPUT with @(
      UI.FieldGroup #CriteriaForm : {
         $Type : 'UI.FieldGroupType',
         Data : [
-          
+            {
+                $Type : 'UI.DataField',
+                Value : EUT_ACTIVITIES.EA_Object.Description,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRITER_DESC,
+            },          
+                       
             {
                 $Type : 'UI.DataField',
                 Value : INDICATOR_IV,
@@ -231,14 +237,7 @@ annotate service.EUT_SCREENING_INPUT with @(
         Value : EUT_ACTIVITIES.EA_Object.Description,
         Title : 'Economic Activity'
     },
-    UI.DataPoint #Year :{
-        Value : GJAHR,
-        Title : 'Fiscal Year'
-    },
-        UI.DataPoint #Scenario :{
-        Value : GSCEN,
-        Title : 'Scenario'
-    },
+   
 
     UI.HeaderFacets : [
         {
@@ -249,14 +248,7 @@ annotate service.EUT_SCREENING_INPUT with @(
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#EcoActivity'
         },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Year'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Scenario'
-        },
+      
     ],
 
 
@@ -301,7 +293,7 @@ annotate service.SCREEN_CRITER_TEMPLT with {
 };
 annotate service.EUT_SCREENING_INPUT with @(
     UI.SelectionFields : [
-        GJAHR,
+        // GJAHR, ** field removed from object
         CRITER_CRITER,
     ]
 );
@@ -332,23 +324,17 @@ annotate service.EUT_SCREENING_INPUT with @(
 annotate service.SCREEN_CRITER_TEMPLT with {
     CRITER_DESC @Common.FieldControl : #ReadOnly
 };
-annotate service.EUT_SCREENING_INPUT with {
+/*annotate service.EUT_SCREENING_INPUT with {
     GJAHR @Common.FieldControl : #ReadOnly
-};
+}; ** field removed from object */
 annotate service.SCREEN_CRITER_TEMPLT with {
     CRIT_UNIT @Common.FieldControl : #ReadOnly
 };
 
-
-
-
-
-annotate service.EUT_SCREENING_INPUT with @(
-    Communication.Contact #contact : {
-        $Type : 'Communication.ContactType',
-        fn : CRITER_CRITER,
-    }
-);
+annotate service.EUT_SCREENING_INPUT.GJAHR with {
+    @Common.SemanticObject : 'GJAHR'
+    YY
+};
 
 annotate service.SCREEN_CRITER_TEMPLT with @(
  UI.QuickViewFacets : [

@@ -12,7 +12,9 @@ using {
     CorporateMD,
     SCREEN_CRITER_TEMPLT,
     ProfitCenterObject,
-    PlantObject
+    PlantObject,
+    EnvObjectiveObject,
+    ContributionTypeObject
 } from './ReferenceData';
 using {
     GUID,
@@ -30,9 +32,10 @@ using {
 
 entity EUTObject : managed {
     key ID            : GUID;
+    Description       : Description;
     RBUKRS            : Association to one CorporateMD @title : 'Company';
     PRCTR             : Association to one ProfitCenterObject;
-    GJAHR             : FiscalYear;
+    //GJAHR             : FiscalYear; //moved to EUT_Activities
     WERKS             : Association to one PlantObject;
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
@@ -42,6 +45,7 @@ entity EUTObject : managed {
 entity EUT_Activities : managed {
     key ID            : GUID;
     Scenario          : GSCEN;
+    GJAHR             : FiscalYear;
     EUT_Object        : Association to one EUTObject @title : 'EUT Reporting Object';
     EA_Object         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     Financial_Input   : Association to many FINANCIAL_INPUT 
@@ -51,7 +55,7 @@ entity EUT_Activities : managed {
                                                    
 };
 
-@Aggregation.CustomAggregate #KSL : 'Edm.Decimal'
+//@Aggregation.CustomAggregate #KSL : 'Edm.Decimal'
 @Aggregation.CustomAggregate #RKCUR : 'Edm.String'
 @Aggregation.CustomAggregate #HSL : 'Edm.Decimal'
 @Aggregation.CustomAggregate #RHCUR : 'Edm.String'
@@ -82,11 +86,13 @@ entity FINANCIAL_INPUT : managed {
 
 entity EUT_SCREENING_INPUT : managed {
     key ID              : GUID ;
-    GJAHR               : FiscalYear;
+    //GJAHR               : FiscalYear; removed
     INDICATOR_IV        : Indicator_InVal;
     KEY_FIGURE          : InputValue;
-    GSCEN               : GSCEN;
+    //GSCEN               : GSCEN; removed
     CRITER              : Association to one SCREEN_CRITER_TEMPLT @title : 'Screening Criterion';
+    Env_Ob              : Association to one EnvObjectiveObject;
+    Typ_Cont           : Association to one ContributionTypeObject;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     CRITICALITY : Integer;
     HELP : Help;
