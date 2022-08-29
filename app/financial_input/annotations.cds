@@ -96,14 +96,14 @@ annotate service.FINANCIAL_INPUT with {
         }*/
         }
 )};
-/*annotate service.CorporateMD with {
+annotate service.CorporateMD with {
     RBUKRS @Common.Text : {
         $value : Description,
         ![@UI.TextArrangement] : #TextFirst,
     }
-};*/
+};
 
-/*annotate service.CorporateMD with @(UI : {
+annotate service.CorporateMD with @(UI : {
     QuickViewFacets             : [
         {
             $Type  : 'UI.ReferenceFacet',
