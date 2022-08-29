@@ -1,4 +1,4 @@
-ID,EcoActivity_ECO_ACT,CRITER_CRITER,TYP_CONT,CCA,CCM,WAT,CEC,PPV,BIO
+ID,EcoActivity_ECO_ACT,CRITER_CRITER,TYP_CONT_ID,CCA,CCM,WAT,CEC,PPV,BIO
 1,EA_C_MIS   ,BIO_EIA          ,DNSH,TRUE,flase,flase,flase,flase,flase
 2,EA_C_ORC   ,BIO_EIA          ,DNSH,flase,TRUE,flase,flase,flase,flase
 3,EA_C_MIS   ,BIO_LBS          ,DNSH,TRUE,flase,flase,flase,flase,flase
