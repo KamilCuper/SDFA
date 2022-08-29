@@ -146,6 +146,9 @@
                             "hideFilterBar": false,
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
+
+                                  
+
                                     "tableSettings": {
                                         "creationMode": {
                                             "name": "Inline",
@@ -173,6 +176,12 @@
                                             "text": "Open Quick View",
                                             "press": "ns.financialinput.controller.ListReportExtController.openQV",
                                             "requiresSelection": false
+                                        },
+                                        "accTypeMapping": {
+                                            "id": "accTypeMappingButton",
+                                            "text": "Account Type Mapping",
+                                            "press": "ns.financialinput.controller.ListReportExtController.openMapp",
+                                            "requiresSelection": false
                                         }
                                     }
                                 }
@@ -191,6 +200,14 @@
                             "editableHeaderContent": false,
                             "entitySet": "FINANCIAL_INPUT",
                             "sectionLayout": "Page"
+                        },
+                        "actions" : {
+                            "accTypeMapping": {
+                                "id": "accTypeMappingButton",
+                                "text": "Account Type Mapping",
+                                "press": "ns.financialinput.controller.ListReportExtController.openMapp",
+                                "requiresSelection": false
+                            }
                         }
                     },
                     "controlAggregation": "midColumnPages",

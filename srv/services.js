@@ -53,15 +53,26 @@ module.exports = cds.service.impl(async function() {
     this.after('READ', 'FINANCIAL_INPUT', financialData => {
         const records = Array.isArray(financialData) ? financialData : [financialData];
         records.forEach(records => {
-            if (records.KSL >= 400000) {
-                records.criticality = 3;
-            } else if (records.KSL < 400000 && records.KSL >= 100000) {
-                records.criticality = 0;
-            } else {
+            if (records.RACCT_TYPE_code ==null) {
                 records.criticality = 1;
+            } else {
+                records.criticality = 3;
             }
         });
     });   
+
+
+    this.after('READ','EUTObject', eutObjectData => {
+        const rec = Array.isArray(eutObjectData) ? eutObjectData : [eutObjectData];
+        rec.forEach(rec => {
+            if (rec.Activities == null) {
+                rec.CRITICALIT = 1;
+            } else  {
+                rec.CRITICALIT = 3;
+            } 
+        });
+    });
+
 }); 
 
 

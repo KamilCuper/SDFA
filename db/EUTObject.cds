@@ -36,6 +36,7 @@ entity EUTObject : managed {
     WERKS             : Association to one PlantObject;
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
+    CRITICALIT : CRITICALIT;
 }
 
 entity EUT_Activities : managed {
@@ -109,3 +110,4 @@ type InputValue         : Decimal @title : 'Input Value';
 type Help         : Boolean @title : 'Help';
 type Help_I         : Boolean @title : 'Help_I';
 type Help_P         : Boolean @title : 'Help_P';
+type CRITICALIT         : Integer @title : 'Criticality';

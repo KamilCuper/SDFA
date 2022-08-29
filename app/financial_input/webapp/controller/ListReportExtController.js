@@ -41,6 +41,15 @@ function (MessageToast, Fragment, Event){
 			});
 		},
 
+
+		openMapp: function(oEvent) {
+			var oButton = oEvent.getSource().getBindingContext().getId();
+			MessageToast.show("Inside QuickView function" + oButton);
+			
+			
+			
+		},
+
 		onAfterRendering: function () {
 			oButton = this.byId("openQuickViewButton");
 			oButton.$().attr("aria-haspopup", true);

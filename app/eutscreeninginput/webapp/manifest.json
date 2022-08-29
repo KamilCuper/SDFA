@@ -139,7 +139,7 @@
                                             "width": "10%"
                                         },
                                         "DataField::CRITER_CRITER": {
-                                            "width": "22%"
+                                            "width": "20%"
                                         },
                                         "DataField::CRITER::CRIT_L": {
                                             "width": "7%"
@@ -168,19 +168,25 @@
                                         "quickVariantSelection": {
                                             "paths": [
                                                 {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#All"
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
                                                 },
                                                 {
                                                     "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
                                                 },
                                                 {
                                                     "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Pre"
                                                 }
+                                                
                                             ]
                                         }
+                                    },
+                                    "actions" : {
+                                        "importData": {
+                                            "id": "insertInputValueButton",
+                                            "text": "Insert Input Value",
+                                            "press": "ns.eutscreeninginput.controller.ListReportExtController.insertInput",
+                                            "requiresSelection": true
+                                        }  
                                     }
                                 }
                             }
@@ -198,8 +204,7 @@
                         }
                     }
                 }
-            },
-            "config": {}
+            }
         }
     },
     "sap.fiori": {

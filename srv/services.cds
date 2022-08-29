@@ -39,6 +39,7 @@ service DataService {
     entity EA_MAPPING as projection on ecoactmapping
         annotate ecoactmapping with @odata.draft.enabled;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity EUTObject as projection on Eobject order by ID;
     //@odata.draft.enabled
     entity EUT_Activities as projection on Eactivities;
@@ -83,22 +84,30 @@ service EUTObjectService {
     @odata.draft.enabled
     entity EA_MAPPING as projection on ecoactmapping
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity EUTObject as projection on Eobject order by ID;
     //@odata.draft.enabled
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity CorporateMD as projection on corporatemd;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity ProfitCenterObject as projection on profitcenter;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity PlantObject as projection on plant;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
+    @cds.odata.valuelist
     entity ECO_ACT_OBJECT as projection on ecoobject;
     entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     entity ECON_CRITER_APPL as projection on criterappl;
