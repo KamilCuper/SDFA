@@ -375,7 +375,7 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
         },
     ]
  }
-);*/
+);
 
 annotate service.EUT_SCREENING_INPUT with {
     @Common.SemanticObject:  'Screening Criterion'
