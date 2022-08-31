@@ -119,7 +119,7 @@ entity ContributionTypeObject : managed {
 type LAND1 : String @title : 'Country';
 
 type EUT_ELIGIBLE : Boolean @title : 'EUT Eligible';
-type EnablingActivity : String @title : 'Enabling Activity';
+type EnablingActivity : Boolean @title : 'Enabling Activity';
 
 
 type ContributionMeasure : String @title :'Contribution Measure';
