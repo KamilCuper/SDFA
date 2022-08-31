@@ -237,6 +237,7 @@
                             "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
                             "sectionLayout": "Tabs",
+                            "variantManagement":"Control",
                             "navigation": {
                                 "Financial_Input": {
                                     "detail": {
@@ -271,6 +272,32 @@
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
                                           }
                                      }
+                                },
+                                "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
+                                                }                                              
+                                            ]
+                                        }
+                                    },
+                                    "actions": {
+                                        "importData": {
+                                            "id": "insertInputValueButton",
+                                            "text": "Select Screening Inputs",
+                                            "press": "ns.worklist.controller.ListReportExtController.insertInput",
+                                            "requiresSelection": false
+                                        }
+                                    }
                                 }
                             }
                         }

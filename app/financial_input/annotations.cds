@@ -105,7 +105,6 @@ annotate service.FINANCIAL_INPUT with {
     }
 };*/
 
-<<<<<<< HEAD
 annotate service.PlantObject with {
     WERKS @Common.Text : {
         $value : DESCR,
@@ -113,10 +112,7 @@ annotate service.PlantObject with {
     }
 };
 
-annotate service.CorporateMD with @(UI : {
-=======
 /*annotate service.CorporateMD with @(UI : {
->>>>>>> 43d3d1b0a66c9664fd3e26c898661fe80be4da2c
     QuickViewFacets             : [
         {
             $Type  : 'UI.ReferenceFacet',

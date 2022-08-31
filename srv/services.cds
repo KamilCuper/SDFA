@@ -92,7 +92,6 @@ service EUTObjectService {
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
     @odata.draft.enabled
     entity EUT_SCREENING_INPUT as projection on screeninginput;
     @odata.draft.enabled

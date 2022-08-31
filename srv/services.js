@@ -2,10 +2,13 @@
 const cds = require('@sap/cds')
 
 
-module.exports = cds.service.impl(async function() {
+module.exports = cds.service.impl( async function() {
+
     /*this.after('READ', 'EUT_SCREENING_INPUT', eutInput => {
         const eut = Array.isArray(eutInput) ? eutInput : [eutInput];
-        eut.forEach(eut => {
+    
+    
+       eut.forEach(eut => {
             switch (true){
                case (eut.INDICATOR_IV=='YES') :
                 eut.CRITICALITY = 3; 
@@ -34,7 +37,7 @@ module.exports = cds.service.impl(async function() {
                                 break;
                 
             }
-           /*switch(true){
+           switch(true){
              case  (eut.CRITER.COMB_UNIT == null &&  eut.CRITER.CALC_MEAS == null && eut.CRITER.TYP_PLANT == null) :
                 eut.HELP_P = true;
                 break;
@@ -44,12 +47,28 @@ module.exports = cds.service.impl(async function() {
             default : 
                     eut.HELP_P = false;
                     break;    
-            } */
+            } 
+        })
+    }),*/
+    this.after('READ', 'SCREEN_CRITER_TEMPLT', screenTem => {
+        const scr = Array.isArray(screenTem) ? screenTem : [screenTem]
+            scr.forEach ( scr => {
+           switch(true){
+             case  (scr.COMB_UNIT == null &&  scr.CALC_MEAS == null && scr.TYP_PLANT == null) :
+                scr.HELP_P = true;
+                break;
+            case  (scr.COMB_UNIT != null ||  scr.CALC_MEAS != null && scr.TYP_PLANT != null) :
+                    scr.HELP_P = false;
+                    break;
+            default :
+                    scr.HELP_P = false;
+                    break;    
+            }
+        })  
+       }        
+    );
+    
             
-        }        
-        );
-    });
-*/
     this.after('READ', 'FINANCIAL_INPUT', financialData => {
         const records = Array.isArray(financialData) ? financialData : [financialData];
         records.forEach(records => {
@@ -61,9 +80,9 @@ module.exports = cds.service.impl(async function() {
                 records.criticality = 1;
             }
         });
-    });
+    })
+})
 
-}); 
 
 
 

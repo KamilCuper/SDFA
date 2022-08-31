@@ -8,6 +8,10 @@ annotate service.EUTObject with {
   ID @UI.Hidden;
 };
 
+annotate service.EUT_Activities with {
+  ID @UI.Hidden;
+};
+
 annotate service.CorporateMD with {
     RBUKRS @Common.Text : {
         $value : Description,
@@ -53,6 +57,22 @@ annotate service.EUT_Activities with {
             }
         }
     );
+    /*GJAHR @(
+        Common: {
+            ValueListWithFixedValues : true,
+            ValueList: {
+                Label: 'Years',
+                CollectionPath: 'YearsListView',
+                Parameters: [
+                    { 
+                        $Type: 'Common.ValueListParameterInOut',
+                        LocalDataProperty: GJAHR,
+                        ValueListProperty: 'FiscalYear'
+                    }
+                ]
+            }
+        }
+    );*/
 };
 
 
@@ -61,8 +81,8 @@ annotate service.EUT_Activities with {
 /*************************************************************************************************/
 annotate service.EUTObject with @(
     UI.SelectionFields : [
+        Description,
         RBUKRS_RBUKRS,
-        GJAHR,
         PRCTR_PRCTR,
         WERKS_WERKS
     ]
@@ -79,22 +99,6 @@ annotate service.EUTObject with {
             ValueListWithFixedValues : true
         }
     );
-    GJAHR @(
-        Common: {
-            ValueListWithFixedValues : true,
-            ValueList: {
-                Label: 'Years',
-                CollectionPath: 'YearsListView',
-                Parameters: [
-                    { 
-                        $Type: 'Common.ValueListParameterInOut',
-                        LocalDataProperty: GJAHR,
-                        ValueListProperty: 'FiscalYear'
-                    }
-                ]
-            }
-        }
-    );
     PRCTR @(
         Common: {
             Text: PRCTR.DESCR,
@@ -109,6 +113,11 @@ annotate service.EUTObject with {
             ValueListWithFixedValues : true
         }
     );
+    Description @(
+        Common: {
+            ValueListWithFixedValues : true
+        }
+    );
 };
 
 
@@ -120,30 +129,29 @@ annotate service.EUTObject with @(
         $value:[
             {
                 $Type : 'UI.DataField',
-                Label : 'Company Code',
-                Value : RBUKRS_RBUKRS,
-                ![@UI.Importance] : #High
+                Value : Description,
+                Label : 'Description',
+                ![@HTML5.CssDefaults] : {width : '15rem'}
             },
             {
                 $Type : 'UI.DataField',
-                Label: 'Year',
-                Value : GJAHR
+                Label : 'Company Code',
+                Value : RBUKRS_RBUKRS,
+                ![@UI.Importance] : #High,
+                ![@HTML5.CssDefaults] : {width : '20rem'}
             },
             {
                 $Type : 'UI.DataField',
                 Label: 'Profit Center',
-                Value : PRCTR_PRCTR
+                Value : PRCTR_PRCTR,
+                ![@HTML5.CssDefaults] : {width : '15rem'}
             },
             {
                 $Type : 'UI.DataField',
                 Label: 'Plant',
                 Value : WERKS_WERKS,
-                ![@UI.Importance] : #High
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.Description,
-                Label : 'Assigned EUT Activities'
+                ![@UI.Importance] : #High,
+                ![@HTML5.CssDefaults] : {width : '15rem'}
             }
         ]
     }
@@ -158,36 +166,32 @@ annotate service.EUTObject with @(
         Title : {
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS
-        },
-        Description : {
-            $Type : 'UI.DataField',
-            Value : WERKS_WERKS
         }
-    },
-    UI.DataPoint #Year :{
-        Value : GJAHR ,
-        Title : 'Fiscal Year'
     },
     UI.DataPoint #ProfitCenter :{
         Value : PRCTR_PRCTR,
         Title : 'Profit Center'
     },
+    UI.DataPoint #Plants :{
+        Value : WERKS_WERKS,
+        Title : 'Plant'
+    },
     UI.HeaderFacets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Year'
+            Target : '@UI.DataPoint#ProfitCenter'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#ProfitCenter'
-        }
+            Target : '@UI.DataPoint#Plants'
+        },
+        
     ],    
-    UI.LineItem #ContentGroup2: [
+    /*UI.LineItem #ContentGroup2: [
             {
                 $Type : 'UI.DataField',
                 Value : Activities.EA_Object_ECO_ACT,
-                Label : 'Assigned Economic Activities',
-                //Target: Activities
+                Label : 'Assigned Economic Activities'
             },
             {
                 $Type : 'UI.DataField',
@@ -201,7 +205,7 @@ annotate service.EUTObject with @(
                 $Type : 'UI.DataField',
                 Value : Activities.EA_Object.Comment
             }
-        ],
+        ],*/
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -213,7 +217,6 @@ annotate service.EUTObject with @(
     
 );
 
-
 /*************************************************************************************************/
 //                    Annotations for EUT Activity OBJECT Page - Header
 /*************************************************************************************************/
@@ -223,7 +226,7 @@ annotate service.EUT_Activities with @(
         Title : 'Company'
     },
     UI.DataPoint #Year :{
-        Value : EUT_Object.GJAHR ,
+        Value : GJAHR ,
         Title : 'Fiscal Year'
     },
     UI.DataPoint #Scenario :{
@@ -235,7 +238,7 @@ annotate service.EUT_Activities with @(
         Title : 'Economic Activity'
     },
     UI.DataPoint #Plant:{
-        Value : EUT_Object.WERKS,
+        Value : EUT_Object.WERKS.DESCR,
         Title : 'Plant'
     },
     UI.HeaderFacets : [
@@ -265,24 +268,43 @@ annotate service.EUT_Activities with @(
 /*************************************************************************************************/
 //                    Annotations for EUT Activity OBJECT Page - Content
 /*************************************************************************************************/
+annotate service.ECO_ACT_OBJECT with{
+EUT_Eligible    @readonly;
+ENB_ACT         @readonly;
+Comment         @readonly
+};
+
 annotate service.EUT_Activities with @(
     UI.LineItem #Activities: [
         {
             $Type : 'UI.DataField',
-            Value : EA_Object_ECO_ACT
-            
+            Value : EA_Object_ECO_ACT,
+            ![@HTML5.CssDefaults] : {width : '20rem'}
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GJAHR,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Scenario,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : EA_Object.EUT_Eligible,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : EA_Object.ENB_ACT,
+            ![@HTML5.CssDefaults] : {width : '10rem'}
         },
         {
             $Type : 'UI.DataField',
             Value : EA_Object.Comment,
+            ![@HTML5.CssDefaults] : {width : '15rem'}
         }
     ],
     
@@ -297,9 +319,28 @@ annotate service.EUT_Activities with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Financial Inputs',
             ID    : 'FinInputs',
-            Target: 'Financial_Input/@UI.LineItem#FinInputs'
+            Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
         }
     ]
+);
+
+annotate service.FINANCIAL_INPUT with @(
+    UI.SelectionPresentationVariant #OpenSPVWithPVPath : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        Text                : 'Open',
+        SelectionVariant    : {
+                Text          : 'Open',
+                SelectOptions : []
+            },
+            PresentationVariant : ![@UI.PresentationVariant#PVPath]
+        },
+
+    UI.PresentationVariant #PVPath : {
+        MaxItems       : 10,
+        SortOrder      : [{Property : RACCT}],
+        GroupBy : [RACCT_TYPE_code],
+        Visualizations : ['@UI.LineItem#FinInputs']
+    }
 );
 
 
@@ -310,17 +351,77 @@ annotate service.FINANCIAL_INPUT with @(
     UI.LineItem #FinInputs: [
         {
             $Type : 'UI.DataField',
-            Value : RBUKRS_RBUKRS,
-            Label : 'Company Code'
+            Value : RACCT,
+            Label : 'Account Number',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RACCT_TYPE_code,
+            Label : 'Account Type',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RCNTR,
+            Label : 'Cost Center',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : BUDAT,
+            Label : 'Posting Date',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},        
+        },
+                {
+            $Type : 'UI.DataField',
+            Value : RLDNR,
+            Label : 'Ledger',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : MATNR,
+            Label : 'Material Number',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+                {
+            $Type : 'UI.DataField',
+            Value : GF_INDICATOR,
+            Label: 'Green Finance Indicator',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KSL,
+            Label : 'Amount GC',
+            Criticality: criticality,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        }
+    ]
+);
+
+annotate service.FINANCIAL_INPUT with @(
+    UI.FieldGroup #Group1 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+            $Type : 'UI.DataField',
+            Value : RBUKRS_RBUKRS
         },
         {
             $Type : 'UI.DataField',
             Value : GJAHR,
-            Label : 'Fiscal Year'
         },{
             $Type : 'UI.DataField',
-            Value : MATNR,
-            Label : 'Material Number'
+            Value : MATNR
         },
         {
             $Type : 'UI.DataField',
@@ -329,84 +430,92 @@ annotate service.FINANCIAL_INPUT with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : RCNTR,
-            Label : 'Cost Center'
+            Value : RCNTR
         },
-        /*{
+        {
             $Type : 'UI.DataField',
             Value : PRCTR_PRCTR,
             Label : 'Profit Center'
         },
         {
             $Type : 'UI.DataField',
-            Value : RLDNR,
-            Label : 'Ledger'
-        },*/
-        {
-            $Type : 'UI.DataField',
-            Value : RACCT,
-            Label : 'Account Number'
+            Value : RLDNR
         },
         {
             $Type : 'UI.DataField',
-            Value : KSL,
-            Label : 'Amount GC'                 
-        },
-        /*{
-            $Type : 'UI.DataField',
-            Value : POPER,
-            Label : 'Posting Period'             
-        },*/
-        {
-            $Type : 'UI.DataField',
-            Value : RKCUR_code,
-            Label : 'Global Currency'              
-        },
-        /*{
-            $Type : 'UI.DataField',
-            Value : HSL,
-            Label : 'Amount CC'             
+            Value : RACCT
         },
         {
             $Type : 'UI.DataField',
-            Value : RHCUR_code,
-            Label : 'Company Currency'    
+            Value : KSL                 
         },
-        {
+         {
             $Type : 'UI.DataField',
-            Value : AWREF,
-            Label : 'Reference Document'
+            Value : POPER               
         },
-        {
+         {
             $Type : 'UI.DataField',
-            Value : AWITEM,
-            Label : 'Reference Item'          
-        },*/
-        {
+            Value : RKCUR_code               
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : HSL                 
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : RHCUR_code          
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : AWREF               
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : AWITEM              
+        },
+         {
             $Type : 'UI.DataField',
             Value : BUDAT,
             Label : 'Posting Date'               
         },
-        {
+         {
             $Type : 'UI.DataField',
-            Value : GSCEN,
-            Label : 'Scenario for Reporting'       
+            Value : GSCEN               
         },
-        {
+         {
             $Type : 'UI.DataField',
-            Value : RACCT_TYPE_code,
-            Label : 'Account Type'       
+            Value : RACCT_TYPE_code          
         },
-        {
+         {
             $Type : 'UI.DataField',
-            Value : GF_INDICATOR,
-            Label: 'Green Finance Indicator'     
+            Value : GF_INDICATOR        
         }
-    ]
+        ],
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Financial Input Details',
+            Target : '@UI.FieldGroup#Group1'
+        }
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'Financial Statement',
+        TypeNamePlural : 'Financial Statements',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'Financial Input',
+        },
+    },
 );
 
 /*************************************************************************************************/
-//               Annotations for EUTObject fields display and Value Help lists
+//               Annotations for Financial Inputs fields display and Value Help lists
 /*************************************************************************************************/
 annotate service.FINANCIAL_INPUT with {
     RBUKRS @(
@@ -421,12 +530,12 @@ annotate service.FINANCIAL_INPUT with {
             ValueListWithFixedValues : true,
             ValueList: {
                 Label: 'Years',
-                CollectionPath: 'YearsListView',
+                CollectionPath: 'EUT_Activities',
                 Parameters: [
                     { 
                         $Type: 'Common.ValueListParameterInOut',
                         LocalDataProperty: GJAHR,
-                        ValueListProperty: 'FiscalYear'
+                        ValueListProperty: 'GJAHR'
                     }
                 ]
             }
@@ -446,6 +555,13 @@ annotate service.FINANCIAL_INPUT with {
             ValueListWithFixedValues : true
         }
     );
+
+    KSL @Measures.ISOCurrency : RKCUR_code;
+
+    RACCT_TYPE @Common.Text : {
+            $value : RACCT_TYPE.descr,
+            ![@UI.TextArrangement] : #TextFirst,
+    }
 };
 
 /*************************************************************************************************/
@@ -455,33 +571,245 @@ annotate service.EUT_SCREENING_INPUT with @(
     UI.LineItem #ScreenInputs : [
         {
             $Type : 'UI.DataField',
+            Value : Typ_Cont_ID,
+            Label : 'Type of Contribution'            
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Env_Ob_ID,
+           Label : 'Environmental Objective'            
+        },
+        {
+            $Type : 'UI.DataField',
             Value : CRITER_CRITER
         },
-        {
-            $Type : 'UI.DataField',
-            Value : GJAHR
-        },
-        {
+         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_UNIT
-        },
+            },
         {
             $Type : 'UI.DataField',
-            Value : INDICATOR_IV
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_U,
             Label : 'Upper Limit'
         },
+         {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY
+        },
         {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY
+        },       
+    ],
+    UI.FieldGroup #ScreenGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+            },
+            
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : Typ_Cont_ID,
+            Label : 'Type of Contribution'            
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : Env_Ob_ID,
+           Label : 'Environmental Objective'            
+        },
+            {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+            },
+            {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_L,
             Label : 'Lower Limit'
-        },
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.SUBST,
+            Label : 'Substance'
+            },
+        ]
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Technical Screening Input Details',
+            Target : '@UI.FieldGroup#ScreenGroup'
+        }
     ]
+);
+
+annotate service.EUT_SCREENING_INPUT with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESC,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'SCREEN_CRITER_TEMPLT',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESC'}
+                ]
+            }
+        }
+    );
+}
+
+/*************************************************************************************************/
+//                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Annotation Views
+/*************************************************************************************************/
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionVariant #With : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionVariant #Without : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : '',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.PresentationVariant : {
+        Text : 'All records',
+        GroupBy: [
+            Typ_Cont_ID          
+        ],
+      SortOrder : [
+        {
+            $Type : 'Common.SortOrderType',
+            Property : Env_Ob_ID       
+        }
+        ],
+        Visualizations : [
+            '@UI.LineItem#ScreenInputs',
+        ],        
+    }
+); 
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionFields : [
+        CRITER_CRITER,
+    ]
+);
+
+annotate service.EUT_SCREENING_INPUT with {
+      Env_Ob @(
+        Common: {
+            Text: Env_Ob.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.EnvObjectiveObject with {
+    Env_Obj @Common.Text : {
+        $value : Description,
+        ![@UI.TextArrangement] : #TextFirst,
+    }
+};
+
+annotate service.EUT_SCREENING_INPUT with {
+    Typ_Cont @(
+        Common: {
+            Text: Typ_Cont.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Type of Contribution',
+                CollectionPath: 'ContributionTypeObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.ContributionTypeObject with {
+    Typ_Cont @Common.Text : {
+        $value : Description,
+        ![@UI.TextArrangement] : #TextFirst,
+    }
+};
+
+annotate service.EUT_SCREENING_INPUT with @(
+        UI.HeaderInfo : {
+        TypeName : 'EUT Screening Input',
+        TypeNamePlural : 'EUT Screening Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'EUT Screening Input Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+        },
+    }
 );

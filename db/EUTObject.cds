@@ -34,9 +34,9 @@ entity EUTObject : managed {
     key ID            : GUID;
     Description       : Description;
     RBUKRS            : Association to one CorporateMD @title : 'Company';
-    PRCTR             : Association to one ProfitCenterObject;
+    PRCTR             : Association to one ProfitCenterObject @title : 'Profit Center';
     //GJAHR             : FiscalYear; //moved to EUT_Activities
-    WERKS             : Association to one PlantObject;
+    WERKS             : Association to one PlantObject @title : 'Plant';
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
 }
@@ -94,9 +94,6 @@ entity EUT_SCREENING_INPUT : managed {
     Typ_Cont           : Association to one ContributionTypeObject;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     CRITICALITY : Integer;
-    HELP : Help;
-    HELP_I : Help_I;
-    HELP_P : Help_P;
 };
 
 
@@ -112,6 +109,3 @@ type ReferenceDocument  : String @title : 'Reference Document';
 type ReferenceItem      : String @title : 'Reference Item';
 type Indicator_InVal    : String @title : 'Input Value (Y/N)';
 type InputValue         : Decimal @title : 'Input Value';
-type Help         : Boolean @title : 'Help';
-type Help_I         : Boolean @title : 'Help_I';
-type Help_P         : Boolean @title : 'Help_P';

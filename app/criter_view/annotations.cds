@@ -184,12 +184,53 @@ annotate SCREEN_CRITER_TEMPLT with @(UI:{
         ]
         
     },
+
+    FieldGroup #CriteriaQuickView : {
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER_DESC,           
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRIT_UNIT
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CONT_MEAS
+            },
+            {
+                    $Type : 'UI.DataField',
+                    Value : CALC_MEAS,              
+                },
+                
+        ]
+    },                 
+    FieldGroup #ExtraQuickView : {
+        Data : [
+        {
+                $Type : 'UI.DataField',
+                Value : CRIT_L,
+                
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRIT_U
+            },
+        ]
+    },
     QuickViewFacets  : [
         {
-            $Type: 'UI.ReferenceFacet',
-            Label: 'Additional Information',
-            Target: '@UI.FieldGroup#BrowserHint'
-        }
+        $Type : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#CriteriaQuickView',
+        Label : 'Description'
+        
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#ExtraQuickView',
+        Label : 'Limits'
+    },
         
     ],
 
