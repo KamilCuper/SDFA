@@ -327,7 +327,6 @@ annotate service.SCREEN_CRITER_TEMPLT with {
     @Common.SemanticObject : 'GJAHR'
     YY
 }; ** field removed from object */
-
 annotate service.SCREEN_CRITER_TEMPLT with @(
  UI.QuickViewFacets : [
     {
@@ -376,7 +375,7 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
         },
     ]
  }
-);
+);*/
 
 annotate service.EUT_SCREENING_INPUT with {
     @Common.SemanticObject:  'Screening Criterion'

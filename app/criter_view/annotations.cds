@@ -184,7 +184,6 @@ annotate SCREEN_CRITER_TEMPLT with @(UI:{
         ]
         
     },
-
     FieldGroup #CriteriaQuickView : {
         Data : [
             {
@@ -230,8 +229,7 @@ annotate SCREEN_CRITER_TEMPLT with @(UI:{
         $Type : 'UI.ReferenceFacet',
         Target : '@UI.FieldGroup#ExtraQuickView',
         Label : 'Limits'
-    },
-        
+    },        
     ],
 
 }

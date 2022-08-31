@@ -104,7 +104,6 @@ annotate service.FINANCIAL_INPUT with {
         ![@UI.TextArrangement] : #TextFirst,
     }
 };*/
-
 annotate service.PlantObject with {
     WERKS @Common.Text : {
         $value : DESCR,
