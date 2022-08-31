@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core">
+   <Dialog
+      id="helloDialog"
+      title="Visualization of the content"
+      closeOnNavigation="true">
+      <Image 
+         src="./img/EA_list_overview.png"
+         width="60rem"
+         height="45rem">
+      </Image>
+   </Dialog>
+</core:FragmentDefinition>

@@ -86,10 +86,14 @@ entity SCREEN_CRITER_TEMPLT : managed {
     COMB_UNIT       : CombustionUnit;
     CALC_MEAS       : CalcMeasure;
     TYP_PLANT       : PlantType;
+    CRITICALITY     : Integer;
     SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
                         on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
     /*EA_APPL         : Association to many ECON_CRITER_APPL
                         on EA_APPL.CRITER =$self @title : 'Applicability'*/ //not required
+    HELP : Help;
+    HELP_I : Help_I;
+    HELP_P : Help_P;
 };
 
 entity ECON_CRITER_APPL : managed {
@@ -165,3 +169,7 @@ type PollutionPrevention : Boolean @title :'Pollution Prevention';
 type Biodiversity : Boolean @title :'Biodiversity';
 type EnvironmentalObjective : String @title : 'Environmental Objective';
 type ContributionTypeLong : String @title : 'Environmental Objective';
+
+type Help         : Boolean @title : 'Help';
+type Help_I         : Boolean @title : 'Help_I';
+type Help_P         : Boolean @title : 'Help_P';
