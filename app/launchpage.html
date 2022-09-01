@@ -10,8 +10,16 @@
             window['sap-ushell-config'] = {
                 defaultRenderer: 'fiori2',
                 applications: {
-                    "eut-app": {
+                    "screen-app": {
                         title: 'EU Taxonomy Reporting',
+                        description: 'Maintenance of EUT Inputs',
+                        additionalInformation: 'SAPUI5.Component=eut.eutobjectsrv',
+                        applicationType: 'URL',
+                        url: "./eut_object_srv/webapp",
+                        navigationMode: 'embedded'
+                    },
+                    "eut-app": {
+                        title: 'EU Taxonomy Reporting_old',
                         description: 'Run Application to maintain EU Taxonomy Reporting Objects',
                         additionalInformation: 'SAPUI5.Component=ns.worklist',
                         applicationType: 'URL',
