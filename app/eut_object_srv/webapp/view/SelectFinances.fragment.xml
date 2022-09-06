@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+   <Dialog
+      id="fianceDialog"
+      title="Visualization of content selection">
+      <Image 
+         src="./img/FinancialInput_list_overview.png"
+         width="70rem"
+         height="50rem">
+      </Image>
+   </Dialog>
+</core:FragmentDefinition>

@@ -135,6 +135,7 @@
                     "options": {
                         "settings": {
                             "entitySet": "FINANCIAL_INPUT",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#OpenSPVWithPVPath",
                             "navigation": {
                                 "FINANCIAL_INPUT": {
                                     "detail": {

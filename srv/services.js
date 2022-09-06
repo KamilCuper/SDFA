@@ -2,10 +2,14 @@
 const cds = require('@sap/cds')
 
 
-module.exports = cds.service.impl(async function() {
+
+module.exports = cds.service.impl( async function() {
+
     /*this.after('READ', 'EUT_SCREENING_INPUT', eutInput => {
         const eut = Array.isArray(eutInput) ? eutInput : [eutInput];
-        eut.forEach(eut => {
+    
+    
+       eut.forEach(eut => {
             switch (true){
                case (eut.INDICATOR_IV=='YES') :
                 eut.CRITICALITY = 3; 
@@ -44,35 +48,40 @@ module.exports = cds.service.impl(async function() {
             default : 
                     eut.HELP_P = false;
                     break;    
-            }  
+            } 
+        })
+    }),*/
+    this.after('READ', 'SCREEN_CRITER_TEMPLT', screenTem => {
+        const scr = Array.isArray(screenTem) ? screenTem : [screenTem]
+            scr.forEach ( scr => {
+           switch(true){
+             case  (scr.COMB_UNIT == null &&  scr.CALC_MEAS == null && scr.TYP_PLANT == null) :
+                scr.HELP_P = true;
+                break;
+            case  (scr.COMB_UNIT != null ||  scr.CALC_MEAS != null && scr.TYP_PLANT != null) :
+                    scr.HELP_P = false;
+                    break;
+            default :
+                    scr.HELP_P = false;
+                    break;    
+            }
+        })  
+       }        
+    );
+    
             
-        }        
-        );
-    });
-*/
     this.after('READ', 'FINANCIAL_INPUT', financialData => {
         const records = Array.isArray(financialData) ? financialData : [financialData];
         records.forEach(records => {
-            if (records.RACCT_TYPE_code ==null) {
-                records.criticality = 1;
-            } else {
+            if (records.KSL >= 400000) {
                 records.criticality = 3;
+            } else if (records.KSL < 400000 && records.KSL >= 100000) {
+                records.criticality = 0;
+            } else {
+                records.criticality = 1;
             }
         });
     });   
-
-
-    this.after('READ','EUTObject', eutObjectData => {
-        const rec = Array.isArray(eutObjectData) ? eutObjectData : [eutObjectData];
-        rec.forEach(rec => {
-            if (rec.Activities == null) {
-                rec.CRITICALIT = 1;
-            } else  {
-                rec.CRITICALIT = 3;
-            } 
-        });
-    });
-
 }); 
 
 

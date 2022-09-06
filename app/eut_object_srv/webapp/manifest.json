@@ -1,7 +1,7 @@
 {
-    "_version": "1.40.0",
+    "_version": "1.4.0",
     "sap.app": {
-        "id": "ns.worklist",
+        "id": "eut.eutobjectsrv",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -11,13 +11,13 @@
         "description": "{{appDescription}}",
         "resources": "resources.json",
         "sourceTemplate": {
-            "id": "@sap-ux/fiori-elements-writer:worklist",
+            "id": "@sap-ux/fiori-elements-writer:lrop",
             "version": "0.3.6",
-            "toolsId": "a4eafd75-17aa-44e8-b6c7-70308922ac06"
+            "toolsId": "80cdc1aa-4dd5-4f41-871b-34ad9f125429"
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sevice/SDFA/",
+                "uri": "/eutobject/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
@@ -72,7 +72,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "ns.worklist.i18n.i18n"
+                    "bundleName": "eut.eutobjectsrv.i18n.i18n"
                 }
             },
             "": {
@@ -94,6 +94,13 @@
             "css": []
         },
         "routing": {
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
             "routes": [
                 {
                     "pattern": ":?query:",
@@ -154,23 +161,13 @@
                             "initialLoad": "Enabled",
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "columns": {
-                                        "DataField::ID": {
-                                            "availability": "Adaptation"
+                                    "actions": {
+                                        "importData": {
+                                            "id": "importDataButton",
+                                            "text": "Import Data",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.dataImport",
+                                            "requiresSelection": false
                                         }
-                                    },
-                                    "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true,
-                                            "total": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
                                     }
                                 }
                             }
@@ -185,6 +182,8 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "showRelatedApps": true,   
+                            "sectionLayout": "Tabs",
                             "entitySet": "EUTObject",
                             "navigation": {
                                 "Activities": {
@@ -193,15 +192,37 @@
                                     }
                                 }
                             },
-                            "sectionLayout": "Tabs",
-                            "showRelatedApps": true,
-                            "content": {
+                            "content":{
                                 "header": {
-                                    "editableHeaderContent": true,
-                                    "anchorBarVisible": true,
-                                    "visible": true
+                                    "editableHeaderContent": false,
+                                    "actions": {
+                                    }
                                 }
-                            }
+                            },
+                            "controlConfiguration": {
+                                "Activities/@com.sap.vocabularies.UI.v1.LineItem#Activities": {
+                                    "tableSettings": {
+                                        "enableMassEdit": false,
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true,
+                                            "group": true
+                                        },
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "enableExport": true
+                                    },
+                                     "actions": {
+                                          "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Economic Activity(s)",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
+                                          }
+                                     }
+                                }
+                            }                            
                         }
                     },
                     "controlAggregation": "midColumnPages",
@@ -213,55 +234,10 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-
-                            "variantManagement": "Control",                        
-                               "controlConfiguration": {
-
-                            "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs" : {
-                                "tableSettings": {
-                                    "enableMassEdit": true,
-                                    "personalization": {
-                                        "column": true,
-                                        "sort": true,
-                                        "group": true,
-                                        "filter" : false
-                                        
-                                    },
-                                    "quickVariantSelection": {
-                                        "paths": [
-                                            {
-                                                "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
-                                            },
-                                            {                          
-                                                "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
-                                            },
-                                            {     
-                                                "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
-                                            }
-                                            
-                                        ]
-                                    }
-                                   
-                                },
-                                "actions" : {
-                                    "importData": {
-                                        "id": "insertInputValueButton",
-                                        "text": "Load Screening Inputs",
-                                        "press": "ns.worklist.controller.ListReportExtController.insertInput",
-                                        "requiresSelection": false
-                                    }  
-                                }  
-                            }
-                              
-                                
-                            },
-
-
-
-
-
                             "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
+                            "sectionLayout": "Tabs",
+                            "variantManagement":"Control",
                             "navigation": {
                                 "Financial_Input": {
                                     "detail": {
@@ -271,17 +247,57 @@
                                 "Screening_Input": {
                                     "detail": {
                                         "route": "EUT_SCREENING_INPUTObjectPage"
-                                    }                                 
-                            }
+                                    }
+                                }
                             },
-                            "sectionLayout": "Tabs",
-                            "showRelatedApps": true,
-                            "editableHeaderContent": true,
-                            "content": {
-                                "header": {
-                                    "editableHeaderContent": true,
-                                    "anchorBarVisible": true,
-                                    "visible": true
+                            "controlConfiguration": {
+                                "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
+                                    "tableSettings": {
+                                        "enableMassEdit": false,
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true,
+                                            "group": true
+                                        },
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "enableExport": true
+                                    },
+                                     "actions": {
+                                          "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Financial Record(s)",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
+                                          }
+                                     }
+                                },
+                                "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
+                                                }                                              
+                                            ]
+                                        }
+                                    },
+                                    "actions": {
+                                        "importData": {
+                                            "id": "insertInputValueButton",
+                                            "text": "Select Screening Inputs",
+                                            "press": "ns.worklist.controller.ListReportExtController.insertInput",
+                                            "requiresSelection": false
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -296,7 +312,12 @@
                     "options": {
                         "settings": {
                             "entitySet": "FINANCIAL_INPUT",
-                            "navigation": {}
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "visible": true
+                                }
+                            }
                         }
                     },
                     "controlAggregation": "endColumnPages",
@@ -320,13 +341,6 @@
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Screening_Input({key3})"
                 }
-            },
-            "config": {
-                "flexibleColumnLayout": {
-                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-                },
-                "routerClass": "sap.f.routing.Router"
             }
         },
         "rootView": {

@@ -24,5 +24,4 @@ using from './financial_input/annotations';
 
 using from './eutscreeninginput/annotations';
 
-
-
+using from './eut_object_srv/annotations';

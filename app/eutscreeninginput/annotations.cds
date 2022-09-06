@@ -97,8 +97,8 @@ annotate service.EUT_SCREENING_INPUT with @(
 
 
 annotate service.EUT_SCREENING_INPUT with @(
-    UI.PresentationVariant : {
-        Text : 'EUT Screening Inputs - all records',
+    UI.PresentationVariant #Pre : {
+        $Type : 'UI.PresentationVariant',
         GroupBy: [
              CRITER_CRITER          
         ],
@@ -143,13 +143,13 @@ annotate service.EUT_SCREENING_INPUT with @(
             {
                 $Type : 'UI.DataField',
                 Value : INDICATOR_IV,
-                @UI.Hidden : HELP_I,
+                @UI.Hidden : CRITER.HELP_I,
                 Criticality : CRITICALITY
             },
             {
                 $Type : 'UI.DataField',
                 Value : KEY_FIGURE,
-                @UI.Hidden : HELP,
+                @UI.Hidden : CRITER.HELP,
                 Criticality : CRITICALITY
             },
             {
@@ -183,43 +183,32 @@ annotate service.EUT_SCREENING_INPUT with @(
             {
                 $Type : 'UI.DataField',
                 Value : CRITER.COMB_UNIT,
-              // @UI.Hidden : HELP_P,
+                @UI.Hidden : HELP_P,
             },{
                 $Type : 'UI.DataField',
                 Value : CRITER.CALC_MEAS,
-              //  @UI.Hidden : HELP_P,
+                @UI.Hidden : HELP_P,
             },
             {
                $Type : 'UI.DataField',
                 Value : CRITER.TYP_PLANT, 
-              //  @UI.Hidden : HELP_P,
+                @UI.Hidden : HELP_P,
             },
             {
                $Type : 'UI.DataField',
                 Value : CRITER.COMBP_L, 
-             //   @UI.Hidden : HELP_P,
+                @UI.Hidden : HELP_P,
             }, 
             {
                $Type : 'UI.DataField',
                 Value : CRITER.COMBP_U, 
-               // @UI.Hidden : HELP_P,
+                @UI.Hidden : HELP_P,
             }, 
             {
                $Type : 'UI.DataField',
                 Value : CRITER.OPH_L, 
-             //  @UI.Hidden : HELP_P,
-            },  
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.COND_GHGU, 
-             //  @UI.Hidden : HELP_P,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.ENGN_CATG,
-                Label : 'Engine Category' 
-             //  @UI.Hidden : HELP_P,
-            },            
+                @UI.Hidden : HELP_P,
+            },              
             ],
 
     },
@@ -334,27 +323,20 @@ annotate service.SCREEN_CRITER_TEMPLT with {
 annotate service.EUT_SCREENING_INPUT.GJAHR with {
     @Common.SemanticObject : 'GJAHR'
     YY
-};
-
+}; ** field removed from object */
+/*
 annotate service.SCREEN_CRITER_TEMPLT with @(
  UI.QuickViewFacets : [
     {
         $Type : 'UI.ReferenceFacet',
-        Target : '@UI.FieldGroup#CriteriaQuickView',
-        
-    },
-    {
-        $Type : 'UI.ReferenceFacet',
-        Target : '@UI.FieldGroup#ExtraQuickView',
-        ![@UI.Hidden] : false
-    },
+        Target : '@UI.FieldGroup#YearQuickView'
+    }
  ],
  UI.FieldGroup #CriteriaQuickView : {
     Data : [
         {
             $Type : 'UI.DataField',
-            Value : CRITER_DESC,
-            
+            Value : CRITER
         },
         {
             $Type : 'UI.DataField',
@@ -364,44 +346,11 @@ annotate service.SCREEN_CRITER_TEMPLT with @(
             $Type : 'UI.DataField',
             Value : CONT_MEAS
         },
-        {
-                $Type : 'UI.DataField',
-                Value : CALC_MEAS,
-                
-            },
-            
-    ]
- },
- UI.FieldGroup #ExtraQuickView : {
-    Data : [
-      
     ]
  }
 );
 
 annotate service.EUT_SCREENING_INPUT with {
-    @Common.SemanticObject:  'Screening Criterion'
-    CRITER_CRITER
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Common.SemanticObject:  'Semantic Year'
+    CRITER
+}
