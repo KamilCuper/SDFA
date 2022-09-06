@@ -99,7 +99,7 @@ entity SCREEN_CRITER_TEMPLT : managed {
 entity ScreeningCriteriaTemplate : managed {
     CONT_MEAS       : ContributionMeasure;
     key CRITER      : Criterion;
-    CRITER_DESCR     : Description @title : 'Screening Criterion Description';
+    CRITER_DESCR    : Description @title : 'Screening Criterion Description';
     CRIT_UNIT       : CriteriaUnit;
     CRIT_U          : UpperLimit;
     CRIT_L          : LowerLimit;
