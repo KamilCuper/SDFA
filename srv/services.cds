@@ -9,7 +9,10 @@ using {
     EUTObject as Eobject,
     EUT_Activities as Eactivities,
     FINANCIAL_INPUT as financialinput,
-    EUT_SCREENING_INPUT as screeninginput
+    EUT_SCREENING_INPUT as screeninginput, //to remove after data model v1 changes
+    SCInput as sc,
+    DNSHInput as dnsh,
+    MSInput as ms
 } from '../db/EUTObject';
 using {
     ACC_TYPE_MAPPING as accountmapping,
@@ -21,10 +24,12 @@ using {
     PlantObject as plant,
     SECTOR_OBJECT as sector,
     ECO_ACT_OBJECT as ecoobject,
-    SCREEN_CRITER_TEMPLT as screencriter,
-    ECON_CRITER_APPL as criterappl,
+    SCREEN_CRITER_TEMPLT as screencriter,   //to remove after data model v1 changes
+    ECON_CRITER_APPL as criterappl, //to remove after data model v1 changes
     EnvObjectiveObject as envobjective,
-    ContributionTypeObject as contrtype
+    ContributionTypeObject as contrtype,
+    CriteriaApplicability as critappl,
+    ScreeningCriteriaTemplate as crittemplate
 } from '../db/ReferenceData';
 using {
     AcctTypeObject as accounttype
@@ -46,9 +51,16 @@ service DataService {
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
+    entity SCREEN_CRITER_TEMPLT as projection on screencriter; //to remove after data model v1 changes
     @odata.draft.enabled
-    entity EUT_SCREENING_INPUT as projection on screeninginput;
+    entity EUT_SCREENING_INPUT as projection on screeninginput; //to remove after data model v1 changes
+    @odata.draft.enabled
+    entity SCInput as projection on sc;
+    @odata.draft.enabled
+    entity DNSHInput as projection on dnsh;
+    @odata.draft.enabled
+    entity MSInput as projection on ms;
+
     @odata.draft.enabled
     entity CorporateMD as projection on corporatemd;
     @odata.draft.enabled
@@ -59,10 +71,13 @@ service DataService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity ECON_CRITER_APPL as projection on criterappl;
+    entity ECON_CRITER_APPL as projection on criterappl; //to remove after data model v1 changes
     entity AcctTypeObject as projection on accounttype;
     entity EnvObjectiveObject as projection on envobjective;
     entity ContributionTypeObject as projection on contrtype;
+    entity CriteriaApplicability as projection on critappl;
+    entity ScreeningCriteriaTemplate as projection on crittemplate;
+
     entity CriterView as 
         select  
                 EcoActivity.SECTOR.Description as Sector, 
@@ -93,7 +108,13 @@ service EUTObjectService {
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity EUT_SCREENING_INPUT as projection on screeninginput;
+    entity EUT_SCREENING_INPUT as projection on screeninginput; //to remove after data model v1 changes
+    @odata.draft.enabled
+    entity SCInput as projection on sc;
+    @odata.draft.enabled
+    entity DNSHInput as projection on dnsh;
+    @odata.draft.enabled
+    entity MSInput as projection on ms;
     @odata.draft.enabled
     @cds.odata.valuelist
     entity CorporateMD as projection on corporatemd;
@@ -107,11 +128,14 @@ service EUTObjectService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter;
+    entity SCREEN_CRITER_TEMPLT as projection on screencriter; //to remove after data model v1 changes
     entity EnvObjectiveObject as projection on envobjective;
     entity ContributionTypeObject as projection on contrtype;
-    entity ECON_CRITER_APPL as projection on criterappl;
+    entity ECON_CRITER_APPL as projection on criterappl; //to remove after data model v1 changes
     entity AcctTypeObject as projection on accounttype;
+    entity CriteriaApplicability as projection on critappl;
+    entity ScreeningCriteriaTemplate as projection on crittemplate;
+
     entity CriterView as 
         select  
                 EcoActivity.SECTOR.Description as Sector, 
