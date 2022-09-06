@@ -2,8 +2,6 @@ using DataService as service from '../../srv/services';
 using from '../../srv/services';
 using from '../../db/ReferenceData';
 
-
-
 annotate service.ECO_ACT_OBJECT with @(
     UI.LineItem : [
         {

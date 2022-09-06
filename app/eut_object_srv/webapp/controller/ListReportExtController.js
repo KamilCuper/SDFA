@@ -1,8 +1,9 @@
 sap.ui.define([
-	"sap/m/MessageBox",
+	"sap/ui/core/mvc/XMLView",
+	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/Fragment"
 ],
-function (MessageBox, Fragment){
+function (XMLView, Controller, Fragment){
     "use strict";
     return {
         dataImport: function(oEvent) {
@@ -14,9 +15,17 @@ function (MessageBox, Fragment){
 					name: "eut.eutobjectsrv.view.HelloDialog"
 				});
 			} 
-			this.pDialog.then(function(oDialog) {
-				oDialog.open();
+			this.pDialog.then(function(sDialog) {
+				sDialog.open();
 			});
+			
+			/*XMLView.create({
+				viewName: "eut.eutobjectsrv.view.InvoiceList"
+			}).then(function (oView) {
+				oView.placeAt("content");
+			});*/
+
+
         },
 
 		selectFRs: function(oEvent) {

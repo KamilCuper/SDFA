@@ -9,6 +9,15 @@
         <script>
             window['sap-ushell-config'] = {
                 defaultRenderer: 'fiori2',
+                renderers: {
+                fiori2: {
+                    componentData: {
+                    config: {
+                        search: "hidden",
+                    },
+                    },
+                },
+                },
                 applications: {
                     "eut-app": {
                         title: 'EU Taxonomy Reporting',
@@ -90,7 +99,29 @@
                         url: "./eutscreeninginput/webapp",
                         navigationMode: "embedded"
                         },
-                }
+                        "EUTObject-app": {
+                        title: "EUT Object Management",
+                        description: "Run Application to maintain EUT Objects",
+                        additionalInformation: "SAPUI5.Component=eut.eutobjectsrv",
+                        applicationType: "URL",
+                        url: "./eut_object_srv/webapp",
+                        navigationMode: "embedded"
+                        },
+                },
+                bootstrapPlugins: {
+                    RuntimeAuthoringPlugin: {
+                        component: "sap.ushell.plugins.rta",
+                        config: {
+                        validateAppVersion: false,
+                        },
+                    },
+                    PersonalizePlugin: {
+                        component: "sap.ushell.plugins.rta-personalize",
+                        config: {
+                        validateAppVersion: false,
+                        },
+                    },
+                },
             };
         </script>
 

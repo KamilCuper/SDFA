@@ -132,7 +132,9 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "CorporateMD"
+                            "entitySet": "CorporateMD",
+                            "navigation": {
+                            }
                         }
                     }
                 }

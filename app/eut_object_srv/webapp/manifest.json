@@ -182,7 +182,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "showRelatedApps": true,   
+                            "showRelatedApps": true,
                             "sectionLayout": "Tabs",
                             "entitySet": "EUTObject",
                             "navigation": {
@@ -192,37 +192,27 @@
                                     }
                                 }
                             },
-                            "content":{
+                            "content": {
                                 "header": {
                                     "editableHeaderContent": false,
-                                    "actions": {
-                                    }
+                                    "actions": {}
                                 }
                             },
                             "controlConfiguration": {
                                 "Activities/@com.sap.vocabularies.UI.v1.LineItem#Activities": {
                                     "tableSettings": {
-                                        "enableMassEdit": false,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
+                                        "enableMassEdit": false
                                     },
-                                     "actions": {
-                                          "selectEntries": {
+                                    "actions": {
+                                        "selectEntries": {
                                             "visible": true,
                                             "enabled": true,
                                             "text": "Select Economic Activity(s)",
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
-                                          }
-                                     }
+                                        }
+                                    }
                                 }
-                            }                            
+                            }
                         }
                     },
                     "controlAggregation": "midColumnPages",
@@ -237,7 +227,7 @@
                             "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
                             "sectionLayout": "Tabs",
-                            "variantManagement":"Control",
+                            "variantManagement": "Control",
                             "navigation": {
                                 "Financial_Input": {
                                     "detail": {
@@ -264,37 +254,24 @@
                                         "selectionMode": "Multi",
                                         "enableExport": true
                                     },
-                                     "actions": {
-                                          "selectEntries": {
+                                    "actions": {
+                                        "selectEntries": {
                                             "visible": true,
                                             "enabled": true,
                                             "text": "Select Financial Record(s)",
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
-                                          }
-                                     }
+                                        }
+                                    }
                                 },
                                 "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
                                     "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
-                                                }                                              
-                                            ]
-                                        }
+                                        "enableMassEdit": true
                                     },
                                     "actions": {
                                         "importData": {
                                             "id": "insertInputValueButton",
                                             "text": "Select Screening Inputs",
-                                            "press": "ns.worklist.controller.ListReportExtController.insertInput",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.insertInput",
                                             "requiresSelection": false
                                         }
                                     }
