@@ -1111,11 +1111,11 @@ annotate service.DNSHInput with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'DNSH Inputs',
             ID : 'DNSHInputs',
-            Target : '@UI.FieldGroup#DNSHInputs',
+            Target : '@UI.FieldGroup#DNSHInputsForm',
         },]
 );
 annotate service.DNSHInput with @(
-    UI.FieldGroup #DNSHInputs : {
+    UI.FieldGroup #DNSHInputsForm : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
