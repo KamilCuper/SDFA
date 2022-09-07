@@ -1064,7 +1064,7 @@ annotate service.SCInput with @(
            Label : '',
            ID : 'SCExtraForm',
            Target : '@UI.FieldGroup#SCExtraForm',
-           ![@UI.Hidden] : false
+           
        },
        
   ] 
