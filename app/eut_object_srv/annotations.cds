@@ -317,6 +317,12 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
+            Label : 'SC Inputs',
+            ID    : 'SC_Inputs',
+            Target: 'SCInput/@UI.LineItem#SCInput'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
             Label : 'Financial Inputs',
             ID    : 'FinInputs',
             Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
@@ -812,4 +818,248 @@ annotate service.EUT_SCREENING_INPUT with @(
             Value : CRITER_CRITER,
         },
     }
+);
+
+
+//// ANNOTATION FOR SC INPUT PAGE ///////
+
+annotate service.SCInput with @(
+    UI.LineItem #SCInput : [
+        {
+            $Type : 'UI.DataField',
+            Value : Env_Ob_ID,
+           Label : 'Environmental Objective'            
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+            },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY
+        },       
+    ],
+    UI.FieldGroup #SCInputGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+            },
+            
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : Typ_Cont_ID,
+            Label : 'Type of Contribution'            
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : Env_Ob_ID,
+           Label : 'Environmental Objective'            
+        },
+            {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+            },
+            {
+            $Type : 'UI.DataField',
+            Value : CRITER.SUBST,
+            Label : 'Substance'
+            },
+        ]
+    },
+   /* UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Technical Screening Input Details',
+            Target : '@UI.FieldGroup#SCInputGroup'
+        }
+    ] */
+);
+
+
+
+
+annotate service.SCInput with @(
+        UI.HeaderInfo : {
+        TypeName : 'Substantial Contribution Input',
+        TypeNamePlural : 'Substantial Contribution Input',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Substantial Contribution Input',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+        },
+    },
+
+     UI.FieldGroup #SCCriteriaForm : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : EUT_ACTIVITIES.EA_Object.Description,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRITER_DESC,
+            },          
+                       
+            {
+                $Type : 'UI.DataField',
+                Value : INDICATOR_IV,
+                @UI.Hidden : CRITER.HELP_I,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : KEY_FIGURE,
+                @UI.Hidden : CRITER.HELP,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_UNIT,
+            },
+            ],
+    },
+
+ UI.FieldGroup #SCCriteriaForm2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_U,
+            },
+            {
+               $Type : 'UI.DataField',
+                Value : CRITER.SUBST, 
+            },            
+            ],
+
+    },
+
+    UI.FieldGroup #SCExtraForm : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.COMB_UNIT,
+                @UI.Hidden : CRITER.HELP_P,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CALC_MEAS,
+                @UI.Hidden : CRITER.HELP_P,
+            },
+            {
+               $Type : 'UI.DataField',
+                Value : CRITER.TYP_PLANT, 
+                @UI.Hidden : CRITER.HELP_P,
+            },
+            {
+               $Type : 'UI.DataField',
+                Value : CRITER.COMBP_L, 
+                @UI.Hidden : CRITER.HELP_P,
+            }, 
+            {
+               $Type : 'UI.DataField',
+                Value : CRITER.COMBP_U, 
+                @UI.Hidden : CRITER.HELP_P,
+            }, 
+            {
+               $Type : 'UI.DataField',
+                Value : CRITER.OPH_L, 
+                @UI.Hidden : CRITER.HELP_P,
+            },              
+            ],
+
+    },
+
+   UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+   
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+
+   UI.Facets : [
+       {
+           $Type : 'UI.ReferenceFacet',
+           Label : 'EUT Input Form',
+           ID : 'EUTIputForm',
+           Target : '@UI.FieldGroup#SCCriteriaForm',
+       },
+       {
+           $Type : 'UI.ReferenceFacet',
+           Label : 'Details',
+           ID : 'DetailsForm',
+           Target : '@UI.FieldGroup#SCCriteriaForm2',
+       },
+       {
+           $Type : 'UI.ReferenceFacet',
+           Label : '',
+           ID : 'ExtraForm',
+           Target : '@UI.FieldGroup#SCExtraForm',
+           ![@UI.Hidden] : false
+       },
+       
+  ] 
 );

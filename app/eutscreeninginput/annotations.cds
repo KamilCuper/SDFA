@@ -95,7 +95,7 @@ annotate service.EUT_SCREENING_INPUT with @(
     }
 );
 
-
+/*
 annotate service.EUT_SCREENING_INPUT with @(
     UI.PresentationVariant #Pre : {
         $Type : 'UI.PresentationVariant',
@@ -110,7 +110,7 @@ annotate service.EUT_SCREENING_INPUT with @(
         ]
         
     }
-);
+); */
 
 
 
@@ -183,31 +183,31 @@ annotate service.EUT_SCREENING_INPUT with @(
             {
                 $Type : 'UI.DataField',
                 Value : CRITER.COMB_UNIT,
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             },{
                 $Type : 'UI.DataField',
                 Value : CRITER.CALC_MEAS,
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             },
             {
                $Type : 'UI.DataField',
                 Value : CRITER.TYP_PLANT, 
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             },
             {
                $Type : 'UI.DataField',
                 Value : CRITER.COMBP_L, 
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             }, 
             {
                $Type : 'UI.DataField',
                 Value : CRITER.COMBP_U, 
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             }, 
             {
                $Type : 'UI.DataField',
                 Value : CRITER.OPH_L, 
-                @UI.Hidden : HELP_P,
+                @UI.Hidden : CRITER.HELP_P,
             },              
             ],
 
@@ -323,8 +323,8 @@ annotate service.SCREEN_CRITER_TEMPLT with {
 annotate service.EUT_SCREENING_INPUT.GJAHR with {
     @Common.SemanticObject : 'GJAHR'
     YY
-}; ** field removed from object */
-/*
+}; // field removed from object */
+
 annotate service.SCREEN_CRITER_TEMPLT with @(
  UI.QuickViewFacets : [
     {

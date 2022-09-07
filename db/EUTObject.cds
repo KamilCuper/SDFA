@@ -40,7 +40,7 @@ entity EUTObject : managed {
     WERKS             : Association to one PlantObject @title : 'Plant';
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
-    CRITICALIT : CRITICALIT;
+   // CRITICALIT : CRITICALIT;
 }
 
 entity EUT_Activities : managed {
@@ -147,8 +147,5 @@ type AmountCC           : Decimal @title : 'Amount in Company Currency' @Common.
 type ReferenceDocument  : String @title : 'Reference Document';
 type ReferenceItem      : String @title : 'Reference Item';
 type Indicator_InVal    : String @title : 'Input Value (Y/N)';
-<<<<<<< HEAD
+
 type InputValue         : Decimal @title : 'Input Value';
-type Help         : Boolean @title : 'Help';
-type Help_I         : Boolean @title : 'Help_I';
-type Help_P         : Boolean @title : 'Help_P';
