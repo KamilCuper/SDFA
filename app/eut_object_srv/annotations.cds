@@ -323,6 +323,12 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
+            Label : 'SC Inputs',
+            ID    : 'SC_Inputs',
+            Target: 'DNSHInput/@UI.LineItemDNSHScreenInputs'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
             Label : 'Financial Inputs',
             ID    : 'FinInputs',
             Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
@@ -942,7 +948,7 @@ annotate service.SCInput with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : CRITER.CRITER_DESC,
+                Value : CRITER.CRITER,
             },          
                        
             {
@@ -1062,4 +1068,62 @@ annotate service.SCInput with @(
        },
        
   ] 
+);
+
+annotate service.DNSHInput with @(
+    UI.LineItem #DNSHScreenInputs : [
+        {
+            $Type : 'UI.DataField',
+            Value : Env_Ob_ID,
+           Label : 'Environmental Objective'            
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT
+            },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit'
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY
+        },       
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'DNSH Inputs',
+            ID : 'DNSHInputs',
+            Target : '@UI.FieldGroup#DNSHInputs',
+        },]
+);
+annotate service.DNSHInput with @(
+    UI.FieldGroup #DNSHInputs : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER_CRITER,
+            },{
+                $Type : 'UI.DataField',
+                Value : ENV_OB.ID,
+            },],
+    }
 );
