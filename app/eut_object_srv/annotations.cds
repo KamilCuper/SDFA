@@ -1050,19 +1050,19 @@ annotate service.SCInput with @(
        {
            $Type : 'UI.ReferenceFacet',
            Label : 'EUT Input Form',
-           ID : 'EUTIputForm',
+           ID : 'SCEUTIputForm',
            Target : '@UI.FieldGroup#SCCriteriaForm',
        },
        {
            $Type : 'UI.ReferenceFacet',
            Label : 'Details',
-           ID : 'DetailsForm',
+           ID : 'SCDetailsForm',
            Target : '@UI.FieldGroup#SCCriteriaForm2',
        },
        {
            $Type : 'UI.ReferenceFacet',
            Label : '',
-           ID : 'ExtraForm',
+           ID : 'SCExtraForm',
            Target : '@UI.FieldGroup#SCExtraForm',
            ![@UI.Hidden] : false
        },
