@@ -323,9 +323,9 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'SC Inputs',
-            ID    : 'SC_Inputs',
-            Target: 'DNSHInput/@UI.LineItemDNSHScreenInputs'
+            Label : 'DNSH Inputs',
+            ID    : 'DNSH_Inputs',
+            Target: 'DNSHInput/@UI.LineItem#DNSHScreenInputs'
         },
         {
             $Type : 'UI.ReferenceFacet',
