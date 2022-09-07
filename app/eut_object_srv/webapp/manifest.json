@@ -380,7 +380,7 @@
                         }
                     },
                     "controlAggregation": "endColumnPages",
-                    "contextPattern": "/SCInput({key})"
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/SCInput({key3})"
                 },
                 "DNSHInputObjectPage_DNSHInput": {
                     "type": "Component",
