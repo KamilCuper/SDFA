@@ -624,7 +624,7 @@ annotate service.FINANCIAL_INPUT with {
     /*RACCT_TYPE @Common.Text : {
             $value : RACCT_TYPE.descr,
             ![@UI.TextArrangement] : #TextFirst,
-    }
+    }*/
 };
 
 /*************************************************************************************************/

@@ -98,30 +98,32 @@
                 {
                     "pattern": ":?query:",
                     "name": "EUTObjectList",
-                    "target": "EUTObjectList"
+                    "target": [
+                        "EUTObjectList"
+                    ]
                 },
                 {
                     "pattern": "EUTObject({key}):?query:",
                     "name": "EUTObjectObjectPage",
-                    "target": "EUTObjectObjectPage"
+                    "target": [
+                        "EUTObjectList",
+                        "EUTObjectObjectPage"
+                    ]
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2}):?query:",
                     "name": "EUT_ActivitiesObjectPage",
-                    "target": "EUT_ActivitiesObjectPage"
+                    "target": [
+                        "EUTObjectList",
+                        "EUTObjectObjectPage",
+                        "EUT_ActivitiesObjectPage"
+                    ]
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
                     "name": "FINANCIAL_INPUTObjectPage",
                     "target": [
                         "FINANCIAL_INPUTObjectPage"
-                    ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/Screening_Input({key3}):?query:",
-                    "name": "EUT_SCREENING_INPUTObjectPage",
-                    "target": [
-                        "EUT_SCREENING_INPUTObjectPage"
                     ]
                 },
                 {
@@ -185,7 +187,9 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "EUTObjectObjectPage": {
                     "type": "Component",
@@ -208,6 +212,16 @@
                                 "header": {
                                     "editableHeaderContent": false,
                                     "actions": {}
+                                },
+                                "body": {
+                                    "sections": {
+                                        "Activities": {
+                                            "sideContent": {
+                                                "template": "eut.eutobjectsrv.view.SideContentTable"
+                                            },
+                                            "type": "XMLFragment"
+                                        }
+                                    }
                                 }
                             },
                             "controlConfiguration": {
@@ -224,25 +238,11 @@
                                         }
                                     }
                                 }
-                            },
-                            "content": {
-                                "header": {
-                                    "editableHeaderContent": false,
-                                    "actions": {}
-                                },
-                                "body": {
-                                    "sections": {
-                                        "Activities": {
-                                            "sideContent": {
-                                                "template": "eut.eutobjectsrv.view.SideContentTable"
-                                            },
-                                            "type": "XMLFragment"
-                                        }
-                                    }
-                                }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/EUTObject({key})"
                 },
                 "EUT_ActivitiesObjectPage": {
                     "type": "Component",
@@ -258,11 +258,6 @@
                                 "Financial_Input": {
                                     "detail": {
                                         "route": "FINANCIAL_INPUTObjectPage"
-                                    }
-                                },
-                                "Screening_Input": {
-                                    "detail": {
-                                        "route": "EUT_SCREENING_INPUTObjectPage"
                                     }
                                 },
                                 "SCInput": {
@@ -307,20 +302,7 @@
                                 },
                                 "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
                                     "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWith"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWithout"
-                                                }
-                                            ]
-                                        }
+                                        "enableMassEdit": true
                                     },
                                     "actions": {
                                         "selectEntries": {
@@ -330,7 +312,6 @@
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
                                         }
                                     }
-
                                 },
                                 "DNSHInput/@com.sap.vocabularies.UI.v1.LineItem#DNSHScreenInputs": {
                                     "tableSettings": {
@@ -360,20 +341,7 @@
                                 },
                                 "MSInput/@com.sap.vocabularies.UI.v1.LineItem#MSInput": {
                                     "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.UI.PresentationVariant#MSPresentation"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#MSWith"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#MSWithout"
-                                                }
-                                            ]
-                                        }
+                                        "enableMassEdit": true
                                     },
                                     "actions": {
                                         "selectEntries": {
@@ -386,7 +354,9 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})"
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -405,24 +375,6 @@
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Financial_Input({key3})"
-                },
-                "EUT_SCREENING_INPUTObjectPage": {
-                    "type": "Component",
-                    "id": "EUT_SCREENING_INPUTObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "EUT_SCREENING_INPUT",
-                            "navigation": {},
-                            "content": {
-                                "header": {
-                                    "visible": true
-                                }
-                            }
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/Screening_Input({key3})"
                 },
                 "SCInputObjectPage_SCInput": {
                     "type": "Component",
@@ -468,7 +420,20 @@
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/MSInput({key3})"
                 }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.fiori": {
