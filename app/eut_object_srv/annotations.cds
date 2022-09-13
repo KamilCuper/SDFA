@@ -166,6 +166,10 @@ annotate service.EUTObject with @(
         Title : {
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : ''
         }
     },
     UI.DataPoint #ProfitCenter :{
@@ -275,6 +279,16 @@ Comment         @readonly
 };
 
 annotate service.EUT_Activities with @(
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : ''
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : ''
+        }
+    },
     UI.LineItem #Activities: [
         {
             $Type : 'UI.DataField',
@@ -311,21 +325,21 @@ annotate service.EUT_Activities with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Screening Inputs',
-            ID    : 'ScreenInputs',
-            Target: 'Screening_Input/@UI.LineItem#ScreenInputs'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'SC Inputs',
+            Label : 'Substantial Contribution Inputs',
             ID    : 'SC_Inputs',
             Target: 'SCInput/@UI.LineItem#SCInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'DNSH Inputs',
+            Label : 'Do No Significant Harm Inputs',
             ID    : 'DNSH_Inputs',
-            Target: 'DNSHInput/@UI.LineItem#DNSHScreenInputs'
+            Target: 'DNSHInput/@UI.PresentationVariant#DNSHPresentation'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Minimum Social Safeguard Inputs',
+            ID    : 'MS_Inputs',
+            Target: 'MSInput/@UI.LineItem#MSInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -579,209 +593,13 @@ annotate service.FINANCIAL_INPUT with {
 /*************************************************************************************************/
 //                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Content
 /*************************************************************************************************/
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.LineItem #ScreenInputs : [
-        {
-            $Type : 'UI.DataField',
-            Value : Typ_Cont_ID,
-            Label : 'Type of Contribution'            
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
-            },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY
-        },       
-    ],
-    UI.FieldGroup #ScreenGroup : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER
-            },
-            
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : Typ_Cont_ID,
-            Label : 'Type of Contribution'            
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
-        },
-            {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.SUBST,
-            Label : 'Substance'
-            },
-        ]
-    },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'Technical Screening Input Details',
-            Target : '@UI.FieldGroup#ScreenGroup'
-        }
-    ]
-);
 
-annotate service.EUT_SCREENING_INPUT with {
-    CRITER @(
-        Common: {
-            Text: CRITER.CRITER_DESC,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Criteria',
-                CollectionPath: 'SCREEN_CRITER_TEMPLT',
-                Parameters: [
-                    { $Type: 'Common.ValueListParameterInOut',
-                    LocalDataProperty:CRITER_CRITER,
-                    ValueListProperty: 'CRITER'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'CRITER_DESC'}
-                ]
-            }
-        }
-    );
-}
+
 
 /*************************************************************************************************/
 //                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Annotation Views
 /*************************************************************************************************/
 
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionVariant #With : {
-        Text : 'Available Input Values',
-        $Type : 'UI.SelectionVariantType',
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #NE,
-                        Low : 'NA',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionVariant #Without : {
-        Text : 'Missing Input Values',
-        $Type : 'UI.SelectionVariantType',       
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #EQ,
-                        Low : '',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.PresentationVariant : {
-        Text : 'All records',
-        GroupBy: [
-            Typ_Cont_ID          
-        ],
-      SortOrder : [
-        {
-            $Type : 'Common.SortOrderType',
-            Property : Env_Ob_ID       
-        }
-        ],
-        Visualizations : [
-            '@UI.LineItem#ScreenInputs',
-        ],        
-    }
-); 
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionFields : [
-        CRITER_CRITER,
-    ]
-);
-
-annotate service.EUT_SCREENING_INPUT with {
-      Env_Ob @(
-        Common: {
-            Text: Env_Ob.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Env Objective',
-                CollectionPath: 'EnvObjectiveObject',
-                
-            }
-        }
-    );
-}
 
 annotate service.EnvObjectiveObject with {
     Env_Obj @Common.Text : {
@@ -790,19 +608,6 @@ annotate service.EnvObjectiveObject with {
     }
 };
 
-annotate service.EUT_SCREENING_INPUT with {
-    Typ_Cont @(
-        Common: {
-            Text: Typ_Cont.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Type of Contribution',
-                CollectionPath: 'ContributionTypeObject',
-                
-            }
-        }
-    );
-}
 
 annotate service.ContributionTypeObject with {
     Typ_Cont @Common.Text : {
@@ -811,118 +616,55 @@ annotate service.ContributionTypeObject with {
     }
 };
 
-annotate service.EUT_SCREENING_INPUT with @(
-        UI.HeaderInfo : {
-        TypeName : 'EUT Screening Input',
-        TypeNamePlural : 'EUT Screening Inputs',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : 'EUT Screening Input Details',
-        },
-        Title : {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-        },
-    }
-);
 
 
-//// ANNOTATION FOR SC INPUT PAGE ///////
+//// ANNOTATION FOR SC/DNSH/MS INPUT PAGES ///////
 
 annotate service.SCInput with @(
     UI.LineItem #SCInput : [
         {
             $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
+            Value : ENV_OB_ID,
+           Label : 'Environmental Objective',
+           ![@HTML5.CssDefaults] : {width : '15rem'},           
         },
         {
             $Type : 'UI.DataField',
-            Value : CRITER_CRITER
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
          {
             $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
+            Value : CRITER.CRIT_UNIT,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
             },
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
+            Label : 'Lower Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
+            Label : 'Upper Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
          {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },       
     ],
-    UI.FieldGroup #SCInputGroup : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER
-            },
-            
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : Typ_Cont_ID,
-            Label : 'Type of Contribution'            
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
-        },
-            {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.SUBST,
-            Label : 'Substance'
-            },
-        ]
-    },
-   /* UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'Technical Screening Input Details',
-            Target : '@UI.FieldGroup#SCInputGroup'
-        }
-    ] */
+
 );
-
-
 
 
 annotate service.SCInput with @(
@@ -945,12 +687,7 @@ annotate service.SCInput with @(
             {
                 $Type : 'UI.DataField',
                 Value : EUT_ACTIVITIES.EA_Object.Description,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRITER,
-            },          
-                       
+            },                      
             {
                 $Type : 'UI.DataField',
                 Value : INDICATOR_IV,
@@ -1049,7 +786,7 @@ annotate service.SCInput with @(
    UI.Facets : [
        {
            $Type : 'UI.ReferenceFacet',
-           Label : 'EUT Input Form',
+           Label : 'Substantial Contribution Parameters',
            ID : 'SCEUTIputForm',
            Target : '@UI.FieldGroup#SCCriteriaForm',
        },
@@ -1074,56 +811,604 @@ annotate service.DNSHInput with @(
     UI.LineItem #DNSHScreenInputs : [
         {
             $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
+            Value : ENV_OB_ID,
+           Label : 'Environmental Objective',
+           ![@HTML5.CssDefaults] : {width : '15rem'},            
         },
         {
             $Type : 'UI.DataField',
-            Value : CRITER_CRITER
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
          {
             $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
+            Value : CRITER.CRIT_UNIT,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
             },
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
+            Label : 'Lower Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
+            Label : 'Upper Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
          {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },       
     ],
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'DNSH Inputs',
-            ID : 'DNSHInputs',
-            Target : '@UI.FieldGroup#DNSHInputsForm',
-        },]
+    
 );
 annotate service.DNSHInput with @(
+    UI.HeaderInfo : {
+        TypeName : 'Do No Significant Harm Input',
+        TypeNamePlural : 'Do No Significant Harm Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Do No Significant Harm Input',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+        },
+    },
     UI.FieldGroup #DNSHInputsForm : {
         $Type : 'UI.FieldGroupType',
         Data : [
+             {
+                $Type : 'UI.DataField',
+                Value : EUT_ACTIVITIES.EA_Object.Description,
+            },          
+                       
             {
                 $Type : 'UI.DataField',
-                Value : CRITER_CRITER,
-            },{
+                Value : INDICATOR_IV,
+                @UI.Hidden : CRITER.HELP_I,
+                Criticality : CRITICALITY
+            },
+            {
                 $Type : 'UI.DataField',
-                Value : ENV_OB.ID,
-            },],
+                Value : KEY_FIGURE,
+                @UI.Hidden : CRITER.HELP,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_UNIT,
+            },
+            ],
+    },
+    UI.FieldGroup #DNSHInputsForm2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [          
+            {
+                $Type : 'UI.DataField',
+                Value : INDICATOR_IV,
+              //  @UI.Hidden : CRITER.HELP_I,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : KEY_FIGURE,
+             //   @UI.Hidden : CRITER.HELP,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_UNIT,
+            },
+            ],
+    },
+    UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Do No Significant Harm Inputs',
+            ID : 'DNSHInputs',
+            Target : '@UI.FieldGroup#DNSHInputsForm',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Details',
+            ID : 'DNSHInputs2',
+            Target : '@UI.FieldGroup#DNSHInputsForm2',
+        },
+        
+        ]
+  
+);
+
+
+
+
+annotate service.SCInput with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+
+annotate service.DNSHInput with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+
+
+annotate service.SCInput with @(
+    UI.PresentationVariant #SCPresentation: {
+        Text : 'All records',
+        GroupBy: [
+            ENV_OB_ID          
+        ],
+        Visualizations : [
+            '@UI.LineItem#SCInput',
+        ],        
     }
 );
+
+
+annotate service.SCInput with @(
+    UI.SelectionVariant #SCWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.SCInput with @(
+    UI.SelectionVariant #SCWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : '',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+
+annotate service.MSInput with @(
+    UI.HeaderInfo : {
+        TypeName : 'Miniumum Social Input',
+        TypeNamePlural : 'Miniumum Social Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Miniumum Social Input',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+        },
+    },
+);
+
+
+annotate service.MSInput with @(
+    UI.FieldGroup #MSForm : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+           {
+                $Type : 'UI.DataField',
+                Value : EUT_ACTIVITIES.EA_Object.Description,
+            },
+           {
+                $Type : 'UI.DataField',
+                Value : INDICATOR_IV,
+                @UI.Hidden : CRITER.HELP_I,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : KEY_FIGURE,
+                @UI.Hidden : CRITER.HELP,
+                Criticality : CRITICALITY
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_UNIT,
+            },
+        ],
+    },
+    UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+   UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'MSForm',
+            Label : 'Minimum Social Safeguard Inputs',
+            Target : '@UI.FieldGroup#MSForm',
+        },
+    ] 
+);
+
+annotate service.MSInput with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.MSInput with @(
+    UI.LineItem #MSInput : [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+           Label : 'Environmental Objective',
+           ![@HTML5.CssDefaults] : {width : '15rem'},           
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
+            },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_L,
+            Label : 'Lower Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_U,
+            Label : 'Upper Limit',
+            ![@HTML5.CssDefaults] : {width : '15rem'},
+        },
+         {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+     /*   {
+          $Type : 'UI.DataFieldWithUrl',
+          Url : EUT_COMPASS,
+          Value : EUT_COMPASS,
+          Label : 'Link to EUT Compass',
+          ![@HTML5.CssDefaults] : {width : '12rem'},
+} , */
+               
+    ]);
+
+
+    annotate service.SCInput with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.DNSHInput with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.MSInput with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+
+
+
+annotate service.MSInput with @(
+    UI.PresentationVariant #MSPresentation: {
+        Text : 'All records',
+        GroupBy: [
+            ENV_OB_ID          
+        ],
+        Visualizations : [
+            '@UI.LineItem#MSInput',
+        ],        
+    }
+);
+
+
+annotate service.MSInput with @(
+    UI.SelectionVariant #MSWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.MSInput with @(
+    UI.SelectionVariant #MSWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : '',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+
+
+annotate service.DNSHInput with @(
+    UI.PresentationVariant #DNSHPresentation: {
+        Text : 'All records',
+        GroupBy: [
+            ENV_OB_ID,          
+        ],
+        Label : '',
+        Visualizations : [
+            '@UI.LineItem#DNSHScreenInputs',
+        ],        
+    }
+);
+
+
+annotate service.DNSHInput with @(
+    UI.SelectionVariant #DNSHWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.DNSHInput with @(
+    UI.SelectionVariant #DNSHWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : '',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+
+annotate service.ScreeningCriteriaTemplate with @(
+ UI.FieldGroup #CriteriaQuickView : {
+        Data : [
+            
+            {
+                $Type : 'UI.DataField',
+                Value : CRIT_UNIT
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CONT_MEAS
+            },
+            {
+                    $Type : 'UI.DataField',
+                    Value : CALC_MEAS,              
+                },
+                
+        ]
+    },                 
+    UI.FieldGroup #ExtraQuickView : {
+        Data : [
+        {
+                $Type : 'UI.DataField',
+                Value : CRIT_L,
+                
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRIT_U
+            },
+        ]
+    },
+    UI.QuickViewFacets  : [
+        {
+        $Type : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#CriteriaQuickView',
+        Label : 'Description'
+        
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        Target : '@UI.FieldGroup#ExtraQuickView',
+        Label : 'Limits'
+    },        
+    ],
+);
+
+annotate service.SCInput with {
+    @Common.SemanticObject:  'Criterion'
+    CRITER_CRITER
+}
+
+annotate service.DNSHInput with {
+    @Common.SemanticObject:  'Criterion'
+    CRITER_CRITER
+}
+
+annotate service.MSInput with {
+    @Common.SemanticObject:  'Criterion'
+    CRITER_CRITER
+}
+
+annotate service.SCInput with @(
+    Communication.Contact #contact : {
+        $Type : 'Communication.ContactType',
+        fn : CRITER,
+    }
+
+);
+
+annotate service.SCInput with @(
+    Capabilities.Updatable : true
+);
+

@@ -17,7 +17,6 @@ using {
 } from './commonTypes';
 using {EA_MAPPING,ACC_TYPE_MAPPING} from './Mappings';
 
-using {EUTObject,EUT_SCREENING_INPUT} from './EUTObject';
 
 
 @UI.Identification : [{Value : Description}]
@@ -55,47 +54,7 @@ entity ECO_ACT_OBJECT : managed {
     Comment         : Comment;
 };
 
-//This is an entity from v1 data model - to be removed
-@UI.Identification : [{Value : CRITER_DESC}]
-entity SCREEN_CRITER_TEMPLT : managed {
-    CONT_MEAS       : ContributionMeasure;
-    key CRITER      : Criterion;
-    CRITER_DESC     : Description @title : 'Screening Criterion Description';
-    CRIT_UNIT       : CriteriaUnit;
-    CRIT_U          : UpperLimit;
-    CRIT_L          : LowerLimit;
-    SUBST           : Substance;
-    COND_GHGU       : GHGUpperLimit;
-    COND_GHGL       : GHGLoweLimit;
-    COND_UNIT       : ConditionUnit;
-    ENGN_CATG       : EngineCategory;
-    VEH_CATG        : VehicleCategory;
-    POWER_L         : PowerLowerLimit;
-    POWER_U         : PowerUpperLimit;
-    IGN_TYP         : IgnitionType;
-    EMS_STG         : EmissionStage;
-    TYR_CLASS       : TyreClass;
-    ENGF_CLASS      : EnergyEfficiencyClass;
-    VERF_EPREL      : EnergyLabeling;
-    RM              : ReferenceMassClass;
-    RM_L            : ReferenceMassLowerLimit;
-    RM_U            : ReferenceMassUpperLimit;
-    COMBP_L         : CombustionLowerLimit;
-    COMBP_U         : CombustionUpperLimit;
-    OPH_L           : OperatedHoursLowerLimit;
-    TYP_COMB        : CombustionType;
-    COMB_UNIT       : CombustionUnit;
-    CALC_MEAS       : CalcMeasure;
-    TYP_PLANT       : PlantType;
-    CRITICALITY     : Integer;
-    SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
-                        on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
-    /*EA_APPL         : Association to many ECON_CRITER_APPL
-                        on EA_APPL.CRITER =$self @title : 'Applicability'*/ //not required
-    HELP : Help;
-    HELP_I : Help_I;
-    HELP_P : Help_P;
-};
+
 entity ScreeningCriteriaTemplate : managed {
     CONT_MEAS       : ContributionMeasure;
     key CRITER      : Criterion;
@@ -133,9 +92,10 @@ entity ScreeningCriteriaTemplate : managed {
     CRITICALITY     : Integer;
     //SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
     //                    on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
-    HELP : Help;
-    HELP_I : Help_I;
-    HELP_P : Help_P;
+    HELP            : Help;
+    HELP_I          : Help_I;
+    HELP_P          : Help_P;
+    
 };
 
 
@@ -144,7 +104,6 @@ entity ScreeningCriteriaTemplate : managed {
 entity ECON_CRITER_APPL : managed {
     key ID          : GUID ;
     EcoActivity     : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
-    CRITER          : Association to one SCREEN_CRITER_TEMPLT @title: 'Screening Criterion';
     TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
     CCA             : ClimateAdaptation;
     CCM             : ClimateMitigation;
@@ -157,10 +116,10 @@ entity ECON_CRITER_APPL : managed {
 entity CriteriaApplicability : managed {
     key ID              : GUID;
     ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
-    SC_OBJECT       : Association to one ContributionTypeObject @title : 'Substantial Contribution';
+    SC_OBJECT       : Association to one EnvObjectiveObject @title : 'Substantial Contribution';
     TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
     ENV_OB          : Association to one EnvObjectiveObject @title : 'Environmental Objective';
-    CRITER              : Association to one SCREEN_CRITER_TEMPLT @title: 'Screening Criterion';
+    CRITER              : Association to one ScreeningCriteriaTemplate @title: 'Screening Criterion';
 
 };
 

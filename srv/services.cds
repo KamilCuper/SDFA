@@ -9,7 +9,6 @@ using {
     EUTObject as Eobject,
     EUT_Activities as Eactivities,
     FINANCIAL_INPUT as financialinput,
-    EUT_SCREENING_INPUT as screeninginput, //to remove after data model v1 changes
     SCInput as sc,
     DNSHInput as dnsh,
     MSInput as ms
@@ -24,7 +23,6 @@ using {
     PlantObject as plant,
     SECTOR_OBJECT as sector,
     ECO_ACT_OBJECT as ecoobject,
-    SCREEN_CRITER_TEMPLT as screencriter,   //to remove after data model v1 changes
     ECON_CRITER_APPL as criterappl, //to remove after data model v1 changes
     EnvObjectiveObject as envobjective,
     ContributionTypeObject as contrtype,
@@ -52,9 +50,6 @@ service DataService {
     entity EUT_Activities as projection on Eactivities;
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter; //to remove after data model v1 changes
-    @odata.draft.enabled
-    entity EUT_SCREENING_INPUT as projection on screeninginput; //to remove after data model v1 changes
     @odata.draft.enabled
     entity SCInput as projection on sc;
     @odata.draft.enabled
@@ -79,16 +74,7 @@ service DataService {
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
 
-    entity CriterView as 
-        select  
-                EcoActivity.SECTOR.Description as Sector, 
-                EcoActivity.Description as EcoActivity,
-                EcoActivity.EUT_Eligible,
-                CRITER.CRITER_DESC as Criterion,
-                TYP_CONT.Description as Contribution_Type,
-                key CRITER
-        from ECON_CRITER_APPL
-    ;
+    
     /*entity YearsListView as
         select
             key EUT_Object.GJAHR as FiscalYear
@@ -111,8 +97,6 @@ service EUTObjectService {
     @cds.odata.valuelist
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity EUT_SCREENING_INPUT as projection on screeninginput;
-    @odata.draft.enabled
     entity SCInput as projection on sc;
     @odata.draft.enabled
     entity DNSHInput as projection on dnsh;
@@ -133,7 +117,6 @@ service EUTObjectService {
     @odata.draft.enabled
     @cds.odata.valuelist
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity SCREEN_CRITER_TEMPLT as projection on screencriter; //to remove after data model v1 changes
     entity EnvObjectiveObject as projection on envobjective;
     entity ContributionTypeObject as projection on contrtype;
     entity ECON_CRITER_APPL as projection on criterappl; //to remove after data model v1 changes
@@ -141,16 +124,7 @@ service EUTObjectService {
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
 
-    entity CriterView as 
-        select  
-                EcoActivity.SECTOR.Description as Sector, 
-                EcoActivity.Description as EcoActivity,
-                EcoActivity.EUT_Eligible,
-                CRITER.CRITER_DESC as Criterion,
-                TYP_CONT.Description as Contribution_Type,
-                key CRITER
-        from ECON_CRITER_APPL
-    ;
+
     /*entity YearsListView as
         select
             key EUT_Object.GJAHR as FiscalYear

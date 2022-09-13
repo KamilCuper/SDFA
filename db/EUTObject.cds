@@ -10,7 +10,6 @@ using {
 using {
     ECO_ACT_OBJECT,
     CorporateMD,
-    SCREEN_CRITER_TEMPLT,
     ScreeningCriteriaTemplate,
     ProfitCenterObject,
     PlantObject,
@@ -51,9 +50,6 @@ entity EUT_Activities : managed {
     EA_Object           : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     Financial_Input     : Association to many FINANCIAL_INPUT 
                             on Financial_Input.EUT_ACTIVITIES =$self @title : 'Financial Inputs';
-    //This association lead to entity from v1 data model - to be removed and replaced by 3 new entities
-    Screening_Input     : Association to many EUT_SCREENING_INPUT 
-                            on Screening_Input.EUT_ACTIVITIES =$self @title : 'EUT Screening Inputs';
     SCInput             : Association to many SCInput 
                             on SCInput.EUT_ACTIVITIES =$self @title : 'Substantial Contribution Inputs';
     DNSHInput           : Association to many DNSHInput 
@@ -92,19 +88,6 @@ entity FINANCIAL_INPUT : managed {
     criticality         : Integer;
 };
 
-//This is an entity from v1 data model - to be removed and replaced by 3 new entities
-entity EUT_SCREENING_INPUT : managed {
-    key ID              : GUID ;
-    //GJAHR               : FiscalYear; removed
-    INDICATOR_IV        : Indicator_InVal;
-    KEY_FIGURE          : InputValue;
-    //GSCEN               : GSCEN; removed
-    CRITER              : Association to one SCREEN_CRITER_TEMPLT @title : 'Screening Criterion';
-    Env_Ob              : Association to one EnvObjectiveObject;
-    Typ_Cont           : Association to one ContributionTypeObject;
-    EUT_ACTIVITIES      : Association to one EUT_Activities;
-    CRITICALITY : Integer;
-};
 entity SCInput : managed {
     key ID              : GUID ;
     INDICATOR_IV        : Indicator_InVal;
@@ -134,6 +117,8 @@ entity MSInput : managed {
     TYP_CONT            : Association to one ContributionTypeObject;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     CRITICALITY         : Integer;
+    EUT_COMPASS             : String;
+    
 };
 
 

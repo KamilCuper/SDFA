@@ -10,7 +10,7 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.4",
+    "@sap/ux-specification": "^1.102.5",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -44,7 +44,8 @@
     "watch-mainpage": "cds watch --open mainpage/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-financial_input2": "cds watch --open financial_input2/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-mainmain": "cds watch --open mainmain/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-fin_input": "cds watch --open fin_input/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-fin_input": "cds watch --open fin_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-msinput": "cds watch --open msinput/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -102,6 +103,7 @@
     "app/mainpage",
     "app/financial_input2",
     "app/mainmain",
-    "app/fin_input"
+    "app/fin_input",
+    "app/msinput"
   ]
 }

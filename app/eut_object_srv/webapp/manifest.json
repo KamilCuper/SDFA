@@ -141,17 +141,24 @@
                     ]
                 },
                 {
-                    "pattern": "SCInput({key}):?query:",
+                    "pattern": "EUTObject({key})/Activities({key2})/SCInput({key3}):?query:",
                     "name": "SCInputObjectPage_SCInput",
                     "target": [
                         "SCInputObjectPage_SCInput"
                     ]
                 },
                 {
-                    "pattern": "DNSHInput({key}):?query:",
+                    "pattern": "EUTObject({key})/Activities({key2})/DNSHInput({key3}):?query:",
                     "name": "DNSHInputObjectPage_DNSHInput",
                     "target": [
                         "DNSHInputObjectPage_DNSHInput"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/MSInput({key3}):?query:",
+                    "name": "MSInputObjectPage_MSInput",
+                    "target": [
+                        "MSInputObjectPage_MSInput"
                     ]
                 }
             ],
@@ -262,14 +269,19 @@
                                         "route": "EUT_SCREENING_INPUTObjectPage"
                                     }
                                 },
-                                "Activities.SCInput": {
+                                "SCInput": {
                                     "detail": {
                                         "route": "SCInputObjectPage_SCInput"
                                     }
                                 },
-                                "Activities.DNSHInput": {
+                                "DNSHInput": {
                                     "detail": {
                                         "route": "DNSHInputObjectPage_DNSHInput"
+                                    }
+                                },
+                                "MSInput": {
+                                    "detail": {
+                                        "route": "MSInputObjectPage_MSInput"
                                     }
                                 }
                             },
@@ -298,6 +310,16 @@
                                 },
                                 "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
                                     "tableSettings": {
+                                        "enableMassEdit": true
+                                    },
+                                    "actions": {
+                                        "importData": {
+                                            "id": "insertInputValueButton"
+                                        }
+                                    }
+                                },
+                                "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
+                                    "tableSettings": {
                                         "enableMassEdit": true,
                                         "quickVariantSelection": {
                                             "paths": [
@@ -305,20 +327,73 @@
                                                     "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
                                                 },
                                                 {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWith"
                                                 },
                                                 {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWithout"
                                                 }
                                             ]
                                         }
                                     },
                                     "actions": {
-                                        "importData": {
-                                            "id": "insertInputValueButton",
-                                            "text": "Select Screening Inputs",
-                                            "press": "ns.worklist.controller.ListReportExtController.insertInput",
-                                            "requiresSelection": false
+                                        "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Substantial Contribution Inputs",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
+                                        }
+                                    }
+
+                                },
+                                "DNSHInput/@com.sap.vocabularies.UI.v1.LineItem#DNSHScreenInputs": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DNSHWith"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DNSHWithout"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "actions": {
+                                        "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Do No Significant Harm Inputs",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
+                                        }
+                                    }
+                                },
+                                "MSInput/@com.sap.vocabularies.UI.v1.LineItem#MSInput": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.UI.PresentationVariant#MSPresentation"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#MSWith"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#MSWithout"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "actions": {
+                                        "selectEntries": {
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "Select Minimum Social Safeguard Inputs",
+                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
                                         }
                                     }
                                 }
@@ -393,7 +468,20 @@
                         }
                     },
                     "controlAggregation": "endColumnPages",
-                    "contextPattern": "/DNSHInput({key})"
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/DNSHInput({key3})"
+                },
+                "MSInputObjectPage_MSInput": {
+                    "type": "Component",
+                    "id": "MSInputObjectPage_MSInput",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "MSInput",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/MSInput({key3})"
                 }
             }
         },
