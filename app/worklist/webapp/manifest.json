@@ -213,6 +213,54 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+
+                            "variantManagement": "Control",                        
+                               "controlConfiguration": {
+
+                            "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs" : {
+                                "tableSettings": {
+                                    "enableMassEdit": true,
+                                    "personalization": {
+                                        "column": true,
+                                        "sort": true,
+                                        "group": true,
+                                        "filter" : false
+                                        
+                                    },
+                                    "quickVariantSelection": {
+                                        "paths": [
+                                            {
+                                                "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+                                            },
+                                            {                          
+                                                "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#With"
+                                            },
+                                            {     
+                                                "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Without"
+                                            }
+                                            
+                                        ]
+                                    }
+                                   
+                                },
+                                "actions" : {
+                                    "importData": {
+                                        "id": "insertInputValueButton",
+                                        "text": "Load Screening Inputs",
+                                        "press": "ns.worklist.controller.ListReportExtController.insertInput",
+                                        "requiresSelection": false
+                                    }  
+                                }  
+                            }
+                              
+                                
+                            },
+
+
+
+
+
+                            "editableHeaderContent": true,
                             "entitySet": "EUT_Activities",
                             "navigation": {
                                 "Financial_Input": {
@@ -223,8 +271,8 @@
                                 "Screening_Input": {
                                     "detail": {
                                         "route": "EUT_SCREENING_INPUTObjectPage"
-                                    }
-                                }
+                                    }                                 
+                            }
                             },
                             "sectionLayout": "Tabs",
                             "showRelatedApps": true,

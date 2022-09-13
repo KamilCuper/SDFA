@@ -249,8 +249,8 @@ annotate service.EUT_Activities with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : Financial_Input.KSL,
-            //@Aggregation.Default: #SUM **throwing an error
+            Value : Financial_Input.KSL
+            
         }
         
     ],
@@ -548,11 +548,13 @@ annotate service.EUT_SCREENING_INPUT with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : INDICATOR_IV
+            Value : INDICATOR_IV,
+            Criticality : CRITICALITY
         },
         {
             $Type : 'UI.DataField',
-            Value : KEY_FIGURE
+            Value : KEY_FIGURE,
+            Criticality : CRITICALITY
         },
         {
             $Type : 'UI.DataField',
@@ -634,3 +636,85 @@ annotate service.EUT_SCREENING_INPUT with {
         }
     );
 }
+
+
+
+
+
+
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionVariant #With : {
+        Text : 'Records with EUT Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionVariant #Without : {
+        Text : 'Records without EUT Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.PresentationVariant : {
+        Text : 'EUT Screening Inputs - all records',
+        GroupBy: [
+             CRITER_CRITER          
+        ],
+        SortOrder : [
+            {
+        $Type : 'Common.SortOrderType',
+        Property : CRITER_CRITER,
+        Descending : true
+            }
+        ],
+        
+      //  Total : [
+       //     KEY_FIGURE
+      //  ],
+        Visualizations : [
+            '@UI.LineItem',
+        ]
+        
+    }
+);
+
+annotate service.EUT_SCREENING_INPUT with @(
+    UI.SelectionFields : [
+        
+        CRITER_CRITER,
+    ]
+);

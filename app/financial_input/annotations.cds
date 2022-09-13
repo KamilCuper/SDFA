@@ -98,12 +98,12 @@ annotate service.FINANCIAL_INPUT with {
         }*/
         }
 )};
-/*annotate service.CorporateMD with {
+annotate service.CorporateMD with {
     RBUKRS @Common.Text : {
         $value : Description,
         ![@UI.TextArrangement] : #TextFirst,
     }
-};*/
+};
 annotate service.PlantObject with {
     WERKS @Common.Text : {
         $value : DESCR,
@@ -129,7 +129,15 @@ annotate service.PlantObject with {
             Value : LAND1
         }
     ]}
-});*/
+
+
+});
+
+
+
+
+
+
 
 annotate service.FINANCIAL_INPUT with {
     KSL @Measures.ISOCurrency : RKCUR_code
@@ -207,3 +215,4 @@ annotate service.FINANCIAL_INPUT with @(
 
 
 
+*/

@@ -14,14 +14,7 @@ using from './ecoactivities/annotations';
 
 using from './activitiesmapping/annotations';
 
-using from './criteria/annotations';
-
-using from './criteria/annotations';
-
-using from './criter_view/annotations';
-
 using from './financial_input/annotations';
 
-using from './eutscreeninginput/annotations';
-
 using from './eut_object_srv/annotations';
+

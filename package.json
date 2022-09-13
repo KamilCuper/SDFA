@@ -10,7 +10,7 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.4",
+    "@sap/ux-specification": "^1.102.5",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -30,7 +30,22 @@
     "watch-eutlistreport": "cds watch --open eutlistreport/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-form_testapp": "cds watch --open form_testapp/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-eut_object_srv": "cds watch --open eut_object_srv/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-eutscreeninginput": "cds watch --open eutscreeninginput/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-eutscreeninginput": "cds watch --open eutscreeninginput/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eutmaintest": "cds watch --open eutmaintest/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-acctypemapping2": "cds watch --open acctypemapping2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-activitiesmapping2": "cds watch --open activitiesmapping2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-corporatemd2": "cds watch --open corporatemd2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ecoactivities2": "cds watch --open ecoactivities2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eutscreeninginput2": "cds watch --open eutscreeninginput2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-plants2": "cds watch --open plants2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-profitcenters2": "cds watch --open profitcenters2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-sectors2": "cds watch --open sectors2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-eutmain": "cds watch --open eutmain/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-mainpage": "cds watch --open mainpage/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-financial_input2": "cds watch --open financial_input2/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-mainmain": "cds watch --open mainmain/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-fin_input": "cds watch --open fin_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-msinput": "cds watch --open msinput/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -74,6 +89,21 @@
     "app/eutscreeninginput",
     "app/eutlistreport",
     "app/form_testapp",
-    "app/eut_object_srv"
+    "app/eut_object_srv",
+    "app/eutmaintest",
+    "app/acctypemapping2",
+    "app/activitiesmapping2",
+    "app/corporatemd2",
+    "app/ecoactivities2",
+    "app/eutscreeninginput2",
+    "app/plants2",
+    "app/profitcenters2",
+    "app/sectors2",
+    "app/eutmain",
+    "app/mainpage",
+    "app/financial_input2",
+    "app/mainmain",
+    "app/fin_input",
+    "app/msinput"
   ]
 }
