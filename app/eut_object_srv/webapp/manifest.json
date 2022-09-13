@@ -94,37 +94,21 @@
             "css": []
         },
         "routing": {
-            "config": {
-                "flexibleColumnLayout": {
-                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-                },
-                "routerClass": "sap.f.routing.Router"
-            },
             "routes": [
                 {
                     "pattern": ":?query:",
                     "name": "EUTObjectList",
-                    "target": [
-                        "EUTObjectList"
-                    ]
+                    "target": "EUTObjectList"
                 },
                 {
                     "pattern": "EUTObject({key}):?query:",
                     "name": "EUTObjectObjectPage",
-                    "target": [
-                        "EUTObjectList",
-                        "EUTObjectObjectPage"
-                    ]
+                    "target": "EUTObjectObjectPage"
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2}):?query:",
                     "name": "EUT_ActivitiesObjectPage",
-                    "target": [
-                        "EUTObjectList",
-                        "EUTObjectObjectPage",
-                        "EUT_ActivitiesObjectPage"
-                    ]
+                    "target": "EUT_ActivitiesObjectPage"
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
@@ -183,6 +167,14 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "actions": {
+                                        "MenuActions": {
+                                            "text": "Navigate to...",
+                                            "menu": [
+                                                "DataFieldForIntentBasedNavigation::CorporateMD::app",
+                                                "DataFieldForIntentBasedNavigation::Plants::app",
+                                                "DataFieldForIntentBasedNavigation::ProfitCenters::app"
+                                            ]
+                                        },
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
@@ -193,9 +185,7 @@
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "beginColumnPages",
-                    "contextPattern": ""
+                    }
                 },
                 "EUTObjectObjectPage": {
                     "type": "Component",
@@ -205,6 +195,7 @@
                         "settings": {
                             "showRelatedApps": true,
                             "sectionLayout": "Tabs",
+                            "variantManagement": "Control",
                             "entitySet": "EUTObject",
                             "navigation": {
                                 "Activities": {
@@ -222,31 +213,36 @@
                             "controlConfiguration": {
                                 "Activities/@com.sap.vocabularies.UI.v1.LineItem#Activities": {
                                     "tableSettings": {
-                                        "enableMassEdit": false,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
+                                        "enableMassEdit": false
                                     },
                                     "actions": {
                                         "selectEntries": {
                                             "visible": true,
                                             "enabled": true,
-                                            "text": "Select Economic Activity(s)",
+                                            "text": "Add Economic Activity(s)",
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
+                                        }
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "editableHeaderContent": false,
+                                    "actions": {}
+                                },
+                                "body": {
+                                    "sections": {
+                                        "Activities": {
+                                            "sideContent": {
+                                                "template": "eut.eutobjectsrv.view.SideContentTable"
+                                            },
+                                            "type": "XMLFragment"
                                         }
                                     }
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "midColumnPages",
-                    "contextPattern": "/EUTObject({key})"
+                    }
                 },
                 "EUT_ActivitiesObjectPage": {
                     "type": "Component",
@@ -288,16 +284,7 @@
                             "controlConfiguration": {
                                 "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
                                     "tableSettings": {
-                                        "enableMassEdit": false,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
+                                        "enableMassEdit": false
                                     },
                                     "actions": {
                                         "selectEntries": {
@@ -399,9 +386,7 @@
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})"
+                    }
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -484,12 +469,6 @@
                     "contextPattern": "/EUTObject({key})/Activities({key2})/MSInput({key3})"
                 }
             }
-        },
-        "rootView": {
-            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-            "type": "XML",
-            "async": true,
-            "id": "appRootView"
         }
     },
     "sap.fiori": {

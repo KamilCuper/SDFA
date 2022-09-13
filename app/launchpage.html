@@ -9,6 +9,15 @@
         <script>
             window['sap-ushell-config'] = {
                 defaultRenderer: 'fiori2',
+                renderers: {
+                fiori2: {
+                    componentData: {
+                    config: {
+                        search: "hidden",
+                    },
+                    },
+                },
+                },
                 applications: {
                     "screen-app": {
                         title: 'EU Taxonomy Reporting',
@@ -33,66 +42,87 @@
                         applicationType: "URL",
                         url: "./acctype/webapp",
                         navigationMode: "embedded"
-                        },
-                        "ActivetiesMapping-app": {
+                    },
+                    "ActivetiesMapping-app": {
                         title: "Economic Activities Mapping",
                         description: "Run Application to maintain Economic Activities Mappings",
                         additionalInformation: "SAPUI5.Component=ns.activitiesmapping",
                         applicationType: "URL",
                         url: "./activitiesmapping/webapp",
                         navigationMode: "embedded"
-                        },
-                        "CorporateMD-app": {
+                    },
+                    "CorporateMD-app": {
                         title: "Company Master Data",
                         description: "Run Application to maintain Company Master Data",
                         additionalInformation: "SAPUI5.Component=ns.corporatemd",
                         applicationType: "URL",
                         url: "./corporatemd/webapp",
                         navigationMode: "embedded"
-                        },
-                        "EcoActivities-app": {
+                    },
+                    "EcoActivities-app": {
                         title: "Economic Activities",
                         description: "Run Application to maintain Economic Activities Data",
                         additionalInformation: "SAPUI5.Component=ns.ecoactivities",
                         applicationType: "URL",
                         url: "./ecoactivities/webapp",
                         navigationMode: "embedded"
-                        },
-                        "Plants-app": {
+                    },
+                    "Plants-app": {
                         title: "Plants",
                         description: "Run Application to maintain Plant Data",
                         additionalInformation: "SAPUI5.Component=ns.plants",
                         applicationType: "URL",
                         url: "./plants/webapp",
                         navigationMode: "embedded"
-                        },
-                        "ProfitCenters-app": {
+                    },
+                    "ProfitCenters-app": {
                         title: "Profit Centers",
                         description: "Run Application to maintain Profit Centers Data",
                         additionalInformation: "SAPUI5.Component=ns.profitcenters",
                         applicationType: "URL",
                         url: "./profitcenters/webapp",
                         navigationMode: "embedded"
-                        },
-                        "Sectors-app": {
+                    },
+                    "Sectors-app": {
                         title: "Sectors",
                         description: "Run Application to maintain Sectors Data",
                         additionalInformation: "SAPUI5.Component=ns.sectors",
                         applicationType: "URL",
                         url: "./sectors/webapp",
                         navigationMode: "embedded"
-                        },
-                        "FinancialInput-app": {
+                    },
+                    "FinancialInput-app": {
                         title: "Financial Input",
                         description: "Run Application to maintain Financial Input",
                         additionalInformation: "SAPUI5.Component=ns.financialinput",
                         applicationType: "URL",
                         url: "./financial_input/webapp",
                         navigationMode: "embedded"
+                    },
+                    "EUT-app": {
+                        title: "EUT Screening Input",
+                        description: "Run Application to maintain EUT",
+                        additionalInformation: "SAPUI5.Component=ns.eutscreeninginput",
+                        applicationType: "URL",
+                        url: "./eutscreeninginput/webapp",
+                        navigationMode: "embedded"
+                    }
+                },
+                
+                bootstrapPlugins: {
+                    RuntimeAuthoringPlugin: {
+                        component: "sap.ushell.plugins.rta",
+                        config: {
+                        validateAppVersion: false,
                         },
-                        
-                        
-                }
+                    },
+                    PersonalizePlugin: {
+                        component: "sap.ushell.plugins.rta-personalize",
+                        config: {
+                        validateAppVersion: false,
+                        },
+                    },
+                },
             };
         </script>
 

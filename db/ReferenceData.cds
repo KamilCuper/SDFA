@@ -1,6 +1,7 @@
 using {
     managed,
     Currency,
+    Country,
     temporal,
     cuid,
     extensible,
@@ -23,7 +24,7 @@ using {EA_MAPPING,ACC_TYPE_MAPPING} from './Mappings';
 entity CorporateMD : managed {
     key RBUKRS      : CompanyCode;
     Description     : Description;
-    LAND1           : LAND1;
+    LAND1           : Country;
 };
 
 @UI.Identification : [{Value : DESCR}]
@@ -133,7 +134,7 @@ entity ContributionTypeObject : managed {
     Description     : Description
 };
 
-type LAND1 : String @title : 'Country';
+//type LAND1 : String @title : 'Country';
 
 type EUT_ELIGIBLE : Boolean @title : 'EUT Eligible';
 type EnablingActivity : Boolean @title : 'Enabling Activity';

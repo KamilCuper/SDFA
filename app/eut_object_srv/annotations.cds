@@ -131,7 +131,7 @@ annotate service.EUTObject with @(
                 $Type : 'UI.DataField',
                 Value : Description,
                 Label : 'Description',
-                ![@HTML5.CssDefaults] : {width : '15rem'}
+                ![@HTML5.CssDefaults] : {width : '10rem'}
             },
             {
                 $Type : 'UI.DataField',
@@ -152,6 +152,24 @@ annotate service.EUTObject with @(
                 Value : WERKS_WERKS,
                 ![@UI.Importance] : #High,
                 ![@HTML5.CssDefaults] : {width : '15rem'}
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Company Data Details',
+                SemanticObject: 'CorporateMD',
+                Action: 'app'
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Plants Details',
+                SemanticObject: 'Plants',
+                Action: 'app'
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Profit Centers Details',
+                SemanticObject: 'ProfitCenters',
+                Action: 'app'
             }
         ]
     }
@@ -188,28 +206,9 @@ annotate service.EUTObject with @(
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#Plants'
-        },
+        }
         
     ],    
-    /*UI.LineItem #ContentGroup2: [
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object_ECO_ACT,
-                Label : 'Assigned Economic Activities'
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.EUT_Eligible
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.ENB_ACT
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.Comment
-            }
-        ],*/
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -218,7 +217,6 @@ annotate service.EUTObject with @(
             Target: 'Activities/@UI.LineItem#Activities'
         }
     ]
-    
 );
 
 /*************************************************************************************************/
@@ -278,6 +276,7 @@ ENB_ACT         @readonly;
 Comment         @readonly
 };
 
+
 annotate service.EUT_Activities with @(
     UI.HeaderInfo : {
         Title : {
@@ -319,6 +318,29 @@ annotate service.EUT_Activities with @(
             $Type : 'UI.DataField',
             Value : EA_Object.Comment,
             ![@HTML5.CssDefaults] : {width : '15rem'}
+        },
+        {
+            $Type: 'UI.DataFieldForIntentBasedNavigation',
+            Label: 'Details',
+            SemanticObject: 'EcoActivities',
+            Action: 'app',
+            IconUrl: 'sap-icon://detail-view',
+            Inline : true,
+            ![@UI.Importance]   : #High,
+        },
+        {
+            $Type: 'UI.DataFieldForIntentBasedNavigation',
+            Label: 'Economic Activities Page',
+            SemanticObject: 'EcoActivities',
+            Action: 'app',
+            //RequiresContext : true,
+            /*Mapping : [
+                {
+                    $Type : 'Common.SemanticObjectMappingType',
+                    LocalProperty : EA_Object.Description,
+                    SemanticObjectProperty : 'Description',
+                },
+           ],*/
         }
     ],
     
@@ -345,7 +367,8 @@ annotate service.EUT_Activities with @(
             $Type : 'UI.ReferenceFacet',
             Label : 'Financial Inputs',
             ID    : 'FinInputs',
-            Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
+            Target: 'Financial_Input/@UI.LineItem#FinInputs'
+            //Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
         }
     ]
 );
@@ -364,7 +387,7 @@ annotate service.FINANCIAL_INPUT with @(
     UI.PresentationVariant #PVPath : {
         MaxItems       : 10,
         SortOrder      : [{Property : RACCT}],
-        GroupBy : [RACCT_TYPE_code],
+        //GroupBy : [RACCT_TYPE_code],
         Visualizations : ['@UI.LineItem#FinInputs']
     }
 );
@@ -430,6 +453,20 @@ annotate service.FINANCIAL_INPUT with @(
             Label : 'Amount GC',
             Criticality: criticality,
             ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type: 'UI.DataFieldForIntentBasedNavigation',
+            Label: 'Manage Account Types',
+            SemanticObject: 'AccTypeMapping',
+            Action: 'app',
+            //RequiresContext : true,
+            /*Mapping : [
+                {
+                    $Type : 'Common.SemanticObjectMappingType',
+                    LocalProperty : RACCT_TYPE_code,
+                    SemanticObjectProperty : 'RACCT_TYPE',
+                },
+           ]*/
         }
     ]
 );
@@ -584,7 +621,7 @@ annotate service.FINANCIAL_INPUT with {
 
     KSL @Measures.ISOCurrency : RKCUR_code;
 
-    RACCT_TYPE @Common.Text : {
+    /*RACCT_TYPE @Common.Text : {
             $value : RACCT_TYPE.descr,
             ![@UI.TextArrangement] : #TextFirst,
     }
@@ -1411,4 +1448,3 @@ annotate service.SCInput with @(
 annotate service.SCInput with @(
     Capabilities.Updatable : true
 );
-
