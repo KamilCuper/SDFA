@@ -100,7 +100,7 @@ entity EUT_SCREENING_INPUT : managed {
     //GSCEN               : GSCEN; removed
     CRITER              : Association to one SCREEN_CRITER_TEMPLT @title : 'Screening Criterion';
     Env_Ob              : Association to one EnvObjectiveObject;
-    Typ_Cont           : Association to one ContributionTypeObject;
+    Typ_Cont            : Association to one ContributionTypeObject;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     CRITICALITY : Integer;
 };

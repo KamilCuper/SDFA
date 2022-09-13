@@ -7,5 +7,6 @@ sap.ui.define(
             metadata: {
                 manifest: "json"
             },
+        
         });       
     });

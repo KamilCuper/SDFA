@@ -94,51 +94,26 @@
             "css": []
         },
         "routing": {
-            "config": {
-                "flexibleColumnLayout": {
-                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-                    "defaultThreeColumnLayoutType": "ThreeColumnsEndExpanded"
-                },
-                "routerClass": "sap.f.routing.Router"
-            },
             "routes": [
                 {
                     "pattern": ":?query:",
                     "name": "EUTObjectList",
-                    "target": [
-                        "EUTObjectList"
-                    ]
+                    "target": "EUTObjectList"
                 },
                 {
                     "pattern": "EUTObject({key}):?query:",
                     "name": "EUTObjectObjectPage",
-                    "target": [
-                        "EUTObjectList",
-                        "EUTObjectObjectPage"
-                    ]
+                    "target": "EUTObjectObjectPage"
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2}):?query:",
                     "name": "EUT_ActivitiesObjectPage",
-                    "target": [
-                        "EUTObjectList",
-                        "EUTObjectObjectPage",
-                        "EUT_ActivitiesObjectPage"
-                    ]
+                    "target": "EUT_ActivitiesObjectPage"
                 },
                 {
                     "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
                     "name": "FINANCIAL_INPUTObjectPage",
-                    "target": [
-                        "FINANCIAL_INPUTObjectPage"
-                    ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/Screening_Input({key3}):?query:",
-                    "name": "EUT_SCREENING_INPUTObjectPage",
-                    "target": [
-                        "EUT_SCREENING_INPUTObjectPage"
-                    ]
+                    "target": "FINANCIAL_INPUTObjectPage"
                 }
             ],
             "targets": {
@@ -162,6 +137,14 @@
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
                                     "actions": {
+                                        "MenuActions": {
+                                            "text": "Navigate to...",
+                                            "menu": [
+                                                "DataFieldForIntentBasedNavigation::CorporateMD::app",
+                                                "DataFieldForIntentBasedNavigation::Plants::app",
+                                                "DataFieldForIntentBasedNavigation::ProfitCenters::app"
+                                            ]
+                                        },
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
@@ -172,9 +155,7 @@
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "beginColumnPages",
-                    "contextPattern": ""
+                    }
                 },
                 "EUTObjectObjectPage": {
                     "type": "Component",
@@ -184,18 +165,13 @@
                         "settings": {
                             "showRelatedApps": true,
                             "sectionLayout": "Tabs",
+                            "variantManagement": "Control",
                             "entitySet": "EUTObject",
                             "navigation": {
                                 "Activities": {
                                     "detail": {
                                         "route": "EUT_ActivitiesObjectPage"
                                     }
-                                }
-                            },
-                            "content": {
-                                "header": {
-                                    "editableHeaderContent": false,
-                                    "actions": {}
                                 }
                             },
                             "controlConfiguration": {
@@ -207,16 +183,30 @@
                                         "selectEntries": {
                                             "visible": true,
                                             "enabled": true,
-                                            "text": "Select Economic Activity(s)",
+                                            "text": "Add Economic Activity(s)",
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
+                                        }
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "editableHeaderContent": false,
+                                    "actions": {}
+                                },
+                                "body": {
+                                    "sections": {
+                                        "Activities": {
+                                            "sideContent": {
+                                                "template": "eut.eutobjectsrv.view.SideContentTable"
+                                            },
+                                            "type": "XMLFragment"
                                         }
                                     }
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "midColumnPages",
-                    "contextPattern": "/EUTObject({key})"
+                    }
                 },
                 "EUT_ActivitiesObjectPage": {
                     "type": "Component",
@@ -233,26 +223,12 @@
                                     "detail": {
                                         "route": "FINANCIAL_INPUTObjectPage"
                                     }
-                                },
-                                "Screening_Input": {
-                                    "detail": {
-                                        "route": "EUT_SCREENING_INPUTObjectPage"
-                                    }
                                 }
                             },
                             "controlConfiguration": {
                                 "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
                                     "tableSettings": {
-                                        "enableMassEdit": false,
-                                        "personalization": {
-                                            "sort": true,
-                                            "filter": true,
-                                            "column": true,
-                                            "group": true
-                                        },
-                                        "type": "ResponsiveTable",
-                                        "selectionMode": "Multi",
-                                        "enableExport": true
+                                        "enableMassEdit": false
                                     },
                                     "actions": {
                                         "selectEntries": {
@@ -262,25 +238,10 @@
                                             "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
                                         }
                                     }
-                                },
-                                "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
-                                    "tableSettings": {
-                                        "enableMassEdit": true
-                                    },
-                                    "actions": {
-                                        "importData": {
-                                            "id": "insertInputValueButton",
-                                            "text": "Select Screening Inputs",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.insertInput",
-                                            "requiresSelection": false
-                                        }
-                                    }
                                 }
                             }
                         }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})"
+                    }
                 },
                 "FINANCIAL_INPUTObjectPage": {
                     "type": "Component",
@@ -299,32 +260,8 @@
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Financial_Input({key3})"
-                },
-                "EUT_SCREENING_INPUTObjectPage": {
-                    "type": "Component",
-                    "id": "EUT_SCREENING_INPUTObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "EUT_SCREENING_INPUT",
-                            "navigation": {},
-                            "content": {
-                                "header": {
-                                    "visible": true
-                                }
-                            }
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/Screening_Input({key3})"
                 }
             }
-        },
-        "rootView": {
-            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-            "type": "XML",
-            "async": true,
-            "id": "appRootView"
         }
     },
     "sap.fiori": {

@@ -152,6 +152,24 @@ annotate service.EUTObject with @(
                 Value : WERKS_WERKS,
                 ![@UI.Importance] : #High,
                 ![@HTML5.CssDefaults] : {width : '15rem'}
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Company Data Details',
+                SemanticObject: 'CorporateMD',
+                Action: 'app'
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Plants Details',
+                SemanticObject: 'Plants',
+                Action: 'app'
+            },
+            {
+                $Type: 'UI.DataFieldForIntentBasedNavigation',
+                Label: 'Profit Centers Details',
+                SemanticObject: 'ProfitCenters',
+                Action: 'app'
             }
         ]
     }
@@ -166,6 +184,10 @@ annotate service.EUTObject with @(
         Title : {
             $Type : 'UI.DataField',
             Value : RBUKRS_RBUKRS
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : ''
         }
     },
     UI.DataPoint #ProfitCenter :{
@@ -187,25 +209,6 @@ annotate service.EUTObject with @(
         }
         
     ],    
-    /*UI.LineItem #ContentGroup2: [
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object_ECO_ACT,
-                Label : 'Assigned Economic Activities'
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.EUT_Eligible
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.ENB_ACT
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : Activities.EA_Object.Comment
-            }
-        ],*/
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -214,7 +217,6 @@ annotate service.EUTObject with @(
             Target: 'Activities/@UI.LineItem#Activities'
         }
     ]
-    
 );
 
 /*************************************************************************************************/
@@ -335,12 +337,6 @@ annotate service.EUT_Activities with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Screening Inputs',
-            ID    : 'ScreenInputs',
-            Target: 'Screening_Input/@UI.LineItem#ScreenInputs'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
             Label : 'Financial Inputs',
             ID    : 'FinInputs',
             Target: 'Financial_Input/@UI.LineItem#FinInputs'
@@ -434,7 +430,15 @@ annotate service.FINANCIAL_INPUT with @(
             $Type: 'UI.DataFieldForIntentBasedNavigation',
             Label: 'Manage Account Types',
             SemanticObject: 'AccTypeMapping',
-            Action: 'app'
+            Action: 'app',
+            //RequiresContext : true,
+            /*Mapping : [
+                {
+                    $Type : 'Common.SemanticObjectMappingType',
+                    LocalProperty : RACCT_TYPE_code,
+                    SemanticObjectProperty : 'RACCT_TYPE',
+                },
+           ]*/
         }
     ]
 );
@@ -589,258 +593,8 @@ annotate service.FINANCIAL_INPUT with {
 
     KSL @Measures.ISOCurrency : RKCUR_code;
 
-    RACCT_TYPE @Common.Text : {
+    /*RACCT_TYPE @Common.Text : {
             $value : RACCT_TYPE.descr,
             ![@UI.TextArrangement] : #TextFirst,
-    }
+    }*/
 };
-
-/*************************************************************************************************/
-//                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Content
-/*************************************************************************************************/
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.LineItem #ScreenInputs : [
-        {
-            $Type : 'UI.DataField',
-            Value : Typ_Cont_ID,
-            Label : 'Type of Contribution'            
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
-            },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY
-        },       
-    ],
-    UI.FieldGroup #ScreenGroup : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER
-            },
-            
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : Typ_Cont_ID,
-            Label : 'Type of Contribution'            
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : Env_Ob_ID,
-           Label : 'Environmental Objective'            
-        },
-            {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit'
-            },
-            {
-            $Type : 'UI.DataField',
-            Value : CRITER.SUBST,
-            Label : 'Substance'
-            },
-        ]
-    },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'Technical Screening Input Details',
-            Target : '@UI.FieldGroup#ScreenGroup'
-        }
-    ]
-);
-
-annotate service.EUT_SCREENING_INPUT with {
-    CRITER @(
-        Common: {
-            Text: CRITER.CRITER_DESC,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Criteria',
-                CollectionPath: 'SCREEN_CRITER_TEMPLT',
-                Parameters: [
-                    { $Type: 'Common.ValueListParameterInOut',
-                    LocalDataProperty:CRITER_CRITER,
-                    ValueListProperty: 'CRITER'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'CRITER_DESC'}
-                ]
-            }
-        }
-    );
-}
-
-/*************************************************************************************************/
-//                    Annotations for EUT SCREENING CRITERIA OBJECT Page - Annotation Views
-/*************************************************************************************************/
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionVariant #With : {
-        Text : 'Available Input Values',
-        $Type : 'UI.SelectionVariantType',
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #NE,
-                        Low : 'NA',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionVariant #Without : {
-        Text : 'Missing Input Values',
-        $Type : 'UI.SelectionVariantType',       
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #EQ,
-                        Low : '',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.PresentationVariant : {
-        Text : 'All records',
-        GroupBy: [
-            Typ_Cont_ID          
-        ],
-      SortOrder : [
-        {
-            $Type : 'Common.SortOrderType',
-            Property : Env_Ob_ID       
-        }
-        ],
-        Visualizations : [
-            '@UI.LineItem#ScreenInputs',
-        ],        
-    }
-); 
-
-annotate service.EUT_SCREENING_INPUT with @(
-    UI.SelectionFields : [
-        CRITER_CRITER,
-    ]
-);
-
-annotate service.EUT_SCREENING_INPUT with {
-      Env_Ob @(
-        Common: {
-            Text: Env_Ob.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Env Objective',
-                CollectionPath: 'EnvObjectiveObject',
-                
-            }
-        }
-    );
-}
-
-annotate service.EnvObjectiveObject with {
-    Env_Obj @Common.Text : {
-        $value : Description,
-        ![@UI.TextArrangement] : #TextFirst,
-    }
-};
-
-annotate service.EUT_SCREENING_INPUT with {
-    Typ_Cont @(
-        Common: {
-            Text: Typ_Cont.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Type of Contribution',
-                CollectionPath: 'ContributionTypeObject',
-                
-            }
-        }
-    );
-}
-
-annotate service.ContributionTypeObject with {
-    Typ_Cont @Common.Text : {
-        $value : Description,
-        ![@UI.TextArrangement] : #TextFirst,
-    }
-};
-
-annotate service.EUT_SCREENING_INPUT with @(
-        UI.HeaderInfo : {
-        TypeName : 'EUT Screening Input',
-        TypeNamePlural : 'EUT Screening Inputs',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : 'EUT Screening Input Details',
-        },
-        Title : {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-        },
-    }
-);
