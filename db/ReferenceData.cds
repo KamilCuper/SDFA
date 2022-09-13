@@ -1,6 +1,7 @@
 using {
     managed,
     Currency,
+    Country,
     temporal,
     cuid,
     extensible,
@@ -24,7 +25,7 @@ using {EUTObject,EUT_SCREENING_INPUT} from './EUTObject';
 entity CorporateMD : managed {
     key RBUKRS      : CompanyCode;
     Description     : Description;
-    LAND1           : LAND1;
+    LAND1           : Country;
 };
 
 @UI.Identification : [{Value : DESCR}]
@@ -55,6 +56,7 @@ entity ECO_ACT_OBJECT : managed {
     Comment         : Comment;
 };
 
+//This is an entity from v1 data model - to be removed
 @UI.Identification : [{Value : CRITER_DESC}]
 entity SCREEN_CRITER_TEMPLT : managed {
     CONT_MEAS       : ContributionMeasure;
@@ -95,7 +97,51 @@ entity SCREEN_CRITER_TEMPLT : managed {
     HELP_I : Help_I;
     HELP_P : Help_P;
 };
+entity ScreeningCriteriaTemplate : managed {
+    CONT_MEAS       : ContributionMeasure;
+    key CRITER      : Criterion;
+    CRITER_DESCR    : Description @title : 'Screening Criterion Description';
+    CRIT_UNIT       : CriteriaUnit;
+    CRIT_U          : UpperLimit;
+    CRIT_L          : LowerLimit;
+    SUBST           : Substance;
+    COND_GHGU       : GHGUpperLimit;
+    COND_GHGL       : GHGLoweLimit;
+    COND_UNIT       : ConditionUnit;
+    ENGN_CATG       : EngineCategory;
+    VEH_CATG        : VehicleCategory;
+    VEH_SCATG       : VehicleSubCategory;
+    POWER_L         : PowerLowerLimit;
+    POWER_U         : PowerUpperLimit;
+    IGN_TYP         : IgnitionType;
+    EMS_STG         : EmissionStage;
+    TYR_CLASS       : TyreClass;
+    ENGF_CLASS      : EnergyEfficiencyClass;
+    VERF_EPREL      : EnergyLabeling;
+    RM              : ReferenceMassClass;
+    RM_L            : ReferenceMassLowerLimit;
+    RM_U            : ReferenceMassUpperLimit;
+    COMBP_L         : CombustionLowerLimit;
+    COMBP_U         : CombustionUpperLimit;
+    OPH_L           : OperatedHoursLowerLimit;
+    TYP_COMB        : CombustionType;
+    COMB_UNIT       : CombustionUnit;
+    CALC_MEAS       : CalcMeasure;
+    TYP_PLANT       : PlantType;
+    LADEN_L         : LowerMaxLadenMass;
+    LADEN_U         : UpperMaxLadenMass;
+    ENERGYV         : EnergyOfVevhicle;
+    CRITICALITY     : Integer;
+    //SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
+    //                    on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
+    HELP : Help;
+    HELP_I : Help_I;
+    HELP_P : Help_P;
+};
 
+
+
+//This is an entity from v1 data model - to be removed
 entity ECON_CRITER_APPL : managed {
     key ID          : GUID ;
     EcoActivity     : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
@@ -109,6 +155,15 @@ entity ECON_CRITER_APPL : managed {
     BIO             : Biodiversity;
 
 };
+entity CriteriaApplicability : managed {
+    key ID              : GUID;
+    ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
+    SC_OBJECT       : Association to one ContributionTypeObject @title : 'Substantial Contribution';
+    TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
+    ENV_OB          : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    CRITER              : Association to one SCREEN_CRITER_TEMPLT @title: 'Screening Criterion';
+
+};
 
 entity EnvObjectiveObject : managed {
     key ID          : EnvironmentalObjective;
@@ -120,7 +175,7 @@ entity ContributionTypeObject : managed {
     Description     : Description
 };
 
-type LAND1 : String @title : 'Country';
+//type LAND1 : String @title : 'Country';
 
 type EUT_ELIGIBLE : Boolean @title : 'EUT Eligible';
 type EnablingActivity : Boolean @title : 'Enabling Activity';
@@ -137,6 +192,7 @@ type GHGLoweLimit : Decimal @title :'Lower limit Condition for GHG emissions';
 type ConditionUnit : String @title :'Condition Unit';
 type EngineCategory : String @title :'Engine Category';
 type VehicleCategory : String @title :'Vehicle Category';
+type VehicleSubCategory : String @title : 'Vehicle Sub Category';
 type PowerLowerLimit : Decimal @title :'Lower limit Power kW';
 type PowerUpperLimit : Decimal @title :'Upper limit Power kW';
 type IgnitionType : String @title :'Ignition Type';
@@ -154,6 +210,9 @@ type CombustionType : String @title :'Type of Combustion';
 type CombustionUnit : String @title :'Type of combustion unit';
 type CalcMeasure : String @title :'Calculation Measurement';
 type PlantType : String @title :'Type of Plant';
+type LowerMaxLadenMass : String @title : 'Lower limit of Maximum laden mass';
+type UpperMaxLadenMass : String @title : 'Upper limit of Maximum laden mass';
+type EnergyOfVevhicle : String @title : 'Energy of Vehicle';
 
 
 type ContributionType @(assert.range) : String @title : 'Contribution Type' enum {

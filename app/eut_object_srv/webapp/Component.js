@@ -6,7 +6,7 @@ sap.ui.define(
         return Component.extend("eut.eutobjectsrv.Component", {
             metadata: {
                 manifest: "json"
-            }
-        });
-    }
-);
+            },
+        
+        });       
+    });

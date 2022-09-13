@@ -16,7 +16,7 @@ annotate service.CorporateMD with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : LAND1,
+            Value : LAND1_code,
         },
     ]
 );
@@ -44,7 +44,7 @@ annotate service.CorporateMD with @(
                 Value : Description,
             },{
                 $Type : 'UI.DataField',
-                Value : LAND1,
+                Value : LAND1_code,
             }],
     },
     UI.Facets : [
@@ -61,3 +61,24 @@ annotate service.CorporateMD with {
     Description @Common.FieldControl : #Mandatory;
     LAND1 @Common.FieldControl : #Optional;
 };
+
+/*annotate service.CorporateMD with @(UI : {
+QuickViewFacets             : [
+    {
+        $Type  : 'UI.ReferenceFacet',
+        Label  : 'Address',
+        Target : '@UI.FieldGroup#SoldToQuickView'
+    }
+],
+FieldGroup #SoldToQuickView : {Data : [
+    {
+        $Type : 'UI.DataField',
+        Value : Description
+    },
+    {
+        $Type : 'UI.DataField',
+        Value : LAND1
+    }
+]}
+});*/
+

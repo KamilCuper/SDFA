@@ -1,26 +1,31 @@
 sap.ui.define([
 	"sap/m/MessageBox",
-	"sap/ui/core/Fragment"
-],
-function (MessageBox, Fragment){
+	"sap/m/MessageToast"
+], function (MessageBox, MessageToast){
     "use strict";
-    return {
-        dataImport: function(oEvent) {
-        },
+    
+	return  {
+        dataImport: function(oContext) {
+			MessageToast.show("Placeholder for data import");
+
+		},
+
 
 		selectEAs: function(oEvent) {
-			if (!this.pDialog) {
-				this.pDialog = this.loadFragment({
+			//this.showSideContent("Activities");
+
+			if (!this.rDialog) {
+				this.rDialog = this.loadFragment({
 					name: "eut.eutobjectsrv.view.HelloDialog"
 				});
 			} 
-			this.pDialog.then(function(oDialog) {
+			this.rDialog.then(function(oDialog) {
 				oDialog.open();
 			});
+
         },
 
 		selectFRs: function(oEvent) {
-//			MessageBox.alert("Allert on Financial Inputs.");
 			if (!this.rDialog) {
 				this.rDialog = this.loadFragment({
 					name: "eut.eutobjectsrv.view.SelectFinances"
@@ -29,8 +34,6 @@ function (MessageBox, Fragment){
 			this.rDialog.then(function(oDialog) {
 				oDialog.open();
 			});
-
-
 		}
     }
 });
