@@ -7,7 +7,7 @@
       id="helloPanel"
       title="Visualization of content selection">
       <Image 
-         src="./img/EA_list_overview.png"
+         src="./eut_object_srv/webapp/img/EA_list_overview.png"
          width="70rem"
          height="50rem">
       </Image>
