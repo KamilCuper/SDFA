@@ -6,7 +6,7 @@
       id="fianceDialog"
       title="Visualization of content selection">
       <Image 
-         src="./img/FinancialInput_list_overview.png"
+         src="./eut_object_srv/webapp/img/FinancialInput_list_overview.png"
          width="70rem"
          height="50rem">
       </Image>

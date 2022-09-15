@@ -7,8 +7,8 @@
       title="Visualization of the content"
       closeOnNavigation="true">
       <Image 
-         src="./img/Screening_Input_Mockup.png"
-         width="60rem"
+         src="./eut_object_srv/webapp/img/Screening_Input_Mockup.png"
+         width="80rem"
          height="45rem">
       </Image>
    </Dialog>

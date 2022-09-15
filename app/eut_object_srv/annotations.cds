@@ -456,9 +456,9 @@ annotate service.FINANCIAL_INPUT with @(
         },
         {
             $Type: 'UI.DataFieldForIntentBasedNavigation',
-            Label: 'Manage Account Types',
+            Label: 'Account Type Page',
             SemanticObject: 'AccTypeMapping',
-            Action: 'app',
+            Action: 'app'
             //RequiresContext : true,
             /*Mapping : [
                 {
