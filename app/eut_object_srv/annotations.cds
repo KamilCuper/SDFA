@@ -215,7 +215,13 @@ annotate service.EUTObject with @(
             Label : 'Details on Economic Activities',
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
-        }
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Minimum Social Safeguard Inputs',
+            ID    : 'MS_Inputs',
+            Target: 'MSInput/@UI.LineItem#MSInput'
+        },
     ]
 );
 
@@ -356,12 +362,6 @@ annotate service.EUT_Activities with @(
             Label : 'Do No Significant Harm Inputs',
             ID    : 'DNSH_Inputs',
             Target: 'DNSHInput/@UI.PresentationVariant#DNSHPresentation'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Minimum Social Safeguard Inputs',
-            ID    : 'MS_Inputs',
-            Target: 'MSInput/@UI.LineItem#MSInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -706,143 +706,134 @@ annotate service.SCInput with @(
 
 annotate service.SCInput with @(
         UI.HeaderInfo : {
-        TypeName : 'Substantial Contribution Input',
-        TypeNamePlural : 'Substantial Contribution Input',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : 'Substantial Contribution Input',
+            TypeName : 'Substantial Contribution Input',
+            TypeNamePlural : 'Substantial Contribution Input',
+            Description : {
+                $Type : 'UI.DataField',
+                Value : 'Substantial Contribution Input',
+            },
+            Title : {
+                $Type : 'UI.DataField',
+                Value : CRITER_CRITER,
+            },
         },
-        Title : {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
+
+        UI.FieldGroup #SCCriteriaForm : {
+            $Type : 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : EUT_ACTIVITIES.EA_Object.Description,
+                },                      
+                {
+                    $Type : 'UI.DataField',
+                    Value : INDICATOR_IV,
+                    @UI.Hidden : CRITER.HELP_I,
+                    Criticality : CRITICALITY
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : KEY_FIGURE,
+                    @UI.Hidden : CRITER.HELP,
+                    Criticality : CRITICALITY
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : CRITER.CRIT_UNIT,
+                }
+            ]
         },
-    },
 
-     UI.FieldGroup #SCCriteriaForm : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
+        UI.FieldGroup #SCCriteriaForm2 : {
+            $Type : 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : CRITER.CRIT_L,
+                },{
+                    $Type : 'UI.DataField',
+                    Value : CRITER.CRIT_U,
+                },
+                {
                 $Type : 'UI.DataField',
-                Value : EUT_ACTIVITIES.EA_Object.Description,
-            },                      
-            {
-                $Type : 'UI.DataField',
-                Value : INDICATOR_IV,
-                @UI.Hidden : CRITER.HELP_I,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : KEY_FIGURE,
-                @UI.Hidden : CRITER.HELP,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_UNIT,
-            },
+                    Value : CRITER.SUBST, 
+                },            
             ],
-    },
+        },
 
- UI.FieldGroup #SCCriteriaForm2 : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
+        UI.FieldGroup #SCExtraForm : {
+            $Type : 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : CRITER.COMB_UNIT,
+                    @UI.Hidden : CRITER.HELP_P,
+                },{
+                    $Type : 'UI.DataField',
+                    Value : CRITER.CALC_MEAS,
+                    @UI.Hidden : CRITER.HELP_P,
+                },{
                 $Type : 'UI.DataField',
-                Value : CRITER.CRIT_L,
-            },{
+                    Value : CRITER.TYP_PLANT, 
+                    @UI.Hidden : CRITER.HELP_P,
+                },{
                 $Type : 'UI.DataField',
-                Value : CRITER.CRIT_U,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.SUBST, 
-            },            
-            ],
-
-    },
-
-    UI.FieldGroup #SCExtraForm : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
+                    Value : CRITER.COMBP_L, 
+                    @UI.Hidden : CRITER.HELP_P,
+                },{
                 $Type : 'UI.DataField',
-                Value : CRITER.COMB_UNIT,
-                @UI.Hidden : CRITER.HELP_P,
-            },{
+                    Value : CRITER.COMBP_U, 
+                    @UI.Hidden : CRITER.HELP_P,
+                },{
                 $Type : 'UI.DataField',
-                Value : CRITER.CALC_MEAS,
-                @UI.Hidden : CRITER.HELP_P,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.TYP_PLANT, 
-                @UI.Hidden : CRITER.HELP_P,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.COMBP_L, 
-                @UI.Hidden : CRITER.HELP_P,
-            }, 
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.COMBP_U, 
-                @UI.Hidden : CRITER.HELP_P,
-            }, 
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.OPH_L, 
-                @UI.Hidden : CRITER.HELP_P,
-            },              
-            ],
+                    Value : CRITER.OPH_L, 
+                    @UI.Hidden : CRITER.HELP_P,
+                }          
+            ]
+        },
 
-    },
-
-   UI.DataPoint #Criteria :{
-        Value : CRITER_CRITER ,
-        Title : 'Screening Criteria'
-    },
-    UI.DataPoint #EcoActivity :{
-        Value : EUT_ACTIVITIES.EA_Object.Description,
-        Title : 'Economic Activity'
-    },
+        UI.DataPoint #Criteria :{
+            Value : CRITER_CRITER ,
+            Title : 'Screening Criteria'
+        },
+        UI.DataPoint #EcoActivity :{
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+            Title : 'Economic Activity'
+        },
    
+        UI.HeaderFacets : [
+            {
+                $Type : 'UI.ReferenceFacet',
+                Target : '@UI.DataPoint#Criteria'
+            },
+            {
+                $Type : 'UI.ReferenceFacet',
+                Target : '@UI.DataPoint#EcoActivity'
+            }
+        ],
 
-    UI.HeaderFacets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Criteria'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#EcoActivity'
-        },
-      
-    ],
-
-   UI.Facets : [
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : 'Substantial Contribution Parameters',
-           ID : 'SCEUTIputForm',
-           Target : '@UI.FieldGroup#SCCriteriaForm',
-       },
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : 'Details',
-           ID : 'SCDetailsForm',
-           Target : '@UI.FieldGroup#SCCriteriaForm2',
-       },
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : '',
-           ID : 'SCExtraForm',
-           Target : '@UI.FieldGroup#SCExtraForm',
-           
-       },
-       
-  ] 
-);
+        UI.Facets : [
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Substantial Contribution Parameters',
+                ID : 'SCEUTIputForm',
+                Target : '@UI.FieldGroup#SCCriteriaForm',
+            },
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : 'Details',
+                ID : 'SCDetailsForm',
+                Target : '@UI.FieldGroup#SCCriteriaForm2',
+            },
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label : '',
+                ID : 'SCExtraForm',
+                Target : '@UI.FieldGroup#SCExtraForm',
+                
+            },
+        ] 
+    );
 
 annotate service.DNSHInput with @(
     UI.LineItem #DNSHScreenInputs : [
@@ -971,15 +962,11 @@ annotate service.DNSHInput with @(
             Target : '@UI.FieldGroup#DNSHInputsForm2',
         },
         
-        ]
-  
+    ]
 );
 
-
-
-
 annotate service.SCInput with {
-      ENV_OB @(
+    ENV_OB @(
         Common: {
             Text: ENV_OB.Description,
             TextArrangement : #TextOnly,
@@ -991,10 +978,9 @@ annotate service.SCInput with {
         }
     );
 }
-
 
 annotate service.DNSHInput with {
-      ENV_OB @(
+    ENV_OB @(
         Common: {
             Text: ENV_OB.Description,
             TextArrangement : #TextOnly,
@@ -1006,8 +992,6 @@ annotate service.DNSHInput with {
         }
     );
 }
-
-
 
 annotate service.SCInput with @(
     UI.PresentationVariant #SCPresentation: {
@@ -1020,7 +1004,6 @@ annotate service.SCInput with @(
         ],        
     }
 );
-
 
 annotate service.SCInput with @(
     UI.SelectionVariant #SCWith : {

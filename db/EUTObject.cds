@@ -39,6 +39,8 @@ entity EUTObject : managed {
     WERKS             : Association to one PlantObject @title : 'Plant';
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
+    MSInput             : Association to many MSInput 
+                            on MSInput.EUT_Object =$self @title : 'Minimum Safeguards Inputs';  
    // CRITICALIT : CRITICALIT;
 }
 
@@ -53,9 +55,7 @@ entity EUT_Activities : managed {
     SCInput             : Association to many SCInput 
                             on SCInput.EUT_ACTIVITIES =$self @title : 'Substantial Contribution Inputs';
     DNSHInput           : Association to many DNSHInput 
-                            on DNSHInput.EUT_ACTIVITIES =$self @title : 'DNSH Contribution Inputs';
-    MSInput             : Association to many MSInput 
-                            on MSInput.EUT_ACTIVITIES =$self @title : 'Minimum Safeguards Inputs';                                                        
+                            on DNSHInput.EUT_ACTIVITIES =$self @title : 'DNSH Contribution Inputs';                                                      
                                                    
 };
 
@@ -115,9 +115,9 @@ entity MSInput : managed {
     CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
     ENV_OB              : Association to one EnvObjectiveObject;
     TYP_CONT            : Association to one ContributionTypeObject;
-    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    EUT_Object          : Association to one EUTObject;
     CRITICALITY         : Integer;
-    EUT_COMPASS             : String;
+    EUT_COMPASS         : String;
     
 };
 

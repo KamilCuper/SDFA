@@ -1,4 +1,4 @@
-ID,INDICATOR_IV,KEY_FIGURE,CRITER_CRITER,ENV_OB_ID,TYP_CONT_ID,EUT_ACTIVITIES_ID,EUT_COMPASS
+ID,INDICATOR_IV,KEY_FIGURE,CRITER_CRITER,ENV_OB_ID,TYP_CONT_ID,EUT_Object_ID,EUT_COMPASS
 9,YES,,MS_IBH,MS,MS,1,https://ec.europa.eu/sustainable-finance-taxonomy/activities/activity_en.htm?reference=3.9
 10,YES,,MS_ILO,MS,MS,1,https://ec.europa.eu/sustainable-finance-taxonomy/activities/activity_en.htm?reference=3.10
 11,YES,,MS_OEC,MS,MS,1,https://ec.europa.eu/sustainable-finance-taxonomy/activities/activity_en.htm?reference=3.11
