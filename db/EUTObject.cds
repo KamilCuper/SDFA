@@ -35,10 +35,11 @@ entity EUTObject : managed {
     Description       : Description;
     RBUKRS            : Association to one CorporateMD @title : 'Company';
     PRCTR             : Association to one ProfitCenterObject @title : 'Profit Center';
-    //GJAHR             : FiscalYear; //moved to EUT_Activities
     WERKS             : Association to one PlantObject @title : 'Plant';
     Activities        : Composition of many EUT_Activities
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
+    MSInput            : Association to many MSInput 
+                            on MSInput.RBUKRS = $self.RBUKRS @title : 'Minimum Safeguards Inputs';   
    // CRITICALIT : CRITICALIT;
 }
 
@@ -53,9 +54,7 @@ entity EUT_Activities : managed {
     SCInput             : Association to many SCInput 
                             on SCInput.EUT_ACTIVITIES =$self @title : 'Substantial Contribution Inputs';
     DNSHInput           : Association to many DNSHInput 
-                            on DNSHInput.EUT_ACTIVITIES =$self @title : 'DNSH Contribution Inputs';
-    MSInput             : Association to many MSInput 
-                            on MSInput.EUT_ACTIVITIES =$self @title : 'Minimum Safeguards Inputs';                                                        
+                            on DNSHInput.EUT_ACTIVITIES =$self @title : 'DNSH Contribution Inputs';                                                     
                                                    
 };
 
@@ -109,16 +108,14 @@ entity DNSHInput : managed {
     CRITICALITY         : Integer;
 };
 entity MSInput : managed {
-    key ID              : GUID ;
+    key ID               : GUID ;
     INDICATOR_IV        : Indicator_InVal;
-    KEY_FIGURE          : InputValue;
+    GJAHR               : FiscalYear;
     CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
-    ENV_OB              : Association to one EnvObjectiveObject;
     TYP_CONT            : Association to one ContributionTypeObject;
-    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    RBUKRS              : Association to one CorporateMD @title : 'Company Name';
     CRITICALITY         : Integer;
-    EUT_COMPASS             : String;
-    
+    EUT_COMPASS         : String;
 };
 
 

@@ -115,12 +115,12 @@ entity ECON_CRITER_APPL : managed {
 
 };
 entity CriteriaApplicability : managed {
-    key ID              : GUID;
+    key ID          : GUID;
     ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     SC_OBJECT       : Association to one EnvObjectiveObject @title : 'Substantial Contribution';
     TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
     ENV_OB          : Association to one EnvObjectiveObject @title : 'Environmental Objective';
-    CRITER              : Association to one ScreeningCriteriaTemplate @title: 'Screening Criterion';
+    CRITER          : Association to one ScreeningCriteriaTemplate @title: 'Screening Criterion';
 
 };
 
@@ -130,8 +130,8 @@ entity EnvObjectiveObject : managed {
 };
 
 entity ContributionTypeObject : managed {
-    key ID          : ContributionTypeLong;
-    Description     : Description
+    key ID          : ContributionTypeLong default 'MS';
+    Description     : Description default 'Minimum Safeguards'
 };
 
 //type LAND1 : String @title : 'Country';
@@ -186,7 +186,7 @@ type CircularEconomy : Boolean @title :'Circular Economy';
 type PollutionPrevention : Boolean @title :'Pollution Prevention';
 type Biodiversity : Boolean @title :'Biodiversity';
 type EnvironmentalObjective : String @title : 'Environmental Objective';
-type ContributionTypeLong : String @title : 'Environmental Objective';
+type ContributionTypeLong : String @title : 'Contribution Type';
 
 type Help         : Boolean @title : 'Help';
 type Help_I         : Boolean @title : 'Help_I';

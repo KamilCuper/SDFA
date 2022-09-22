@@ -10,7 +10,7 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.5",
+    "@sap/ux-specification": "^1.102.6",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -104,6 +104,7 @@
     "app/financial_input2",
     "app/mainmain",
     "app/fin_input",
+    "app/msinput",
     "app/msinput"
   ]
 }
