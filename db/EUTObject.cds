@@ -102,7 +102,7 @@ entity DNSHInput : managed {
     INDICATOR_IV        : Indicator_InVal;
     KEY_FIGURE          : InputValue;
     CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
-    ENV_OB              : Association to one EnvObjectiveObject;
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
     TYP_CONT            : Association to one ContributionTypeObject;
     EUT_ACTIVITIES      : Association to one EUT_Activities;
     CRITICALITY         : Integer;

@@ -605,7 +605,7 @@ IMPL,SC_CCM_ALTPRAC,,INDICATOR (Y/N),0,0,,,,,,        ,         ,,,,,,,,,,,,,,,,
 GWP,SC_CCM_GWP,,               ,675,0,,,,,,        ,         ,,,,,,,,,,,,,,,,,,0,0,       ,
 IMPL,SC_CCM_GHGS,,INDICATOR (Y/N),0,0,,,,,,        ,         ,,,,,,,,,,,,,,,,,,0,0,       ,
 RENC,SC_CCM_RENC,,INDICATOR (Y/N),0,0,,,,,,        ,         ,,,,,,,,,,,,,,,,,,0,0,       ,
-,MS_IBH,International Bill of Human Rights (MS_IBHR),INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
-,MS_ILO,ILO Declaration on Fundamental Rights and Principles at Work (MS_ILO),INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
-,MS_UNG,UN Guiding Principles on Business and Human Rights (MS_UNG),INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
-,MS_OEC,OECD Guidelines for Multinational Enterprises (MS_OECD),INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
+,MS_IBH,International Bill of Human Rights,INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
+,MS_ILO,ILO Declaration on Fundamental Rights and Principles at Work,INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
+,MS_UNG,UN Guiding Principles on Business and Human Rights,INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3
+,MS_OEC,OECD Guidelines for Multinational Enterprises,INDICATOR (Y/N),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,3

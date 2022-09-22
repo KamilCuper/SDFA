@@ -7,11 +7,12 @@ annotate service.MSInput with @(
             Value : RBUKRS_RBUKRS,
             Label : 'Company Name',
             ![@UI.Importance] : #High,
-            ![@HTML5.CssDefaults] : {width : '25rem'}
+            ![@HTML5.CssDefaults] : {width : '20rem'}
         },
         {
             $Type : 'UI.DataField',
             Value : GJAHR,
+            ![@UI.Importance] : #High,
             ![@HTML5.CssDefaults] : {width : '8rem'}
         },
         {
@@ -19,6 +20,12 @@ annotate service.MSInput with @(
             Value : CRITER.CRITER_DESCR,
             ![@UI.Importance] : #High,
             ![@HTML5.CssDefaults] : {width : '30rem'}
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            ![@UI.Importance] : #High,
+            ![@HTML5.CssDefaults] : {width : '8rem'}
         }
     ]
 );
@@ -50,7 +57,22 @@ annotate service.MSInput with @(
         GroupBy: [
             RBUKRS_RBUKRS         
         ],
-        Visualizations : ['@UI.LineItem']        
+        Visualizations : ['@UI.LineItem'],
+        SortOrder : [
+            {
+                Property : RBUKRS_RBUKRS,
+                Descending : false
+
+            },
+            {
+                Property : GJAHR,
+                Descending : false
+            },
+            {
+                Property : CRITER_CRITER,
+                Descending : false
+            },
+        ]        
     }
 );
 
@@ -120,6 +142,7 @@ annotate service.MSInput with {
     RBUKRS @Common.FieldControl : #Mandatory;
     CRITER @Common.FieldControl : #Mandatory;
     GJAHR @Common.FieldControl : #Mandatory;
+    INDICATOR_IV @Common.FieldControl : #Mandatory;
 
 
 };
