@@ -120,6 +120,15 @@
                     ]
                 },
                 {
+                    "pattern": "EUTObject({key})/MSInput({key2}):?query:",
+                    "name": "MSInputObjectPage_MSInput",
+                    "target": [
+                        "EUTObjectList",
+                        "EUTObjectObjectPage",
+                        "MSInputObjectPage_MSInput"
+                    ]
+                },
+                {
                     "pattern": "EUTObject({key})/Activities({key2})/Financial_Input({key3}):?query:",
                     "name": "FINANCIAL_INPUTObjectPage",
                     "target": [
@@ -138,13 +147,6 @@
                     "name": "DNSHInputObjectPage_DNSHInput",
                     "target": [
                         "DNSHInputObjectPage_DNSHInput"
-                    ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/MSInput({key3}):?query:",
-                    "name": "MSInputObjectPage_MSInput",
-                    "target": [
-                        "MSInputObjectPage_MSInput"
                     ]
                 }
             ],
@@ -206,6 +208,11 @@
                                     "detail": {
                                         "route": "EUT_ActivitiesObjectPage"
                                     }
+                                },
+                                "MSInput": {
+                                    "detail": {
+                                        "route": "MSInputObjectPage_MSInput"
+                                    }
                                 }
                             },
                             "content": {
@@ -228,14 +235,11 @@
                                 "Activities/@com.sap.vocabularies.UI.v1.LineItem#Activities": {
                                     "tableSettings": {
                                         "enableMassEdit": false
-                                    },
-                                    "actions": {
-                                        "selectEntries": {
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Add Economic Activity(s)",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectEAs"
-                                        }
+                                    }
+                                },
+                                "MSInput/@com.sap.vocabularies.UI.v1.LineItem#MSInput": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true
                                     }
                                 }
                             }
@@ -269,25 +273,12 @@
                                     "detail": {
                                         "route": "DNSHInputObjectPage_DNSHInput"
                                     }
-                                },
-                                "MSInput": {
-                                    "detail": {
-                                        "route": "MSInputObjectPage_MSInput"
-                                    }
                                 }
                             },
                             "controlConfiguration": {
                                 "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
                                     "tableSettings": {
                                         "enableMassEdit": false
-                                    },
-                                    "actions": {
-                                        "selectEntries": {
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Select Financial Record(s)",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.selectFRs"
-                                        }
                                     }
                                 },
                                 "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
@@ -303,53 +294,11 @@
                                 "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
                                     "tableSettings": {
                                         "enableMassEdit": true
-                                    },
-                                    "actions": {
-                                        "selectEntries": {
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Select Substantial Contribution Inputs",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
-                                        }
                                     }
                                 },
                                 "DNSHInput/@com.sap.vocabularies.UI.v1.LineItem#DNSHScreenInputs": {
                                     "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DNSHWith"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DNSHWithout"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "actions": {
-                                        "selectEntries": {
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Select Do No Significant Harm Inputs",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
-                                        }
-                                    }
-                                },
-                                "MSInput/@com.sap.vocabularies.UI.v1.LineItem#MSInput": {
-                                    "tableSettings": {
                                         "enableMassEdit": true
-                                    },
-                                    "actions": {
-                                        "selectEntries": {
-                                            "visible": true,
-                                            "enabled": true,
-                                            "text": "Select Minimum Social Safeguard Inputs",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.showWizzard"
-                                        }
                                     }
                                 }
                             }
@@ -418,7 +367,7 @@
                         }
                     },
                     "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/MSInput({key3})"
+                    "contextPattern": "/EUTObject({key})/MSInput({key2})"
                 }
             },
             "config": {

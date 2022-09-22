@@ -215,7 +215,13 @@ annotate service.EUTObject with @(
             Label : 'Details on Economic Activities',
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
-        }
+        },
+                {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Minimum Social Safeguard Inputs',
+            ID    : 'MS_Inputs',
+            Target: 'MSInput/@UI.LineItem#MSInput'
+        },
     ]
 );
 
@@ -356,12 +362,6 @@ annotate service.EUT_Activities with @(
             Label : 'Do No Significant Harm Inputs',
             ID    : 'DNSH_Inputs',
             Target: 'DNSHInput/@UI.PresentationVariant#DNSHPresentation'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Minimum Social Safeguard Inputs',
-            ID    : 'MS_Inputs',
-            Target: 'MSInput/@UI.LineItem#MSInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -975,9 +975,6 @@ annotate service.DNSHInput with @(
   
 );
 
-
-
-
 annotate service.SCInput with {
       ENV_OB @(
         Common: {
@@ -991,7 +988,6 @@ annotate service.SCInput with {
         }
     );
 }
-
 
 annotate service.DNSHInput with {
       ENV_OB @(
@@ -1007,8 +1003,6 @@ annotate service.DNSHInput with {
     );
 }
 
-
-
 annotate service.SCInput with @(
     UI.PresentationVariant #SCPresentation: {
         Text : 'All records',
@@ -1020,7 +1014,6 @@ annotate service.SCInput with @(
         ],        
     }
 );
-
 
 annotate service.SCInput with @(
     UI.SelectionVariant #SCWith : {
@@ -1089,7 +1082,7 @@ annotate service.MSInput with @(
         Data : [
            {
                 $Type : 'UI.DataField',
-                Value : EUT_ACTIVITIES.EA_Object.Description,
+                Value : TYP_CONT.Description,
             },
            {
                 $Type : 'UI.DataField',
@@ -1114,8 +1107,8 @@ annotate service.MSInput with @(
         Title : 'Screening Criteria'
     },
     UI.DataPoint #EcoActivity :{
-        Value : EUT_ACTIVITIES.EA_Object.Description,
-        Title : 'Economic Activity'
+        Value : RBUKRS.Description,
+        Title : 'Company'
     },
    UI.Facets : [
         {
@@ -1127,7 +1120,7 @@ annotate service.MSInput with @(
     ] 
 );
 
-annotate service.MSInput with {
+/*annotate service.MSInput with {
       ENV_OB @(
         Common: {
             Text: ENV_OB.Description,
@@ -1139,15 +1132,27 @@ annotate service.MSInput with {
             }
         }
     );
-}
+}*/
 
 annotate service.MSInput with @(
     UI.LineItem #MSInput : [
         {
             $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-           Label : 'Environmental Objective',
+            Value : TYP_CONT.Description,
+           Label : 'Type of Contribution',
            ![@HTML5.CssDefaults] : {width : '15rem'},           
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : GJAHR,
+            Label : 'Year',
+            ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : RBUKRS.Description,
+            Label : 'Company',
+            ![@HTML5.CssDefaults] : {width : '10rem'},
         },
         {
             $Type : 'UI.DataField',
@@ -1182,6 +1187,12 @@ annotate service.MSInput with @(
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
             ![@HTML5.CssDefaults] : {width : '10rem'},
+        },
+        {
+            $Type: 'UI.DataFieldForIntentBasedNavigation',
+            Label: 'Minimum Safeguard Inputs Details',
+            SemanticObject: 'MSInputs',
+            Action: 'manage'
         },
      /*   {
           $Type : 'UI.DataFieldWithUrl',

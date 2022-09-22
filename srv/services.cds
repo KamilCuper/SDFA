@@ -74,7 +74,13 @@ service DataService {
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
 
-    
+    entity MSInputCriteria as
+        select
+            key CRITER as Criteria,
+            CRITER_DESCR as CriteriaDescription
+        from ScreeningCriteriaTemplate
+        where CRITER in ('MS_IBH','MS_ILO','MS_UNG','MS_OEC')
+
     /*entity YearsListView as
         select
             key EUT_Object.GJAHR as FiscalYear
