@@ -10,7 +10,7 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.6",
+    "@sap/ux-specification": "^1.102.9",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -45,7 +45,12 @@
     "watch-financial_input2": "cds watch --open financial_input2/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-mainmain": "cds watch --open mainmain/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-fin_input": "cds watch --open fin_input/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-msinput": "cds watch --open msinput/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-msinput": "cds watch --open msinput/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-ccm_input": "cds watch --open ccm_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-pol_input": "cds watch --open pol_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-bio_input": "cds watch --open bio_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-wat_input": "cds watch --open wat_input/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-cec_input": "cds watch --open cec_input/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -105,6 +110,11 @@
     "app/mainmain",
     "app/fin_input",
     "app/msinput",
-    "app/msinput"
+    "app/msinput",
+    "app/ccm_input",
+    "app/pol_input",
+    "app/bio_input",
+    "app/wat_input",
+    "app/cec_input"
   ]
 }

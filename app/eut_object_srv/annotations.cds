@@ -138,7 +138,7 @@ annotate service.EUTObject with @(
                 Label : 'Company Code',
                 Value : RBUKRS_RBUKRS,
                 ![@UI.Importance] : #High,
-                ![@HTML5.CssDefaults] : {width : '20rem'}
+                ![@HTML5.CssDefaults] : {width : '16rem'}
             },
             {
                 $Type : 'UI.DataField',
@@ -229,6 +229,9 @@ annotate service.EUTObject with @(
 //                    Annotations for EUT Activity OBJECT Page - Header
 /*************************************************************************************************/
 annotate service.EUT_Activities with @(
+    UI.DataPoint #Data :{
+    Value : 'Env Obj Input Values',
+    },
     UI.DataPoint #Company :{
         Value : EUT_Object.RBUKRS.Description ,
         Title : 'Company'
@@ -250,6 +253,11 @@ annotate service.EUT_Activities with @(
         Title : 'Plant'
     },
     UI.HeaderFacets : [
+
+     /*   {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Data'
+        },  */
         {
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#Activity'
@@ -298,7 +306,7 @@ annotate service.EUT_Activities with @(
         {
             $Type : 'UI.DataField',
             Value : EA_Object_ECO_ACT,
-            ![@HTML5.CssDefaults] : {width : '20rem'}
+            ![@HTML5.CssDefaults] : {width : '16rem'}
         },
         {
             $Type : 'UI.DataField',
@@ -351,17 +359,42 @@ annotate service.EUT_Activities with @(
     ],
     
     UI.Facets : [
+
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Substantial Contribution Inputs',
-            ID    : 'SC_Inputs',
-            Target: 'SCInput/@UI.LineItem#SCInput'
+            Label : 'Climate Mitigation Inputs',
+            ID    : 'CCM_Inputs',
+            Target: 'CCM_Input/@UI.LineItem#CCMInputs'
+        },
+         {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Climate Adapatation Inputs',
+            ID    : 'CCA_Inputs',
+            Target: 'CCA_Input/@UI.LineItem#CCAInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Do No Significant Harm Inputs',
-            ID    : 'DNSH_Inputs',
-            Target: 'DNSHInput/@UI.PresentationVariant#DNSHPresentation'
+            Label : 'Pollution Inputs',
+            ID    : 'POL_Inputs',
+            Target: 'POL_Input/@UI.LineItem#POLInput'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Biodiversity Inputs',
+            ID    : 'BIO_Inputs',
+            Target: 'BIO_Input/@UI.LineItem#BIOInput'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Water Inputs',
+            ID    : 'WAT_Inputs',
+            Target: 'WAT_Input/@UI.LineItem#WATInput'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Circular Economy Inputs',
+            ID    : 'CEC_Inputs',
+            Target: 'CEC_Input/@UI.LineItem#CECInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -369,7 +402,8 @@ annotate service.EUT_Activities with @(
             ID    : 'FinInputs',
             Target: 'Financial_Input/@UI.LineItem#FinInputs'
             //Target: 'Financial_Input/@UI.SelectionPresentationVariant#OpenSPVWithPVPath'
-        }
+        },
+        
     ]
 );
 
@@ -654,412 +688,6 @@ annotate service.ContributionTypeObject with {
 };
 
 
-
-//// ANNOTATION FOR SC/DNSH/MS INPUT PAGES ///////
-
-annotate service.SCInput with @(
-    UI.LineItem #SCInput : [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-           Label : 'Environmental Objective',
-           ![@HTML5.CssDefaults] : {width : '15rem'},           
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-            },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '10rem'},
-        },       
-    ],
-
-);
-
-
-annotate service.SCInput with @(
-        UI.HeaderInfo : {
-        TypeName : 'Substantial Contribution Input',
-        TypeNamePlural : 'Substantial Contribution Input',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : 'Substantial Contribution Input',
-        },
-        Title : {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-        },
-    },
-
-     UI.FieldGroup #SCCriteriaForm : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : EUT_ACTIVITIES.EA_Object.Description,
-            },                      
-            {
-                $Type : 'UI.DataField',
-                Value : INDICATOR_IV,
-                @UI.Hidden : CRITER.HELP_I,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : KEY_FIGURE,
-                @UI.Hidden : CRITER.HELP,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_UNIT,
-            },
-            ],
-    },
-
- UI.FieldGroup #SCCriteriaForm2 : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_L,
-            },{
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_U,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.SUBST, 
-            },            
-            ],
-
-    },
-
-    UI.FieldGroup #SCExtraForm : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.COMB_UNIT,
-                @UI.Hidden : CRITER.HELP_P,
-            },{
-                $Type : 'UI.DataField',
-                Value : CRITER.CALC_MEAS,
-                @UI.Hidden : CRITER.HELP_P,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.TYP_PLANT, 
-                @UI.Hidden : CRITER.HELP_P,
-            },
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.COMBP_L, 
-                @UI.Hidden : CRITER.HELP_P,
-            }, 
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.COMBP_U, 
-                @UI.Hidden : CRITER.HELP_P,
-            }, 
-            {
-               $Type : 'UI.DataField',
-                Value : CRITER.OPH_L, 
-                @UI.Hidden : CRITER.HELP_P,
-            },              
-            ],
-
-    },
-
-   UI.DataPoint #Criteria :{
-        Value : CRITER_CRITER ,
-        Title : 'Screening Criteria'
-    },
-    UI.DataPoint #EcoActivity :{
-        Value : EUT_ACTIVITIES.EA_Object.Description,
-        Title : 'Economic Activity'
-    },
-   
-
-    UI.HeaderFacets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#Criteria'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Target : '@UI.DataPoint#EcoActivity'
-        },
-      
-    ],
-
-   UI.Facets : [
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : 'Substantial Contribution Parameters',
-           ID : 'SCEUTIputForm',
-           Target : '@UI.FieldGroup#SCCriteriaForm',
-       },
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : 'Details',
-           ID : 'SCDetailsForm',
-           Target : '@UI.FieldGroup#SCCriteriaForm2',
-       },
-       {
-           $Type : 'UI.ReferenceFacet',
-           Label : '',
-           ID : 'SCExtraForm',
-           Target : '@UI.FieldGroup#SCExtraForm',
-           
-       },
-       
-  ] 
-);
-
-annotate service.DNSHInput with @(
-    UI.LineItem #DNSHScreenInputs : [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-           Label : 'Environmental Objective',
-           ![@HTML5.CssDefaults] : {width : '15rem'},            
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-            },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '10rem'},
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : KEY_FIGURE,
-            Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '10rem'},
-        },       
-    ],
-    
-);
-annotate service.DNSHInput with @(
-    UI.HeaderInfo : {
-        TypeName : 'Do No Significant Harm Input',
-        TypeNamePlural : 'Do No Significant Harm Inputs',
-        Description : {
-            $Type : 'UI.DataField',
-            Value : 'Do No Significant Harm Input',
-        },
-        Title : {
-            $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-        },
-    },
-    UI.FieldGroup #DNSHInputsForm : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-             {
-                $Type : 'UI.DataField',
-                Value : EUT_ACTIVITIES.EA_Object.Description,
-            },          
-                       
-            {
-                $Type : 'UI.DataField',
-                Value : INDICATOR_IV,
-                @UI.Hidden : CRITER.HELP_I,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : KEY_FIGURE,
-                @UI.Hidden : CRITER.HELP,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_UNIT,
-            },
-            ],
-    },
-    UI.FieldGroup #DNSHInputsForm2 : {
-        $Type : 'UI.FieldGroupType',
-        Data : [          
-            {
-                $Type : 'UI.DataField',
-                Value : INDICATOR_IV,
-              //  @UI.Hidden : CRITER.HELP_I,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : KEY_FIGURE,
-             //   @UI.Hidden : CRITER.HELP,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.CRIT_UNIT,
-            },
-            ],
-    },
-    UI.DataPoint #Criteria :{
-        Value : CRITER_CRITER ,
-        Title : 'Screening Criteria'
-    },
-    UI.DataPoint #EcoActivity :{
-        Value : EUT_ACTIVITIES.EA_Object.Description,
-        Title : 'Economic Activity'
-    },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Do No Significant Harm Inputs',
-            ID : 'DNSHInputs',
-            Target : '@UI.FieldGroup#DNSHInputsForm',
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : 'Details',
-            ID : 'DNSHInputs2',
-            Target : '@UI.FieldGroup#DNSHInputsForm2',
-        },
-        
-        ]
-  
-);
-
-annotate service.SCInput with {
-      ENV_OB @(
-        Common: {
-            Text: ENV_OB.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Env Objective',
-                CollectionPath: 'EnvObjectiveObject',
-                
-            }
-        }
-    );
-}
-
-annotate service.DNSHInput with {
-      ENV_OB @(
-        Common: {
-            Text: ENV_OB.Description,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Env Objective',
-                CollectionPath: 'EnvObjectiveObject',
-                
-            }
-        }
-    );
-}
-
-annotate service.SCInput with @(
-    UI.PresentationVariant #SCPresentation: {
-        Text : 'All records',
-        GroupBy: [
-            ENV_OB_ID          
-        ],
-        Visualizations : [
-            '@UI.LineItem#SCInput',
-        ],        
-    }
-);
-
-annotate service.SCInput with @(
-    UI.SelectionVariant #SCWith : {
-        Text : 'Available Input Values',
-        $Type : 'UI.SelectionVariantType',
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #NE,
-                        Low : 'NA',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.SCInput with @(
-    UI.SelectionVariant #SCWithout : {
-        Text : 'Missing Input Values',
-        $Type : 'UI.SelectionVariantType',       
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #EQ,
-                        Low : '',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-
 annotate service.MSInput with @(
     UI.HeaderInfo : {
         TypeName : 'Miniumum Social Input',
@@ -1203,48 +831,6 @@ annotate service.MSInput with @(
 } , */
                
     ]);
-
-
-    annotate service.SCInput with {
-    CRITER @(
-        Common: {
-            Text: CRITER.CRITER_DESCR,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Criteria',
-                CollectionPath: 'ScreeningCriteriaTemplate',
-                Parameters: [
-                    { $Type: 'Common.ValueListParameterInOut',
-                    LocalDataProperty:CRITER_CRITER,
-                    ValueListProperty: 'CRITER'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'CRITER_DESCR'}
-                ]
-            }
-        }
-    );
-}
-
-annotate service.DNSHInput with {
-    CRITER @(
-        Common: {
-            Text: CRITER.CRITER_DESCR,
-            TextArrangement : #TextOnly,
-            ValueList: {
-                Label: 'Criteria',
-                CollectionPath: 'ScreeningCriteriaTemplate',
-                Parameters: [
-                    { $Type: 'Common.ValueListParameterInOut',
-                    LocalDataProperty:CRITER_CRITER,
-                    ValueListProperty: 'CRITER'},
-                    {$Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'CRITER_DESCR'}
-                ]
-            }
-        }
-    );
-}
-
 annotate service.MSInput with {
     CRITER @(
         Common: {
@@ -1327,63 +913,6 @@ annotate service.MSInput with @(
 
 
 
-annotate service.DNSHInput with @(
-    UI.PresentationVariant #DNSHPresentation: {
-        Text : 'All records',
-        GroupBy: [
-            ENV_OB_ID,          
-        ],
-        Label : '',
-        Visualizations : [
-            '@UI.LineItem#DNSHScreenInputs',
-        ],        
-    }
-);
-
-
-annotate service.DNSHInput with @(
-    UI.SelectionVariant #DNSHWith : {
-        Text : 'Available Input Values',
-        $Type : 'UI.SelectionVariantType',
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #NE,
-                        Low : 'NA',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
-
-annotate service.DNSHInput with @(
-    UI.SelectionVariant #DNSHWithout : {
-        Text : 'Missing Input Values',
-        $Type : 'UI.SelectionVariantType',       
-        SelectOptions : [
-            {
-                $Type : 'UI.SelectOptionType',
-                PropertyName : INDICATOR_IV,
-                Ranges : [
-                    {
-                        $Type : 'UI.SelectionRangeType',
-                        Option : #EQ,
-                        Low : '',
-                        Sign : #I
-                    }
-                ]
-            }
-        ],
-        
-    }
-);
 
 
 annotate service.ScreeningCriteriaTemplate with @(
@@ -1409,12 +938,17 @@ annotate service.ScreeningCriteriaTemplate with @(
         Data : [
         {
                 $Type : 'UI.DataField',
-                Value : CRIT_L,
-                
-            },
-            {
+                Value : CRIT_SC_L,
+            },{
                 $Type : 'UI.DataField',
-                Value : CRIT_U
+                Value : CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRIT_DNSH_U,
             },
         ]
     },
@@ -1458,4 +992,1292 @@ annotate service.SCInput with @(
 
 annotate service.SCInput with @(
     Capabilities.Updatable : true
+);
+
+
+annotate service.CCM_Input with @(
+    UI.LineItem #CCMInputs: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ],
+);
+
+annotate service.CCM_Input with @(
+    UI.FieldGroup #CCMGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+        {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+     UI.FieldGroup #CCMGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },   
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },         
+            ],
+
+    },
+
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+   
+
+    UI.HeaderFacets : [     
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Parameters',
+            Target : '@UI.FieldGroup#CCMGroup'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#CCMGroup2'
+        },
+
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'CCM Input',
+        TypeNamePlural : 'Climate Mitigation Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+
+
+
+
+
+annotate service.CCA_Input with @(
+    UI.LineItem #CCAInput: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ]
+);
+
+annotate service.CCA_Input with @(
+    UI.FieldGroup #CCAGroup : {
+        $Type : 'UI.FieldGroupType',
+         Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+         {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+    UI.FieldGroup #CCAGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },            
+            ],
+
+    },
+    
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'Parameters',
+            Target : '@UI.FieldGroup#CCAGroup'
+        },
+         {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#CCAGroup2'
+        },
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'CCA Input',
+        TypeNamePlural : 'Climate Adaptation Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+
+annotate service.POL_Input with @(
+    UI.LineItem #POLInput: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ]
+);
+
+annotate service.POL_Input with @(
+    UI.FieldGroup #POLGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+         {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+
+    UI.FieldGroup #POLGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },            
+            ],
+
+    },
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacetPol',
+            Label : 'Pollution Details',
+            Target : '@UI.FieldGroup#POLGroup'
+        },
+         {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#POLGroup2'
+        },
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'POL Input',
+        TypeNamePlural : 'Pollution Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+
+annotate service.BIO_Input with @(
+    UI.LineItem #BIOInput: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ]
+);
+
+annotate service.BIO_Input with @(
+    UI.FieldGroup #BIOGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+         {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+
+    UI.FieldGroup #BIOGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },            
+            ],
+
+    },
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacetBio',
+            Label : 'Biodiversity Details',
+            Target : '@UI.FieldGroup#BIOGroup'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#BIOGroup2'
+        },
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'BIO Input',
+        TypeNamePlural : 'Biodiversity Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+
+annotate service.WAT_Input with @(
+    UI.LineItem #WATInput: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ]
+);
+
+annotate service.WAT_Input with @(
+    UI.FieldGroup #WATGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+         {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+     UI.FieldGroup #WATGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },            
+            ],
+
+    },
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacetWat',
+            Label : 'Water Details',
+            Target : '@UI.FieldGroup#WATGroup'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#WATGroup2'
+        },
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'WAT Input',
+        TypeNamePlural : 'Water Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+
+annotate service.CEC_Input with @(
+    UI.LineItem #CECInput: [
+        {
+            $Type : 'UI.DataField',
+            Value : ENV_OB_ID,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+            Criticality : CRITER.CRITICALITY,
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag',
+            ![@HTML5.CssDefaults] : {width : '16rem'},
+        },
+
+    ]
+);
+
+annotate service.CEC_Input with @(
+    UI.FieldGroup #CECGroup : {
+       $Type : 'UI.FieldGroupType',
+        Data : [
+          {
+            $Type : 'UI.DataField',
+            Value : EUT_ACTIVITIES.EA_Object.Description,
+        },     
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
+        },
+        {          
+            $Type : 'UI.DataField',
+            Value : KEY_FIGURE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+        },
+         {
+                $Type : 'UI.DataField',
+                Value : CRITER.SC_FLAG,
+                Label : 'Substantial Contribution Flag'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.DNSH_FLAG,
+                Label : 'Do No Significant Harm Flag'
+            },
+        ],
+    },
+    UI.FieldGroup #CECGroup2 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_SC_U,
+            },
+             {
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_L,
+            },{
+                $Type : 'UI.DataField',
+                Value : CRITER.CRIT_DNSH_U,
+            },            
+            ],
+
+    },
+     UI.DataPoint #Criteria :{
+        Value : CRITER_CRITER ,
+        Title : 'Screening Criteria'
+    },
+    UI.DataPoint #EcoActivity :{
+        Value : EUT_ACTIVITIES.EA_Object.Description,
+        Title : 'Economic Activity'
+    },
+
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#Criteria'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#EcoActivity'
+        },
+      
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacetCet',
+            Label : 'Circular Economy Details',
+            Target : '@UI.FieldGroup#CECGroup'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet2',
+            Label : 'Limits',
+            Target : '@UI.FieldGroup#CECGroup2'
+        },
+    ],
+    UI.HeaderInfo : {
+        TypeName : 'CEC Input',
+        TypeNamePlural : 'Circular economy Inputs',
+        Description : {
+            $Type : 'UI.DataField',
+            Value : 'Details',
+        },
+        Title : {
+            $Type : 'UI.DataField',
+            Value : 'CRITER_CRITER',
+        },
+    },
+);
+
+ annotate service.CCM_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+ annotate service.CCA_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.POL_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.BIO_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.WAT_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+annotate service.CEC_Input with {
+    CRITER @(
+        Common: {
+            Text: CRITER.CRITER_DESCR,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Criteria',
+                CollectionPath: 'ScreeningCriteriaTemplate',
+                Parameters: [
+                    { $Type: 'Common.ValueListParameterInOut',
+                    LocalDataProperty:CRITER_CRITER,
+                    ValueListProperty: 'CRITER'},
+                    {$Type: 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'CRITER_DESCR'}
+                ]
+            }
+        }
+    );
+}
+
+
+annotate service.CCM_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.CCA_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.POL_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.BIO_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.WAT_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.CEC_Input with {
+      ENV_OB @(
+        Common: {
+            Text: ENV_OB.Description,
+            TextArrangement : #TextOnly,
+            ValueList: {
+                Label: 'Env Objective',
+                CollectionPath: 'EnvObjectiveObject',
+                
+            }
+        }
+    );
+}
+
+annotate service.CCM_Input with @(
+    UI.SelectionVariant #CCMWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.CCM_Input with @(
+    UI.SelectionVariant #CCMWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.CCA_Input with @(
+    UI.SelectionVariant #CCAWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.CCA_Input with @(
+    UI.SelectionVariant #CCAWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.POL_Input with @(
+    UI.SelectionVariant #POLWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.POL_Input with @(
+    UI.SelectionVariant #POLWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.WAT_Input with @(
+    UI.SelectionVariant #WATWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.WAT_Input with @(
+    UI.SelectionVariant #WATWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.BIO_Input with @(
+    UI.SelectionVariant #BIOWith : {
+        Text : 'Available Input Values',
+        $Type : 'UI.SelectionVariantType',
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #NE,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
+);
+
+annotate service.BIO_Input with @(
+    UI.SelectionVariant #BIOWithout : {
+        Text : 'Missing Input Values',
+        $Type : 'UI.SelectionVariantType',       
+        SelectOptions : [
+            {
+                $Type : 'UI.SelectOptionType',
+                PropertyName : INDICATOR_IV,
+                Ranges : [
+                    {
+                        $Type : 'UI.SelectionRangeType',
+                        Option : #EQ,
+                        Low : 'NA',
+                        Sign : #I
+                    }
+                ]
+            }
+        ],
+        
+    }
 );
