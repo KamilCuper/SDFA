@@ -60,9 +60,14 @@ entity ScreeningCriteriaTemplate : managed {
     CONT_MEAS       : ContributionMeasure;
     key CRITER      : Criterion;
     CRITER_DESCR    : Description @title : 'Screening Criterion Description';
+    CRITER_SHORT_DESCR : ShDescription @title : 'Screening Criterion Short Description';
     CRIT_UNIT       : CriteriaUnit;
-    CRIT_U          : UpperLimit;
-    CRIT_L          : LowerLimit;
+    CRIT_SC_U       : SCUpperLimit @title : 'Upper Limit for Substantial Contribution';
+    CRIT_SC_L       : SCLowerLimit @title : 'Lower limit for Substantial Contribution';
+    CRIT_DNSH_U     : DNSHUpperLimit @title: 'Upper limit for Do No Significant Harm Contribution';
+    CRIT_DNSH_L     : DNSHLowerLimit @title : 'Lower limit for Do No Significant Harm Contribution';
+    SC_FLAG         : SCFlag;
+    DNSH_FLAG       : DNSHFlag;
     SUBST           : Substance;
     COND_GHGU       : GHGUpperLimit;
     COND_GHGL       : GHGLoweLimit;
@@ -80,47 +85,32 @@ entity ScreeningCriteriaTemplate : managed {
     RM              : ReferenceMassClass;
     RM_L            : ReferenceMassLowerLimit;
     RM_U            : ReferenceMassUpperLimit;
-    COMBP_L         : CombustionLowerLimit;
-    COMBP_U         : CombustionUpperLimit;
     OPH_L           : OperatedHoursLowerLimit;
-    TYP_COMB        : CombustionType;
-    COMB_UNIT       : CombustionUnit;
     CALC_MEAS       : CalcMeasure;
-    TYP_PLANT       : PlantType;
     LADEN_L         : LowerMaxLadenMass;
     LADEN_U         : UpperMaxLadenMass;
     ENERGYV         : EnergyOfVevhicle;
     CRITICALITY     : Integer;
-    //SCREEN_INPUT    : Association to many EUT_SCREENING_INPUT 
-    //                    on SCREEN_INPUT.CRITER = $self @title : 'Screening Input'; //not required
     HELP            : Help;
     HELP_I          : Help_I;
     HELP_P          : Help_P;
     
 };
 
-
-
-//This is an entity from v1 data model - to be removed
-entity ECON_CRITER_APPL : managed {
-    key ID          : GUID ;
-    EcoActivity     : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
-    TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
-    CCA             : ClimateAdaptation;
-    CCM             : ClimateMitigation;
-    WAT             : Water;
-    CEC             : CircularEconomy;
-    PPV             : PollutionPrevention;
-    BIO             : Biodiversity;
-
-};
 entity CriteriaApplicability : managed {
     key ID          : GUID;
     ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
-    SC_OBJECT       : Association to one EnvObjectiveObject @title : 'Substantial Contribution';
-    TYP_CONT        : Association to one ContributionTypeObject @title : 'Contribution Type';
     ENV_OB          : Association to one EnvObjectiveObject @title : 'Environmental Objective';
     CRITER          : Association to one ScreeningCriteriaTemplate @title: 'Screening Criterion';
+    LVL1_VAR        : Lvl1_var;
+    LVL1_VAL        : Lvl1_val;
+    LVL2_VAR        : Lvl2_var;
+    LVL2_VAL        : Lvl2_val;
+    LVL3_VAR        : Lvl3_var;
+    LVL3_VAL        : Lvl3_val;
+    LVL4_VAR        : Lvl4_var;
+    LVL4_VAL        : Lvl4_val;
+    SUBST           : Substance
 
 };
 
@@ -143,8 +133,10 @@ type EnablingActivity : Boolean @title : 'Enabling Activity';
 type ContributionMeasure : String @title :'Contribution Measure';
 type Criterion : String @title :'Screening Criterion';
 type CriteriaUnit : String @title :'Screening Criteria Unit';
-type UpperLimit : Decimal @title :'Upper Limit Screening Criteria';
-type LowerLimit : Decimal @title :'Lower Limit Screening Criteria';
+type SCUpperLimit : Decimal @title :'Substantial Contribution Upper Limit Screening Criteria';
+type SCLowerLimit : Decimal @title :'Substantial Contribution Lower Limit Screening Criteria';
+type DNSHUpperLimit : Decimal @title :' Do No Significant Harm Upper Limit Screening Criteria';
+type DNSHLowerLimit : Decimal @title :'Do No Significant Harm Lower Limit Screening Criteria';
 type Substance : String @title :'Substance/Parameter';
 type GHGUpperLimit : Decimal @title :'Upper limit Condition for GHG emissions';
 type GHGLoweLimit : Decimal @title :'Lower limit Condition for GHG emissions';
@@ -191,3 +183,14 @@ type ContributionTypeLong : String @title : 'Contribution Type';
 type Help         : Boolean @title : 'Help';
 type Help_I         : Boolean @title : 'Help_I';
 type Help_P         : Boolean @title : 'Help_P';
+type  ShDescription : String @title :'Screening Criterion Short';
+type SCFlag : Boolean @title :'SC Flag';
+type DNSHFlag : Boolean @title :'DNSH Flag';
+type Lvl1_var : String @title : 'Level 1 variable';
+type Lvl1_val : String @title : 'Level 1 value';
+type Lvl2_var : String @title : 'Level 2 variable';
+type Lvl2_val : String @title : 'Level 2 value';
+type Lvl3_var : String @title : 'Level 3 variable';
+type Lvl3_val : String @title : 'Level 3 value';
+type Lvl4_var : String @title : 'Level 4 variable';
+type Lvl4_val : String @title : 'Level 4 value';  

@@ -14,6 +14,7 @@ using {
     ProfitCenterObject,
     PlantObject,
     EnvObjectiveObject,
+    CriteriaApplicability,
     ContributionTypeObject
 } from './ReferenceData';
 using {
@@ -40,7 +41,6 @@ entity EUTObject : managed {
                             on Activities.EUT_Object = $self @title : 'Economic Activities';
     MSInput            : Association to many MSInput 
                             on MSInput.RBUKRS = $self.RBUKRS @title : 'Minimum Safeguards Inputs';   
-   // CRITICALIT : CRITICALIT;
 }
 
 entity EUT_Activities : managed {
@@ -51,10 +51,19 @@ entity EUT_Activities : managed {
     EA_Object           : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     Financial_Input     : Association to many FINANCIAL_INPUT 
                             on Financial_Input.EUT_ACTIVITIES =$self @title : 'Financial Inputs';
-    SCInput             : Association to many SCInput 
-                            on SCInput.EUT_ACTIVITIES =$self @title : 'Substantial Contribution Inputs';
-    DNSHInput           : Association to many DNSHInput 
-                            on DNSHInput.EUT_ACTIVITIES =$self @title : 'DNSH Contribution Inputs';                                                     
+    CCM_Input           : Association to many CCM_Input 
+                            on CCM_Input.EUT_ACTIVITIES =$self @title : 'Climate Mitigation Inputs';
+    CCA_Input           : Association to many CCA_Input 
+                            on CCA_Input.EUT_ACTIVITIES =$self @title : 'Climate Adaptation Inputs';
+    POL_Input           : Association to many POL_Input 
+                            on POL_Input.EUT_ACTIVITIES =$self @title : 'Pollution Inputs';
+    BIO_Input           : Association to many BIO_Input 
+                            on BIO_Input.EUT_ACTIVITIES =$self @title : 'Biodiversity Inputs';
+    WAT_Input           : Association to many WAT_Input 
+                            on WAT_Input.EUT_ACTIVITIES =$self @title : 'Water Inputs';
+    CEC_Input           : Association to many CEC_Input 
+                            on CEC_Input.EUT_ACTIVITIES =$self @title : 'Circular Economy Inputs';
+                                                                                 
                                                    
 };
 
@@ -87,26 +96,7 @@ entity FINANCIAL_INPUT : managed {
     criticality         : Integer;
 };
 
-entity SCInput : managed {
-    key ID              : GUID ;
-    INDICATOR_IV        : Indicator_InVal;
-    KEY_FIGURE          : InputValue;
-    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
-    ENV_OB              : Association to one EnvObjectiveObject;
-    TYP_CONT            : Association to one ContributionTypeObject;
-    EUT_ACTIVITIES      : Association to one EUT_Activities;
-    CRITICALITY         : Integer;
-};
-entity DNSHInput : managed {
-    key ID              : GUID ;
-    INDICATOR_IV        : Indicator_InVal;
-    KEY_FIGURE          : InputValue;
-    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
-    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
-    TYP_CONT            : Association to one ContributionTypeObject;
-    EUT_ACTIVITIES      : Association to one EUT_Activities;
-    CRITICALITY         : Integer;
-};
+
 entity MSInput : managed {
     key ID               : GUID ;
     INDICATOR_IV        : Indicator_InVal;
@@ -117,6 +107,70 @@ entity MSInput : managed {
     CRITICALITY         : Integer;
     EUT_COMPASS         : String;
 };
+
+
+entity CCM_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+
+};
+
+entity CCA_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+};
+
+
+
+entity POL_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+};
+
+entity BIO_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+};
+
+entity WAT_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+};
+
+entity CEC_Input : managed {
+    key ID               : GUID ;
+    INDICATOR_IV        : Indicator_InVal;
+    KEY_FIGURE          : InputValue;
+    CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';
+    ENV_OB              : Association to one EnvObjectiveObject @title : 'Environmental Objective';
+    EUT_ACTIVITIES      : Association to one EUT_Activities;
+    APPL                : Association to one CriteriaApplicability;
+}; 
 
 
 type MaterialNumber     : String @title : 'Material Number';

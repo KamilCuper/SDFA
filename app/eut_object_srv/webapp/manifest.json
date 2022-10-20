@@ -136,17 +136,45 @@
                     ]
                 },
                 {
-                    "pattern": "EUTObject({key})/Activities({key2})/SCInput({key3}):?query:",
-                    "name": "SCInputObjectPage_SCInput",
+                    "pattern": "EUTObject({key})/Activities({key2})/CCM_Input({key3}):?query:",
+                    "name": "CCM_InputObjectPage_CCM_Input",
                     "target": [
-                        "SCInputObjectPage_SCInput"
+                        "CCM_InputObjectPage_CCM_Input"
                     ]
                 },
                 {
-                    "pattern": "EUTObject({key})/Activities({key2})/DNSHInput({key3}):?query:",
-                    "name": "DNSHInputObjectPage_DNSHInput",
+                    "pattern": "EUTObject({key})/Activities({key2})/CCA_Input({key3}):?query:",
+                    "name": "CCA_InputObjectPage_CCA_Input",
                     "target": [
-                        "DNSHInputObjectPage_DNSHInput"
+                        "CCA_InputObjectPage_CCA_Input"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/POL_Input({key3}):?query:",
+                    "name": "POL_InputObjectPage_POL_Input",
+                    "target": [
+                        "POL_InputObjectPage_POL_Input"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/BIO_Input({key3}):?query:",
+                    "name": "BIO_InputObjectPage_BIO_Input",
+                    "target": [
+                        "BIO_InputObjectPage_BIO_Input"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/WAT_Input({key3}):?query:",
+                    "name": "WAT_InputObjectPage_WAT_Input",
+                    "target": [
+                        "WAT_InputObjectPage_WAT_Input"
+                    ]
+                },
+                {
+                    "pattern": "EUTObject({key})/Activities({key2})/CEC_Input({key3}):?query:",
+                    "name": "CEC_InputObjectPage_CEC_Input",
+                    "target": [
+                        "CEC_InputObjectPage_CEC_Input"
                     ]
                 }
             ],
@@ -264,14 +292,34 @@
                                         "route": "FINANCIAL_INPUTObjectPage"
                                     }
                                 },
-                                "SCInput": {
+                                "CCM_Input": {
                                     "detail": {
-                                        "route": "SCInputObjectPage_SCInput"
+                                        "route": "CCM_InputObjectPage_CCM_Input"
                                     }
                                 },
-                                "DNSHInput": {
+                                "CCA_Input": {
                                     "detail": {
-                                        "route": "DNSHInputObjectPage_DNSHInput"
+                                        "route": "CCA_InputObjectPage_CCA_Input"
+                                    }
+                                },
+                                "POL_Input": {
+                                    "detail": {
+                                        "route": "POL_InputObjectPage_POL_Input"
+                                    }
+                                },
+                                "BIO_Input": {
+                                    "detail": {
+                                        "route": "BIO_InputObjectPage_BIO_Input"
+                                    }
+                                },
+                                "WAT_Input": {
+                                    "detail": {
+                                        "route": "WAT_InputObjectPage_WAT_Input"
+                                    }
+                                },
+                                "CEC_Input": {
+                                    "detail": {
+                                        "route": "CEC_InputObjectPage_CEC_Input"
                                     }
                                 }
                             },
@@ -293,10 +341,40 @@
                                 },
                                 "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
                                     "tableSettings": {
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWith"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWithout"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "CCM_Input/@com.sap.vocabularies.UI.v1.LineItem#CCMInputs": {
+                                    "tableSettings": {
                                         "enableMassEdit": true
                                     }
                                 },
-                                "DNSHInput/@com.sap.vocabularies.UI.v1.LineItem#DNSHScreenInputs": {
+                                "CCA_Input/@com.sap.vocabularies.UI.v1.LineItem#CCAInput": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true
+                                    }
+                                },
+                                "POL_Input/@com.sap.vocabularies.UI.v1.LineItem#POLInput": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true
+                                    }
+                                },
+                                "WAT_Input/@com.sap.vocabularies.UI.v1.LineItem#WATInput": {
+                                    "tableSettings": {
+                                        "enableMassEdit": true
+                                    }
+                                },
+                                "BIO_Input/@com.sap.vocabularies.UI.v1.LineItem#BIOInput": {
                                     "tableSettings": {
                                         "enableMassEdit": true
                                     }
@@ -325,37 +403,6 @@
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Financial_Input({key3})"
                 },
-                "SCInputObjectPage_SCInput": {
-                    "type": "Component",
-                    "id": "SCInputObjectPage_SCInput",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "SCInput",
-                            "navigation": {},
-                            "content": {
-                                "header": {
-                                    "visible": true
-                                }
-                            }
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/SCInput({key3})"
-                },
-                "DNSHInputObjectPage_DNSHInput": {
-                    "type": "Component",
-                    "id": "DNSHInputObjectPage_DNSHInput",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "DNSHInput",
-                            "navigation": {}
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/DNSHInput({key3})"
-                },
                 "MSInputObjectPage_MSInput": {
                     "type": "Component",
                     "id": "MSInputObjectPage_MSInput",
@@ -368,6 +415,84 @@
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/MSInput({key2})"
+                },
+                "CCM_InputObjectPage_CCM_Input": {
+                    "type": "Component",
+                    "id": "CCM_InputObjectPage_CCM_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "CCM_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/CCM_Input({key3})"
+                },
+                "CCA_InputObjectPage_CCA_Input": {
+                    "type": "Component",
+                    "id": "CCA_InputObjectPage_CCA_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "CCA_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/CCA_Input({key3})"
+                },
+                "POL_InputObjectPage_POL_Input": {
+                    "type": "Component",
+                    "id": "POL_InputObjectPage_POL_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "POL_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/POL_Input({key3})"
+                },
+                "BIO_InputObjectPage_BIO_Input": {
+                    "type": "Component",
+                    "id": "BIO_InputObjectPage_BIO_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "BIO_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/BIO_Input({key3})"
+                },
+                "WAT_InputObjectPage_WAT_Input": {
+                    "type": "Component",
+                    "id": "WAT_InputObjectPage_WAT_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "WAT_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/WAT_Input({key3})"
+                },
+                "CEC_InputObjectPage_CEC_Input": {
+                    "type": "Component",
+                    "id": "CEC_InputObjectPage_CEC_Input",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "CEC_Input",
+                            "navigation": {}
+                        }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/EUTObject({key})/Activities({key2})/CEC_Input({key3})"
                 }
             },
             "config": {

@@ -9,9 +9,13 @@ using {
     EUTObject as Eobject,
     EUT_Activities as Eactivities,
     FINANCIAL_INPUT as financialinput,
-    SCInput as sc,
-    DNSHInput as dnsh,
-    MSInput as ms
+    MSInput as ms,
+    CCM_Input as ccm,
+    CCA_Input as cca,
+    POL_Input as pol,
+    BIO_Input as bio,
+    WAT_Input as wat,
+    CEC_Input as cec
 } from '../db/EUTObject';
 using {
     ACC_TYPE_MAPPING as accountmapping,
@@ -23,7 +27,6 @@ using {
     PlantObject as plant,
     SECTOR_OBJECT as sector,
     ECO_ACT_OBJECT as ecoobject,
-    ECON_CRITER_APPL as criterappl, //to remove after data model v1 changes
     EnvObjectiveObject as envobjective,
     ContributionTypeObject as contrtype,
     CriteriaApplicability as critappl,
@@ -51,9 +54,7 @@ service DataService {
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity SCInput as projection on sc;
-    @odata.draft.enabled
-    entity DNSHInput as projection on dnsh;
+    entity CCM_Input as projection on ccm;
     @odata.draft.enabled
     entity MSInput as projection on ms;
 
@@ -67,7 +68,6 @@ service DataService {
     entity SECTOR_OBJECT as projection on sector;
     @odata.draft.enabled
     entity ECO_ACT_OBJECT as projection on ecoobject;
-    entity ECON_CRITER_APPL as projection on criterappl; //to remove after data model v1 changes
     entity AcctTypeObject as projection on accounttype;
     entity EnvObjectiveObject as projection on envobjective;
     entity ContributionTypeObject as projection on contrtype;
@@ -103,9 +103,17 @@ service EUTObjectService {
     @cds.odata.valuelist
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity SCInput as projection on sc;
+    entity CCM_Input as projection on ccm;
     @odata.draft.enabled
-    entity DNSHInput as projection on dnsh;
+    entity CCA_Input as projection on cca;
+   @odata.draft.enabled
+  entity POL_Input as projection on pol;
+    @odata.draft.enabled
+  entity BIO_Input as projection on bio;
+    @odata.draft.enabled
+    entity WAT_Input as projection on wat;
+    @odata.draft.enabled
+    entity CEC_Input as projection on cec;
     @odata.draft.enabled
     entity MSInput as projection on ms;
     @odata.draft.enabled
@@ -125,7 +133,6 @@ service EUTObjectService {
     entity ECO_ACT_OBJECT as projection on ecoobject;
     entity EnvObjectiveObject as projection on envobjective;
     entity ContributionTypeObject as projection on contrtype;
-    entity ECON_CRITER_APPL as projection on criterappl; //to remove after data model v1 changes
     entity AcctTypeObject as projection on accounttype;
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
