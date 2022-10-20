@@ -136,20 +136,6 @@
                     ]
                 },
                 {
-                    "pattern": "EUTObject({key})/Activities({key2})/SCInput({key3}):?query:",
-                    "name": "SCInputObjectPage_SCInput",
-                    "target": [
-                        "SCInputObjectPage_SCInput"
-                    ]
-                },
-                {
-                    "pattern": "EUTObject({key})/Activities({key2})/DNSHInput({key3}):?query:",
-                    "name": "DNSHInputObjectPage_DNSHInput",
-                    "target": [
-                        "DNSHInputObjectPage_DNSHInput"
-                    ]
-                },
-                {
                     "pattern": "EUTObject({key})/Activities({key2})/CCM_Input({key3}):?query:",
                     "name": "CCM_InputObjectPage_CCM_Input",
                     "target": [
@@ -306,16 +292,6 @@
                                         "route": "FINANCIAL_INPUTObjectPage"
                                     }
                                 },
-                                "SCInput": {
-                                    "detail": {
-                                        "route": "SCInputObjectPage_SCInput"
-                                    }
-                                },
-                                "DNSHInput": {
-                                    "detail": {
-                                        "route": "DNSHInputObjectPage_DNSHInput"
-                                    }
-                                },
                                 "CCM_Input": {
                                     "detail": {
                                         "route": "CCM_InputObjectPage_CCM_Input"
@@ -378,7 +354,6 @@
                                         }
                                     }
                                 },
-                                
                                 "CCM_Input/@com.sap.vocabularies.UI.v1.LineItem#CCMInputs": {
                                     "tableSettings": {
                                         "enableMassEdit": true
@@ -396,7 +371,7 @@
                                 },
                                 "WAT_Input/@com.sap.vocabularies.UI.v1.LineItem#WATInput": {
                                     "tableSettings": {
-                                        "enableMassEdit": true            
+                                        "enableMassEdit": true
                                     }
                                 },
                                 "BIO_Input/@com.sap.vocabularies.UI.v1.LineItem#BIOInput": {
@@ -427,37 +402,6 @@
                     },
                     "controlAggregation": "endColumnPages",
                     "contextPattern": "/EUTObject({key})/Activities({key2})/Financial_Input({key3})"
-                },
-                "SCInputObjectPage_SCInput": {
-                    "type": "Component",
-                    "id": "SCInputObjectPage_SCInput",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "SCInput",
-                            "navigation": {},
-                            "content": {
-                                "header": {
-                                    "visible": true
-                                }
-                            }
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/SCInput({key3})"
-                },
-                "DNSHInputObjectPage_DNSHInput": {
-                    "type": "Component",
-                    "id": "DNSHInputObjectPage_DNSHInput",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "DNSHInput",
-                            "navigation": {}
-                        }
-                    },
-                    "controlAggregation": "endColumnPages",
-                    "contextPattern": "/EUTObject({key})/Activities({key2})/DNSHInput({key3})"
                 },
                 "MSInputObjectPage_MSInput": {
                     "type": "Component",

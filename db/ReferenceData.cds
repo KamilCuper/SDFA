@@ -62,12 +62,12 @@ entity ScreeningCriteriaTemplate : managed {
     CRITER_DESCR    : Description @title : 'Screening Criterion Description';
     CRITER_SHORT_DESCR : ShDescription @title : 'Screening Criterion Short Description';
     CRIT_UNIT       : CriteriaUnit;
-    CRIT_SC_U          : SCUpperLimit @title : 'Upper Limit for Substantial Contribution';
-    CRIT_SC_L          : SCLowerLimit @title : 'Lower limit for Substantial Contribution';
-    CRIT_DNSH_U          : DNSHUpperLimit @title: 'Upper limit for Do No Significant Harm Contribution';
-    CRIT_DNSH_L          : DNSHLowerLimit @title : 'Lower limit for Do No Significant Harm Contribution';
-    SC_FLAG          : SCFlag;
-    DNSH_FLAG        : DNSHFlag;
+    CRIT_SC_U       : SCUpperLimit @title : 'Upper Limit for Substantial Contribution';
+    CRIT_SC_L       : SCLowerLimit @title : 'Lower limit for Substantial Contribution';
+    CRIT_DNSH_U     : DNSHUpperLimit @title: 'Upper limit for Do No Significant Harm Contribution';
+    CRIT_DNSH_L     : DNSHLowerLimit @title : 'Lower limit for Do No Significant Harm Contribution';
+    SC_FLAG         : SCFlag;
+    DNSH_FLAG       : DNSHFlag;
     SUBST           : Substance;
     COND_GHGU       : GHGUpperLimit;
     COND_GHGL       : GHGLoweLimit;
@@ -96,8 +96,6 @@ entity ScreeningCriteriaTemplate : managed {
     HELP_P          : Help_P;
     
 };
-
-
 
 entity CriteriaApplicability : managed {
     key ID          : GUID;

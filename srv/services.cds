@@ -9,8 +9,6 @@ using {
     EUTObject as Eobject,
     EUT_Activities as Eactivities,
     FINANCIAL_INPUT as financialinput,
-    SCInput as sc,
-    DNSHInput as dnsh,
     MSInput as ms,
     CCM_Input as ccm,
     CCA_Input as cca,
@@ -56,11 +54,7 @@ service DataService {
     @odata.draft.enabled
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity SCInput as projection on sc;
-    @odata.draft.enabled
     entity CCM_Input as projection on ccm;
-    @odata.draft.enabled
-    entity DNSHInput as projection on dnsh;
     @odata.draft.enabled
     entity MSInput as projection on ms;
 
@@ -109,8 +103,6 @@ service EUTObjectService {
     @cds.odata.valuelist
     entity FINANCIAL_INPUT as projection on financialinput;
     @odata.draft.enabled
-    entity SCInput as projection on sc;
-    @odata.draft.enabled
     entity CCM_Input as projection on ccm;
     @odata.draft.enabled
     entity CCA_Input as projection on cca;
@@ -122,8 +114,6 @@ service EUTObjectService {
     entity WAT_Input as projection on wat;
     @odata.draft.enabled
     entity CEC_Input as projection on cec;
-    @odata.draft.enabled
-    entity DNSHInput as projection on dnsh;
     @odata.draft.enabled
     entity MSInput as projection on ms;
     @odata.draft.enabled

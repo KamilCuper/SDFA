@@ -967,33 +967,11 @@ annotate service.ScreeningCriteriaTemplate with @(
     ],
 );
 
-annotate service.SCInput with {
-    @Common.SemanticObject:  'Criterion'
-    CRITER_CRITER
-}
-
-annotate service.DNSHInput with {
-    @Common.SemanticObject:  'Criterion'
-    CRITER_CRITER
-}
 
 annotate service.MSInput with {
     @Common.SemanticObject:  'Criterion'
     CRITER_CRITER
 }
-
-annotate service.SCInput with @(
-    Communication.Contact #contact : {
-        $Type : 'Communication.ContactType',
-        fn : CRITER,
-    }
-
-);
-
-annotate service.SCInput with @(
-    Capabilities.Updatable : true
-);
-
 
 annotate service.CCM_Input with @(
     UI.LineItem #CCMInputs: [
@@ -1351,16 +1329,16 @@ annotate service.POL_Input with @(
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_UNIT,
         },
-         {
+        {
                 $Type : 'UI.DataField',
                 Value : CRITER.SC_FLAG,
                 Label : 'Substantial Contribution Flag'
-            },
-            {
+        },
+        {
                 $Type : 'UI.DataField',
                 Value : CRITER.DNSH_FLAG,
                 Label : 'Do No Significant Harm Flag'
-            },
+        },
         ],
     },
 
@@ -1374,13 +1352,45 @@ annotate service.POL_Input with @(
                 $Type : 'UI.DataField',
                 Value : CRITER.CRIT_SC_U,
             },
-             {
+            {
                 $Type : 'UI.DataField',
                 Value : CRITER.CRIT_DNSH_L,
-            },{
+            },
+            {
                 $Type : 'UI.DataField',
                 Value : CRITER.CRIT_DNSH_U,
             },            
+            ],
+
+    },
+     UI.FieldGroup #POLGroup3 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value :  APPL.LVL1_VAL,
+                Label : 'Type of combustion'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  APPL.LVL2_VAL,
+                Label : 'Combustion unit'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  APPL.LVL3_VAL,
+                Label : 'Type of plant'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  APPL.LVL4_VAL,
+                Label : 'Combustion range'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value :  APPL.SUBST,
+                Label : 'Substance'
+            },                       
             ],
 
     },
@@ -1417,6 +1427,12 @@ annotate service.POL_Input with @(
             ID : 'GeneratedFacet2',
             Label : 'Limits',
             Target : '@UI.FieldGroup#POLGroup2'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet3',
+            Label : 'Additional parameters',
+            Target : '@UI.FieldGroup#POLGroup3'
         },
     ],
     UI.HeaderInfo : {
