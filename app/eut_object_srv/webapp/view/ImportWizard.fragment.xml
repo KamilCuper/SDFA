@@ -1,0 +1,114 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:layout="sap.ui.layout"
+	core:require="{handler: 'eut/eutobjectsrv/controller/ImportWizard'}" >
+    <Dialog
+      	id="wizardDialog"
+		showHeader="false"
+		verticalScrolling="false"
+		contentHeight="70%"
+		contentWidth="80%">
+		<f:DynamicPage
+			stickySubheaderProvider="CreateImportWizard"
+			toggleHeaderOnTitleClick="false"
+			class="sapUiNoContentPadding"
+			showFooter="true">
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Wizard in a Dialog"/>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:content>
+                <Wizard 
+                    id="CreateImportWizard"
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+					showNextButton="false"
+					navigationChange="handleNavigationChange"
+					renderMode="Page">
+                    <WizardStep id="ImportFileInfoStep"
+								validated="true"
+								activate="importFileStepActivation"
+								title="Import File">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="You can validate steps by default with the validated='true' property of the step. The next button is always enabled."
+								showIcon="true"/>
+						<Text text="Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec ppellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	corper eu, posuere malesuada nisl. Integer pellentesque leo sit amet dui vehicula, quis ullamcorper est pulvinar. Nam in libero sem. Suspendisse arcu metus, molestie a turpis a, molestie aliquet dui. Donec pulvinar, sapien	"/>
+						<form:SimpleForm
+								editable="true">
+							<Label text="File picker"/>
+							<u:FileUploader
+									id="fileUploaderFS"
+									change="handler.onFileChange"
+									multiple="false"
+									width="100%"
+									tooltip="Upload path to the file with data on the local server"
+									style="Emphasized"
+									placeholder="Choose a file for Upload..."/>
+						</form:SimpleForm>
+					</WizardStep>
+                    <WizardStep
+							id="ReviewPage"
+							activate="reviewActivate"
+							complete="reviewComplete"
+							validated="true"
+							title="Review page">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="You can use the wizard previousStep() and nextStep() methods to navigate from step to step without validation. Also you can use the GoToStep(step) method to scroll programmatically to previously visited steps."
+								showIcon="true"/>
+                        <Table id="idTable" items="{/FINANCIAL_INPUT}">
+							<columns>
+                                <Column>
+                                    <Text text="Account Number"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Posting Period"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Ledger"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Cost Center"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Amount in GC"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Global Currency"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="ACCT" text="{RACCT}"/>
+                                    <Text id="POPER" text="{POPER}"/>
+                                    <Text id="RCNTR" text="{RCNTR}"/>
+                                    <Text id="RLDNR" text="{RLDNR}"/>
+                                    <Text id="KSL" text="{KSL}"/>
+                                    <Text id="RKCUR" text="{RKCUR}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
+                    </WizardStep>
+                </Wizard>
+            </f:content>
+
+
+			<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button id="previousbtn" text="Previous" visible="{/backButtonVisible}" press="handler.onDialogBackButton" />
+					<Button id="nextbtn" text="Next Step" type="Emphasized" enabled="{/nextButtonEnabled}" visible="{/nextButtonVisible}" press="handler.onDialogNextButton" />
+					<Button id="reviewbtn" text="Review" type="Emphasized" visible="{/reviewButtonVisible}" press="handler.onDialogNextButton" />
+					<Button id="finishbtn" text="Finish" type="Emphasized" visible="{/finishButtonVisible}" press="handler.handleWizardSubmit" />
+					<Button	id="cancelbtn" text="Cancel" type="Transparent" press="handler.handleWizardCancel"/>
+				</OverflowToolbar>
+			</f:footer>
+
+		</f:DynamicPage>
+   </Dialog>
+</core:FragmentDefinition>

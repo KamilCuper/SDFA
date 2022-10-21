@@ -1,0 +1,309 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:layout="sap.ui.layout"
+	core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}" >
+    <Dialog
+      	id="wizardSCDialog"
+		showHeader="false"
+		verticalScrolling="false"
+		contentHeight="70%"
+		contentWidth="80%">
+		<f:DynamicPage
+			stickySubheaderProvider="CreateSCWizard"
+			toggleHeaderOnTitleClick="false"
+			class="sapUiNoContentPadding"
+			showFooter="true">
+			<f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="Screening Criteria Wizard"/>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
+			<f:content>
+                <Wizard 
+                    id="CreateSCWizard"
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+					showNextButton="false"
+					navigationChange="handleNavigationChange"
+					renderMode="Page">
+
+                    <WizardStep id="ClimateMitigationStep"
+								validated="true"
+								activate="climateMitigationStepActivation"
+								title="Climate Mitigation">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+						<Table id="idCMTable" items="{/ScreeningCriteriaTemplate}">
+							<columns>
+                                <Column>
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Contribution Type"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="SC limits upper-lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="DNSH limits upper-lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="CRITER_DESCR" text="{CRITER_DESCR}"/>
+                                    <Text id="CONT_MEAS" text="{CONT_MEAS}"/>
+                                    <Text id="CRIT_U" text="{CRIT_U}"/>
+                                    <Text id="CRIT_L" text="{CRIT_L}"/>
+                                    <Input
+										id="criteriaInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="CRIT_UNIT" text="{CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
+					</WizardStep>
+
+                    <WizardStep id="ClimateAdaptationStep"
+								validated="true"
+								activate="climateAdaptationStepActivation"
+								title="Climate Adaptation">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+					</WizardStep>
+
+                    <WizardStep id="WaterStep"
+								validated="true"
+								activate="waterStepActivation"
+								title="Water">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+					</WizardStep>
+
+                    <WizardStep id="CircularEconomyStep"
+								validated="true"
+								activate="circularEconomyStepActivation"
+								title="Circular Economy">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+					</WizardStep>
+
+                    <WizardStep id="PollutionPreventionStep"
+								validated="true"
+								activate="pollutionPreventionStepActivation"
+								title="Pollution Prevention">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+						<form:SimpleForm
+								id="PollutionPreventionForm"
+								editable="true">
+							<Label text="Type of combution" required="true"/>
+							<Input id="CombutionType"
+									liveChange="additionalInfoValidation"
+									placeholder="Enter name of combution type"
+									showValueHelp="true"
+									valueHelpRequest="handler.onCTValueHelpRequest"/>
+							<Label text="Type of combution unit" required="true"/>
+							<Input id="CombutionUnit"
+									liveChange="additionalInfoValidation"
+									placeholder="Enter name of combution unit"
+									showValueHelp="true"
+									valueHelpRequest="handler.onCUValueHelpRequest"/>
+							<Label text="Type of plant" required="true"/>
+							<Input id="PlantName"
+									liveChange="additionalInfoValidation"
+									placeholder="Enter name of plant"
+									showValueHelp="true"
+									valueHelpRequest="handler.onPNValueHelpRequest"/>
+							<Label text="Lower-upper limit combution plant" required="true"/>
+							<Input id="LimitCombutionPlant"
+									liveChange="additionalInfoValidation"
+									placeholder="Enter limit combution plant"
+									showValueHelp="true"
+									valueHelpRequest="handler.onLCValueHelpRequest"/>
+						</form:SimpleForm>
+
+						<Table id="idCriterTable" items="{/dummy}">
+							<columns>
+                                <Column>
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Contribution Type"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="SC limits upper-lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="DNSH limits upper-lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="CR_DESCR" text="{CRITER_DESCR}"/>
+                                    <Text id="CR_MEAS" text="{CONT_MEAS}"/>
+                                    <Text id="CR_U" text="{CRIT_U}"/>
+                                    <Text id="CR_L" text="{CRIT_L}"/>
+                                    <Input
+										id="criterInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="CR_UNIT" text="{CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
+
+						<FlexBox alignItems="Center" justifyContent="Center">
+							<items>
+								<Button	id="addCriter" class="sapUiTinyMarginBeginEnd" text="+ New set of parameters" 
+										type="Default" press="handler.handleAdditionCriter"/>
+							</items>
+						</FlexBox>
+					</WizardStep>
+
+                    <WizardStep id="BiodiversityStep"
+								validated="true"
+								activate="biodiversityStepActivation"
+								title="Biodiversity">
+						<MessageStrip class="sapUiSmallMarginBottom"
+								text="The list below consists of screening criteria relevant to selected Economic Activity."
+								showIcon="true"/>
+					</WizardStep>
+
+                    <WizardStep
+						id="ReviewPage"
+						activate="reviewActivate"
+						complete="reviewComplete"
+						validated="true"
+						title="Review page">
+						<form:SimpleForm
+							title="1. Criteria Summary - Climate mitigation"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="Type"/>
+								<Text id="ProductTypeChosen" text="{/productType}"/>
+								<Link press="handler.editStepOne" text="Edit" />
+						    </form:content>
+						</form:SimpleForm>
+
+                        <form:SimpleForm
+							title="2. Criteria Summary - Climate adaptation"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="Name"/>
+								<Text id="ProductNameChosen" text="{/productName}"/>
+								<Label text="Weight"/>
+								<Text id="ProductWeightChosen" text="{/productWeight}"/>
+								<Label text="Manufacturer"/>
+								<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
+								<Label text="Description"/>
+								<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
+								<Link press="handler.editStepTwo" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+                        <form:SimpleForm
+							title="3. Criteria Summary - Water"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="Some text"/>
+								<Text text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. "/>
+								<Label text="Manufacturing Date"/>
+								<Text id="ManufacturingDate" text="{/manufacturingDate}"/>
+								<Label text="Availability"/>
+								<Text id="AvailabilityChosen" text="{/availabilityType}"/>
+								<Label text="Size"/>
+								<HBox>
+									<Text id="Size" text="{/size}"/>
+									<Text id="Size2" class="sapUiTinyMarginBegin" text="{/measurement}"/>
+								</HBox>
+								<Link press="handler.editStepThree" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+                        <form:SimpleForm
+							title="4. Criteria Summary - Circular economy"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+								<Label text="Price"/>
+								<Text id="ProductPriceChosen" text="{/productPrice}"/>
+								<Label text="Discount Group"/>
+								<Text id="DiscountGroupChosen" text="{/discountGroup}"/>
+								<Label text="VAT Included"/>
+								<Text id="ProductVATChosen" text="{/productVAT}"/>
+								<Link press="handler.editStepFour" text="Edit" />
+							</form:content>
+						</form:SimpleForm>
+
+                        <form:SimpleForm
+							title="5. Criteria Summary - Pollution preventation"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+							</form:content>
+						</form:SimpleForm>
+
+                        <form:SimpleForm
+							title="6. Criteria Summary - Biodiversity"
+							minWidth="1024"
+							editable="false"
+							layout="ResponsiveGridLayout">
+							<form:content>
+
+							</form:content>
+						</form:SimpleForm>
+								
+                    </WizardStep>
+                </Wizard>
+            </f:content>
+
+
+			<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button id="previousbtn" text="Previous" visible="{/backButtonVisible}" press="handler.onDialogBackButton" />
+					<Button id="nextbtn" text="Next Step" type="Emphasized" enabled="{/nextButtonEnabled}" visible="{/nextButtonVisible}" press="handler.onDialogNextButton" />
+					<Button id="reviewbtn" text="Review" type="Emphasized" visible="{/reviewButtonVisible}" press="handler.onDialogNextButton" />
+					<Button id="finishbtn" text="Finish" type="Emphasized" visible="{/finishButtonVisible}" press="handler.handleWizardSubmit" />
+					<Button	id="cancelbtn" text="Cancel" type="Transparent" press="handler.handleWizardCancel"/>
+				</OverflowToolbar>
+			</f:footer>
+
+		</f:DynamicPage>
+   </Dialog>
+</core:FragmentDefinition>

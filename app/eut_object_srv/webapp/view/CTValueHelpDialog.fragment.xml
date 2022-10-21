@@ -1,0 +1,15 @@
+<core:FragmentDefinition 
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}">
+	<SelectDialog
+		id="selectCTDialog"
+		title="Available Inputs"
+        items="{path: '/ScreeningCriteriaTemplate'}"
+		search="handler.onCTValueHelpSearch"
+		confirm="handler.onCTValueHelpClose"
+		cancel="handler.onCTValueHelpClose">
+        <StandardListItem
+            title="{TYP_COMB}"/>
+    </SelectDialog>
+</core:FragmentDefinition>

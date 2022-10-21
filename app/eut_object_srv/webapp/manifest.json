@@ -210,7 +210,7 @@
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.dataImport",
+                                            "press": "eut.eutobjectsrv.controller.ImportWizard.handleOpenDialog",
                                             "requiresSelection": false
                                         }
                                     }
@@ -357,6 +357,14 @@
                                 "CCM_Input/@com.sap.vocabularies.UI.v1.LineItem#CCMInputs": {
                                     "tableSettings": {
                                         "enableMassEdit": true
+                                    },
+                                    "actions": {
+                                        "openWizard": {
+                                            "id": "openSCWizardButton",
+                                            "text": "Screening Criteria Wizard",
+                                            "press": "eut.eutobjectsrv.controller.ScreeningCriteriaWizardController.handleOpenDialog",
+                                            "requiresSelection": false
+                                        }
                                     }
                                 },
                                 "CCA_Input/@com.sap.vocabularies.UI.v1.LineItem#CCAInput": {
