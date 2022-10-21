@@ -1,0 +1,16 @@
+<core:FragmentDefinition 
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}">
+	<SelectDialog
+		id="selectDialog"
+		title="Available Inputs"
+		search="handler.onValueHelpSearch"
+		confirm="handler.onValueHelpClose"
+		cancel="handler.onValueHelpClose">
+        <items>
+            <StandardListItem title="Yes"/>
+            <StandardListItem title="No"/>
+        </items>
+    </SelectDialog>
+</core:FragmentDefinition>

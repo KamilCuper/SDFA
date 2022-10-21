@@ -182,7 +182,7 @@
                                         "importData": {
                                             "id": "importDataButton",
                                             "text": "Import Data",
-                                            "press": "eut.eutobjectsrv.controller.ListReportExtController.dataImport",
+                                            "press": "eut.eutobjectsrv.controller.ImportWizard.handleOpenDialog",
                                             "requiresSelection": false
                                         }
                                     }
@@ -294,6 +294,14 @@
                                 "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
                                     "tableSettings": {
                                         "enableMassEdit": true
+                                    },
+                                    "actions": {
+                                        "openWizard": {
+                                            "id": "openSCWizardButton",
+                                            "text": "Screening Criteria Wizard",
+                                            "press": "eut.eutobjectsrv.controller.ScreeningCriteriaWizardController.handleOpenDialog",
+                                            "requiresSelection": false
+                                        }
                                     }
                                 },
                                 "DNSHInput/@com.sap.vocabularies.UI.v1.LineItem#DNSHScreenInputs": {
