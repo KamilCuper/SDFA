@@ -102,15 +102,15 @@ entity CriteriaApplicability : managed {
     ECO_ACT         : Association to one ECO_ACT_OBJECT @title : 'Economic Activity';
     ENV_OB          : Association to one EnvObjectiveObject @title : 'Environmental Objective';
     CRITER          : Association to one ScreeningCriteriaTemplate @title: 'Screening Criterion';
-    LVL1_VAR        : Lvl1_var;
-    LVL1_VAL        : Lvl1_val;
-    LVL2_VAR        : Lvl2_var;
-    LVL2_VAL        : Lvl2_val;
-    LVL3_VAR        : Lvl3_var;
-    LVL3_VAL        : Lvl3_val;
-    LVL4_VAR        : Lvl4_var;
-    LVL4_VAL        : Lvl4_val;
-    SUBST           : Substance
+    LVL1_VAR        : Association to one VariableMasterData @title: 'Variable';
+    LVL1_VAL        : Association to one ValueMasterData @title: 'Value';
+    LVL2_VAR        : Association to one VariableMasterData @title: 'Variable';
+    LVL2_VAL        : Association to one ValueMasterData @title: 'Value';
+    LVL3_VAR        : Association to one VariableMasterData @title: 'Variable';
+    LVL3_VAL        : Association to one ValueMasterData @title: 'Value';
+    LVL4_VAR        : Association to one VariableMasterData @title: 'Variable';
+    LVL4_VAL        : Association to one ValueMasterData @title: 'Value';
+    SUBST           : Association to one ValueMasterData @title: 'Value';
 
 };
 
@@ -123,6 +123,18 @@ entity ContributionTypeObject : managed {
     key ID          : ContributionTypeLong default 'MS';
     Description     : Description default 'Minimum Safeguards'
 };
+
+entity VariableMasterData : managed {
+    key VAR          : Var default 'Variable';
+    VAR_DESCR     : VarDescription default 'VariableDescription'
+};
+
+entity ValueMasterData : managed {
+    key VAL          : Val default 'Value';
+    VAL_DESCR     : ValDescription default 'ValueDescription'
+};
+
+
 
 //type LAND1 : String @title : 'Country';
 
@@ -194,3 +206,7 @@ type Lvl3_var : String @title : 'Level 3 variable';
 type Lvl3_val : String @title : 'Level 3 value';
 type Lvl4_var : String @title : 'Level 4 variable';
 type Lvl4_val : String @title : 'Level 4 value';  
+type Var : String @title : 'Variable';
+type VarDescription : String @title : 'Variable Description';
+type Val : String @title : 'Value';
+type ValDescription : String @title : 'Value Description';

@@ -30,7 +30,9 @@ using {
     EnvObjectiveObject as envobjective,
     ContributionTypeObject as contrtype,
     CriteriaApplicability as critappl,
-    ScreeningCriteriaTemplate as crittemplate
+    ScreeningCriteriaTemplate as crittemplate,
+    VariableMasterData as variablemaster,
+    ValueMasterData as valuemaster
 } from '../db/ReferenceData';
 using {
     AcctTypeObject as accounttype
@@ -73,6 +75,8 @@ service DataService {
     entity ContributionTypeObject as projection on contrtype;
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
+    entity VariableMasterData as projection on variablemaster;
+    entity ValueMasterData as projection on valuemaster;
 
     entity MSInputCriteria as
         select
@@ -136,6 +140,8 @@ service EUTObjectService {
     entity AcctTypeObject as projection on accounttype;
     entity CriteriaApplicability as projection on critappl;
     entity ScreeningCriteriaTemplate as projection on crittemplate;
+    entity VariableMasterData as projection on variablemaster;
+    entity ValueMasterData as projection on valuemaster;
 
 
     /*entity YearsListView as
