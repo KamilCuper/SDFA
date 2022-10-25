@@ -110,7 +110,7 @@ entity MSInput : managed {
 
 
 entity CCM_Input : managed {
-    key ID               : GUID ;
+    key ID              : GUID ;
     INDICATOR_IV        : Indicator_InVal;
     KEY_FIGURE          : InputValue;
     CRITER              : Association to one ScreeningCriteriaTemplate @title : 'Screening Criterion';

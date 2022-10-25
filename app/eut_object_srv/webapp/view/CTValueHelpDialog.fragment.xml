@@ -5,11 +5,11 @@ core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardCont
 	<SelectDialog
 		id="selectCTDialog"
 		title="Available Inputs"
-        items="{path: '/ScreeningCriteriaTemplate'}"
+        items="{path: '/CCM_Input'}"
 		search="handler.onCTValueHelpSearch"
 		confirm="handler.onCTValueHelpClose"
 		cancel="handler.onCTValueHelpClose">
         <StandardListItem
-            title="{TYP_COMB}"/>
+            title="{CRITER/CRITER_SHORT_DESCR}"/>
     </SelectDialog>
 </core:FragmentDefinition>

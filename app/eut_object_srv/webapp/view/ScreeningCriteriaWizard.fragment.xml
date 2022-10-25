@@ -39,40 +39,41 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
-						<Table id="idCMTable" items="{/ScreeningCriteriaTemplate}">
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
+						<Table id="idCMTable" items="{/CCM_Input}">
 							<columns>
-                                <Column>
+                                <Column width="200px">
                                     <Text text="Criteria"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="Contribution Type"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="SC limits upper-lower"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="DNSH limits upper-lower"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="150px">
                                     <Text text="Input Value"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="Criteria Unit"></Text>
                                 </Column>
 						    </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
-                                    <Text id="CRITER_DESCR" text="{CRITER_DESCR}"/>
-                                    <Text id="CONT_MEAS" text="{CONT_MEAS}"/>
-                                    <Text id="CRIT_U" text="{CRIT_U}"/>
-                                    <Text id="CRIT_L" text="{CRIT_L}"/>
+                                    <Text id="CM_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="CM_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="CM_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="CM_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
                                     <Input
-										id="criteriaInput"
+										id="CM_criteriaInput"
 										placeholder="Enter value"
 										showValueHelp="true"
 										valueHelpRequest="handler.onValueHelpRequest">
 									</Input>
-                                    <Text id="CRIT_UNIT" text="{CRIT_UNIT}"/>
+                                    <Text id="CM_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
                                 </ColumnListItem>
 		                    </items>                        
 						</Table>
@@ -85,6 +86,44 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
+						<Table id="idCATable" items="{/CCA_Input}">
+							<columns>
+                                <Column width="200px">
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Contribution Type"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="SC limits upper-lower"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="DNSH limits upper-lower"></Text>
+                                </Column>
+                                <Column width="150px">
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="CA_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="CA_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="CA_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="CA_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
+                                    <Input
+										id="CA_criteriaInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="CA_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
 					</WizardStep>
 
                     <WizardStep id="WaterStep"
@@ -94,6 +133,50 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
+						<Table id="idWATTable" items="{/WAT_Input}">
+							<columns>
+                                 <Column>
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Contribution Type: SC DNSH"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="SC limits upper"></Text>
+                                </Column>
+								<Column>
+                                    <Text text="SC limits lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="DNSH limits upper"></Text>
+                                </Column>
+								<Column>
+                                    <Text text="DNSH limits lower"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column>
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="WAT_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="WAT_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="WAT_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="WAT_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
+                                    <Input
+										id="WAT_criteriaInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="WAT_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
 					</WizardStep>
 
                     <WizardStep id="CircularEconomyStep"
@@ -103,6 +186,44 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
+						<Table id="idCECTable" items="{/CEC_Input}">
+							<columns>
+                                <Column width="200px">
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Contribution Type"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="SC limits upper-lower"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="DNSH limits upper-lower"></Text>
+                                </Column>
+                                <Column width="150px">
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="CEC_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="CEC_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="CEC_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="CEC_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
+                                    <Input
+										id="CEC_criteriaInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="CEC_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
 					</WizardStep>
 
                     <WizardStep id="PollutionPreventionStep"
@@ -112,6 +233,7 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
 						<form:SimpleForm
 								id="PollutionPreventionForm"
 								editable="true">
@@ -141,40 +263,40 @@
 									valueHelpRequest="handler.onLCValueHelpRequest"/>
 						</form:SimpleForm>
 
-						<Table id="idCriterTable" items="{/dummy}">
+						<Table id="idPOLTable" items="{/POL_Input}">
 							<columns>
-                                <Column>
+                                <Column width="200px">
                                     <Text text="Criteria"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="Contribution Type"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="SC limits upper-lower"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="DNSH limits upper-lower"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="150px">
                                     <Text text="Input Value"></Text>
                                 </Column>
-                                <Column>
+                                <Column width="100px">
                                     <Text text="Criteria Unit"></Text>
                                 </Column>
 						    </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
-                                    <Text id="CR_DESCR" text="{CRITER_DESCR}"/>
-                                    <Text id="CR_MEAS" text="{CONT_MEAS}"/>
-                                    <Text id="CR_U" text="{CRIT_U}"/>
-                                    <Text id="CR_L" text="{CRIT_L}"/>
+                                    <Text id="POL_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="POL_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="POL_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="POL_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
                                     <Input
-										id="criterInput"
+										id="POL_criteriaInput"
 										placeholder="Enter value"
 										showValueHelp="true"
 										valueHelpRequest="handler.onValueHelpRequest">
 									</Input>
-                                    <Text id="CR_UNIT" text="{CRIT_UNIT}"/>
+                                    <Text id="POL_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
                                 </ColumnListItem>
 		                    </items>                        
 						</Table>
@@ -194,6 +316,44 @@
 						<MessageStrip class="sapUiSmallMarginBottom"
 								text="The list below consists of screening criteria relevant to selected Economic Activity."
 								showIcon="true"/>
+						<Text text="Economic Activity: Manufacture of Iron and Steel"/>
+						<Table id="idBIOTable" items="{/BIO_Input}">
+							<columns>
+                                <Column width="200px">
+                                    <Text text="Criteria"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Contribution Type"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="SC limits upper-lower"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="DNSH limits upper-lower"></Text>
+                                </Column>
+                                <Column width="150px">
+                                    <Text text="Input Value"></Text>
+                                </Column>
+                                <Column width="100px">
+                                    <Text text="Criteria Unit"></Text>
+                                </Column>
+						    </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <Text id="BIO_CRITER_DESCR" text="{CRITER/CRITER_SHORT_DESCR}"/>
+                                    <Text id="BIO_CONT_TYP" text="SC:{CRITER/SC_FLAG}   DNSH:{CRITER/DNSH_FLAG}"/>
+                                    <Text id="BIO_CRIT_SC_U" text="{CRITER/CRIT_SC_U} - {CRITER/CRIT_SC_L}"/>
+									<Text id="BIO_CRIT_DNSH_U" text="{CRITER/CRIT_DNSH_U} - {CRITER/CRIT_DNSH_L}"/>
+                                    <Input
+										id="BIO_criteriaInput"
+										placeholder="Enter value"
+										showValueHelp="true"
+										valueHelpRequest="handler.onValueHelpRequest">
+									</Input>
+                                    <Text id="BIO_CRIT_UNIT" text="{CRITER/CRIT_UNIT}"/>
+                                </ColumnListItem>
+		                    </items>                        
+						</Table>
 					</WizardStep>
 
                     <WizardStep
@@ -202,14 +362,47 @@
 						complete="reviewComplete"
 						validated="true"
 						title="Review page">
+						<Text text="Economic Activity: Manufacture of Iron and Steel" font-size="25px"/>
 						<form:SimpleForm
 							title="1. Criteria Summary - Climate mitigation"
 							minWidth="1024"
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
-								<Label text="Type"/>
-								<Text id="ProductTypeChosen" text="{/productType}"/>
+								<Label text="Adaptation Solutions"/>
+								<Text id="CM_CRITER_1" text="Yes"/>
+								<Label text="Average Carbon Intensity"/>
+								<Text id="CM_CRITER_2" text="250.0"/>
+								<Label text="Best Practices for Climate Projections"/>
+								<Text id="CM_CRITER_3" text="Yes"/>
+								<Label text="Highest available resolution for Assesment"/>
+								<Text id="CM_CRITER_4" text="Yes"/>
+								<Label text="Smallest Appropriate Scale for Assesment"/>
+								<Text id="CM_CRITER_5" text="Yes"/>
+								<Label text="Electricity Consumption"/>
+								<Text id="CM_CRITER_6" text="14.5"/>
+								<Label text="Physical Climate Risks Identified"/>
+								<Text id="CM_CRITER_7" text="Yes"/>
+								<Label text="Climate risk and vulnerability assessmen"/>
+								<Text id="CM_CRITER_8" text="Yes"/>
+								<Label text="Activity Risk Screening"/>
+								<Text id="CM_CRITER_9" text="Yes"/>
+								<Label text="Solutions for physical climate risk"/>
+								<Text id="CM_CRITER_10" text="Yes"/>
+								<Label text="Existing activities - Physical and non-physical solutions"/>
+								<Text id="CM_CRITER_11" text="Yes"/>
+								<Label text="Nature-base solutions"/>
+								<Text id="CM_CRITER_12" text="Yes"/>
+								<Label text="New activities - Physical and non-physical solutions"/>
+								<Text id="CM_CRITER_13" text="Yes"/>
+								<Label text="No adversary impact on adaptation"/>
+								<Text id="CM_CRITER_14" text="Yes"/>
+								<Label text="Consistent with Strategies"/>
+								<Text id="CM_CRITER_15" text="Yes"/>
+								<Label text="GHG emmission"/>
+								<Text id="CM_CRITER_16" text="1.552"/>
+								<Label text="Secondary Aluminium"/>
+								<Text id="CM_CRITER_17" text="Yes"/>
 								<Link press="handler.editStepOne" text="Edit" />
 						    </form:content>
 						</form:SimpleForm>
@@ -220,14 +413,36 @@
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
-								<Label text="Name"/>
-								<Text id="ProductNameChosen" text="{/productName}"/>
-								<Label text="Weight"/>
-								<Text id="ProductWeightChosen" text="{/productWeight}"/>
-								<Label text="Manufacturer"/>
-								<Text id="ProductManufacturerChosen" text="{/productManufacturer}"/>
-								<Label text="Description"/>
-								<Text id="ProductDescriptionChosen" text="{/productDescription}"/>
+								<Label text="Adaptation Solutions"/>
+								<Text id="CA_CRITER_1" text="Yes"/>
+								<Label text="Consistent with Strategies"/>
+								<Text id="CA_CRITER_2" text="No"/>
+								<Label text="Best Practices for Climate Projections"/>
+								<Text id="CA_CRITER_3" text="Yes"/>
+								<Label text="Highest available resolution for Assesment"/>
+								<Text id="CA_CRITER_4" text="Yes"/>
+								<Label text="Smallest Appropriate Scale for Assesment"/>
+								<Text id="CA_CRITER_5" text="Yes"/>
+								<Label text="Physical Climate Risks Identified"/>
+								<Text id="CA_CRITER_6" text="No"/>
+								<Label text="Climate risk and vulnerability assessmen"/>
+								<Text id="CA_CRITER_7" text="Yes"/>
+								<Label text="Activity Risk Screening"/>
+								<Text id="CA_CRITER_8" text="Yes"/>
+								<Label text="Solutions for physical climate risk"/>
+								<Text id="CA_CRITER_9" text="Yes"/>
+								<Label text="Complies with DNSH"/>
+								<Text id="CA_CRITER_10" text="Yes"/>
+								<Label text="Existing activities - Physical and non-physical solutions"/>
+								<Text id="CA_CRITER_11" text="Yes"/>
+								<Label text="Monitoring of adaptation soultions"/>
+								<Text id="CA_CRITER_12" text="Yes"/>
+								<Label text="Nature-base solutions"/>
+								<Text id="CA_CRITER_13" text="Yes"/>
+								<Label text="New activities - Physical and non-physical solutions"/>
+								<Text id="CA_CRITER_14" text="Yes"/>
+								<Label text="No adversary impact on adaptation"/>
+								<Text id="CA_CRITER_15" text="Yes"/>
 								<Link press="handler.editStepTwo" text="Edit" />
 							</form:content>
 						</form:SimpleForm>
@@ -238,17 +453,8 @@
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
-								<Label text="Some text"/>
-								<Text text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. "/>
-								<Label text="Manufacturing Date"/>
-								<Text id="ManufacturingDate" text="{/manufacturingDate}"/>
-								<Label text="Availability"/>
-								<Text id="AvailabilityChosen" text="{/availabilityType}"/>
-								<Label text="Size"/>
-								<HBox>
-									<Text id="Size" text="{/size}"/>
-									<Text id="Size2" class="sapUiTinyMarginBegin" text="{/measurement}"/>
-								</HBox>
+								<Label text="Environmental Impact Assessment"/>
+								<Text id="WAT_CRITER_1" text="Yes"/>
 								<Link press="handler.editStepThree" text="Edit" />
 							</form:content>
 						</form:SimpleForm>
@@ -259,13 +465,6 @@
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
-								<Label text="Price"/>
-								<Text id="ProductPriceChosen" text="{/productPrice}"/>
-								<Label text="Discount Group"/>
-								<Text id="DiscountGroupChosen" text="{/discountGroup}"/>
-								<Label text="VAT Included"/>
-								<Text id="ProductVATChosen" text="{/productVAT}"/>
-								<Link press="handler.editStepFour" text="Edit" />
 							</form:content>
 						</form:SimpleForm>
 
@@ -284,7 +483,11 @@
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
-
+								<Label text="Environmental Impact Assessment"/>
+								<Text id="BIO_CRITER_1" text="Yes"/>
+								<Label text="Biodiverstity-sensitive location"/>
+								<Text id="BIO_CRITER_2" text="Yes"/>
+								<Link press="handler.editStepSix" text="Edit" />
 							</form:content>
 						</form:SimpleForm>
 								

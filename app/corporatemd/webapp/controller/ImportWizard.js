@@ -11,19 +11,18 @@ sap.ui.define([
         handleOpenDialog: function (oEvent) {
             this.isWizardOpen = 0;
 
-			if (!this.pDialog) {
-				this.pDialog = this.loadFragment({
-					name: "eut.eutobjectsrv.view.ImportWizard",
-				}).then(function(oDialog) {
-					oDialog.attachAfterOpen(_afterOpen, this);
-					return oDialog;
+			if (!this._pDialog) {
+				this._pDialog = this.loadFragment({
+					name: "ns.corporatemd.view.ImportWizard",
+				}).then(function(ioDialog) {
+					ioDialog.attachAfterOpen(_afterOpen, this);
+					return ioDialog;
 				}.bind(this));
 			}
 
-			this.pDialog.then(function(oDialog){
-				oDialog.open();
+			this._pDialog.then(function(ioDialog){
+				ioDialog.open();
 			});
-
 		},
 
 
@@ -65,60 +64,14 @@ sap.ui.define([
 			_handleButtonsVisibility(this._iSelectedStepIndex);
 		},
 
-        handleWizardCancel: function () {
+        handleWizardCancel: function (oEvent) {
 			_handleMessageBoxOpen("Are you sure you want to cancel your report?", "warning");
+			this._pDialog.destroy();
 		},
 
 		handleWizardSubmit: function () {
 			_handleMessageBoxOpen("Are you sure you want to submit your report?", "confirm");
-		},
-
-        onUploadFile: function(oEvent) {
-			//var oModel = new ODataModel({
-			//	serviceUrl : "/eutobject/",
-			//	synchronizationMode : "None"
-			//});
-
-			var oFileUpload = sap.ui.getCore().byId("fileUploaderFS");
-			var domRef = sap.ui.getCore().byId("fileUploaderFS").getFocusDomRef();
-			var fileName = domRef.files[0];
-			alert("In the function");
-			if (fileName )
-            {
-            	MessageBox.show("Please choose File.", MessageBox.Icon.INFORMATION, "Information");
-            }else{
-				//MessageBox.show("Selected file: "+fileName, MessageBox.Icon.INFORMATION, "Information");
-
-				// Create a File Reader object
-				var reader = new FileReader();
-				reader.onload = function(oEvent) {
-					var strCSV = oEvent.target.result;
-					var arrCSV = strCSV.match(/[\w .]+(?=,?)/g);
-					var noOfCols = 6;
-			
-					// To ignore the first row which is header
-					var hdrRow = arrCSV.splice(0, noOfCols);
-			
-					var data = [];
-					while (arrCSV.length > 0) {
-					var obj = {};
-					// extract remaining rows one by one
-					var row = arrCSV.splice(0, noOfCols)
-					for (var i = 0; i < row.length; i++) {
-						obj[hdrRow[i]] = row[i].trim()
-					}
-					// push row to an array
-					data.push(obj)
-					}
-					
-					// Bind the data to the Table
-					this.oModel = new sap.ui.model.json.JSONModel();
-					this.oModel.setData(data);
-					this.oTable = sap.ui.getCore().byId("idTable");
-					this.oTable.setModel(this.oModel);
-				};
-				reader.readAsText(fileName);
-			}
+			this._pDialog.close();
 		},
 
 		onFileChange: function(e){
@@ -208,10 +161,13 @@ sap.ui.define([
 			actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 			onClose: function (oAction) {
 				if (oAction === MessageBox.Action.YES) {
-					sap.ui.getCore().byId("wizardDialog").close();
+					sap.ui.getCore().byId("wizardImportDialog").close();
+					
 				}
 			}
 		});
+
+		
 	}
 
 

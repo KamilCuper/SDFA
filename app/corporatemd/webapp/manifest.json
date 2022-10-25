@@ -121,6 +121,19 @@
                                         "route": "CorporateMDObjectPage"
                                     }
                                 }
+                            },
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "actions": {
+                                        "importData": {
+                                            "id": "importDataButton",
+                                            "text": "Import Data",
+                                            "press": "ns.corporatemd.controller.ImportWizard.handleOpenDialog",
+                                            "requiresSelection": false
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

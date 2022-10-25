@@ -39,8 +39,8 @@ sap.ui.define([
 			this.sCriteriaForm = sap.ui.getCore().byId("PollutionPreventionForm");
 			this.sCriteriaForm.setVisible(true);
 
-			this.sCriteriaTable = sap.ui.getCore().byId("idCriterTable");
-		this.sCriteriaTable.setVisible(true);
+			this.sCriteriaTable = sap.ui.getCore().byId("idPOLTable");
+			this.sCriteriaTable.setVisible(true);
 		},
 
         onDialogBackButton: function () {	
@@ -191,11 +191,13 @@ sap.ui.define([
 		},
 
 		onCTValueHelpSearch: function (oEvent) {
-			//var sCTValue = oEvent.getParameter("value");
-			//var oCTFilter = new sap.ui.model.Filter("TYP_COMB", FilterOperator.Contains, sCTValue);
+			var sCTValue = oEvent.getParameter("value");
+			var oCTFilter = new sap.ui.model.Filter("TYP_COMB", FilterOperator.Contains, sCTValue);
 
-			//oEvent.getSource().getBinding("items").filter([oCTFilter]);
-			var a = [];
+			oEvent.getSource().getBinding("items").filter([oCTFilter]);
+			
+			
+			/*var a = [];
 			var b = [];
 			this.sCTValueHelp = sap.ui.getCore().byId("selectCTDialog");
 			var colItems = this.sCTValueHelp.getItems();
@@ -216,7 +218,7 @@ sap.ui.define([
 				this.getModel().setProperty("/Countries", b);
 				var listitem1 = new sap.ui.core.ListItem().bindProperty("text","Country");
 				this.sCTValueHelp.bindList(a);
-			});
+			});*/
 
 		},
 
@@ -243,14 +245,14 @@ sap.ui.define([
 		finishBtn.setVisible(false);
 		cancelBtn.setVisible(true);
 
-		this.oTable = sap.ui.getCore().byId("idCMTable");
-		this.oFilter = new sap.ui.model.Filter("CONT_MEAS", sap.ui.model.FilterOperator.EQ, "GHG");
-		this.oTable.getBinding("items").filter([this.oFilter]);
+		/*this.oTable = sap.ui.getCore().byId("idCMTable");
+		this.oFilter = new sap.ui.model.Filter("EUT_ACTIVITIES", sap.ui.model.FilterOperator.EQ, "2");
+		this.oTable.getBinding("items").filter([this.oFilter]);*/
 
 		this.sCriteriaForm = sap.ui.getCore().byId("PollutionPreventionForm");
 		this.sCriteriaForm.setVisible(false);
 
-		this.sCriteriaTable = sap.ui.getCore().byId("idCriterTable");
+		this.sCriteriaTable = sap.ui.getCore().byId("idPOLTable");
 		this.sCriteriaTable.setVisible(false);
 	}
 
@@ -320,11 +322,4 @@ sap.ui.define([
 		});
 	}
 
-	function _loadCTValueHelpList(){
-		alert("here 2");
-		this.sCTValueHelp = sap.ui.getCore().byId("selectCTDialog");
-		
-
-		
-	}
 })

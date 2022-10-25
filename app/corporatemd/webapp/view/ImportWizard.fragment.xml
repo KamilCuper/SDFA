@@ -5,9 +5,9 @@
 	xmlns:form="sap.ui.layout.form"
 	xmlns:u="sap.ui.unified"
 	xmlns:layout="sap.ui.layout"
-	core:require="{handler: 'eut/eutobjectsrv/controller/ImportWizard'}" >
+	core:require="{handler: 'ns/corporatemd/controller/ImportWizard'}" >
     <Dialog
-      	id="wizardDialog"
+      	id="wizardImportDialog"
 		showHeader="false"
 		verticalScrolling="false"
 		contentHeight="70%"
