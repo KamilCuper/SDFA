@@ -34,3 +34,5 @@ EA_M_RSRCH,"Research, applied research and experimental development of solutions
 EA_P_EDU,Education,Y,EDU,Y,
 EA_P_VOC,Vocational Education and Training,N,EDU,,
 EA_C_MA,Manufacture of aluminium,Y,MAN,,
+EA_D_HCNFG,Cogeneration of heat/cool and power from renewable non-fossil gaseous and liquid fuels,Y,ENER,,
+EA_D_HCSOL,Production of heat/cool from solar thermal heating,Y,ENER,,

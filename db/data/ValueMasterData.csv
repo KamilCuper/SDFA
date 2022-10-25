@@ -1,0 +1,36 @@
+﻿VAL,VAL_DESCR
+COAL,Coal
+COLIG,Coal And/Or Lignite
+FCB,100 % Process Fuels From The Chemical Industry In Boilers
+GFGT,Gaseous Fuels In Open-Cycle Gas Turbines On Offshore Platforms
+GOGT,"Gas Oil In Gas Turbines, Including Dual Fuel Gas Turbines"
+HGOB,Hfo- And/Or Gas-Oil-Fired Boilers
+HGORE,Hfo And/Or Gas Oil In Reciprocating Engines
+IRONSTG,100 % Iron And Steel Process Gases
+LIGNITE,Lignite
+NGGT,Natural Gas In Gas Turbines
+NGSL,Natural Gas In A Spark-Ignited Lean-Burn Gas Engine
+SBIOP,Solid Biomass And/Or Peat
+BOILER,Boiler
+CCGT,Ccgt
+COALPC,Coal-Fired Pc Boiler
+ENGINE,Engine
+FBCCLIG,Fbc Boiler Combusting Coal And/Or Lignite And Lignite-Fired Pc Boiler
+FLBOL,Fluidised Bed Boiler
+GAS,Gases Only
+PCBOL,Pc Boiler
+GTCGF,Gas Turbine Combusting Gaseous Fuels
+MIXGL,Mixture Of Gases And Liquids
+New,New
+Existing,Existing 
+CO,Carbon Monoxide
+dust,Dust
+HCI,Hydrochloric Acid
+NOX,Nitrogen Oxide
+SO2,Sulphur Dioxide
+Formaldehyde,Formaldehyde
+HFI,Hexamethylene Diisocyanate
+All Types,All Types
+Mercury,Mercury
+PCDD/F,Polychlorinated Dibenzo-P-Dioxins And Dibenzofurans
+TVOC,Total Volatile Organic Compounds
