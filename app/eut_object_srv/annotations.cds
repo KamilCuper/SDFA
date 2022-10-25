@@ -362,37 +362,37 @@ annotate service.EUT_Activities with @(
 
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Climate Mitigation Inputs',
+            Label : 'Climate Mitigation',
             ID    : 'CCM_Inputs',
             Target: 'CCM_Input/@UI.LineItem#CCMInputs'
         },
          {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Climate Adapatation Inputs',
+            Label : 'Climate Adapatation',
             ID    : 'CCA_Inputs',
             Target: 'CCA_Input/@UI.LineItem#CCAInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Pollution Inputs',
+            Label : 'Pollution',
             ID    : 'POL_Inputs',
             Target: 'POL_Input/@UI.LineItem#POLInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Biodiversity Inputs',
+            Label : 'Biodiversity',
             ID    : 'BIO_Inputs',
             Target: 'BIO_Input/@UI.LineItem#BIOInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Water Inputs',
+            Label : 'Water',
             ID    : 'WAT_Inputs',
             Target: 'WAT_Input/@UI.LineItem#WATInput'
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Circular Economy Inputs',
+            Label : 'Circular Economy',
             ID    : 'CEC_Inputs',
             Target: 'CEC_Input/@UI.LineItem#CECInput'
         },
@@ -918,7 +918,10 @@ annotate service.MSInput with @(
 annotate service.ScreeningCriteriaTemplate with @(
  UI.FieldGroup #CriteriaQuickView : {
         Data : [
-            
+            {
+                $Type : 'UI.DataField',
+                Value : CRITER_DESCR
+            },
             {
                 $Type : 'UI.DataField',
                 Value : CRIT_UNIT
@@ -974,40 +977,35 @@ annotate service.MSInput with {
 }
 
 annotate service.CCM_Input with @(
-    UI.LineItem #CCMInputs: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #CCMInputs: [     
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ],
@@ -1016,11 +1014,7 @@ annotate service.CCM_Input with @(
 annotate service.CCM_Input with @(
     UI.FieldGroup #CCMGroup : {
         $Type : 'UI.FieldGroupType',
-        Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+        Data : [    
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1128,40 +1122,35 @@ annotate service.CCM_Input with @(
 
 
 annotate service.CCA_Input with @(
-    UI.LineItem #CCAInput: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #CCAInput: [    
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ]
@@ -1170,11 +1159,7 @@ annotate service.CCA_Input with @(
 annotate service.CCA_Input with @(
     UI.FieldGroup #CCAGroup : {
         $Type : 'UI.FieldGroupType',
-         Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+         Data : [     
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1270,40 +1255,35 @@ annotate service.CCA_Input with @(
 
 
 annotate service.POL_Input with @(
-    UI.LineItem #POLInput: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #POLInput: [     
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ]
@@ -1312,11 +1292,7 @@ annotate service.POL_Input with @(
 annotate service.POL_Input with @(
     UI.FieldGroup #POLGroup : {
         $Type : 'UI.FieldGroupType',
-        Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+        Data : [     
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1451,40 +1427,35 @@ annotate service.POL_Input with @(
 
 
 annotate service.BIO_Input with @(
-    UI.LineItem #BIOInput: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #BIOInput: [    
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ]
@@ -1493,11 +1464,7 @@ annotate service.BIO_Input with @(
 annotate service.BIO_Input with @(
     UI.FieldGroup #BIOGroup : {
         $Type : 'UI.FieldGroupType',
-        Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+        Data : [     
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1593,40 +1560,35 @@ annotate service.BIO_Input with @(
 
 
 annotate service.WAT_Input with @(
-    UI.LineItem #WATInput: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #WATInput: [     
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ]
@@ -1635,11 +1597,7 @@ annotate service.WAT_Input with @(
 annotate service.WAT_Input with @(
     UI.FieldGroup #WATGroup : {
         $Type : 'UI.FieldGroupType',
-        Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+        Data : [     
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1734,40 +1692,35 @@ annotate service.WAT_Input with @(
 
 
 annotate service.CEC_Input with @(
-    UI.LineItem #CECInput: [
-        {
-            $Type : 'UI.DataField',
-            Value : ENV_OB_ID,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
-        },     
+    UI.LineItem #CECInput: [    
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '20%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16rem'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
 
     ]
@@ -1776,11 +1729,7 @@ annotate service.CEC_Input with @(
 annotate service.CEC_Input with @(
     UI.FieldGroup #CECGroup : {
        $Type : 'UI.FieldGroupType',
-        Data : [
-          {
-            $Type : 'UI.DataField',
-            Value : EUT_ACTIVITIES.EA_Object.Description,
-        },     
+        Data : [     
         {
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
@@ -1876,7 +1825,7 @@ annotate service.CEC_Input with @(
  annotate service.CCM_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
@@ -1896,7 +1845,7 @@ annotate service.CEC_Input with @(
  annotate service.CCA_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
@@ -1916,7 +1865,7 @@ annotate service.CEC_Input with @(
 annotate service.POL_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
@@ -1936,7 +1885,7 @@ annotate service.POL_Input with {
 annotate service.BIO_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
@@ -1956,7 +1905,7 @@ annotate service.BIO_Input with {
 annotate service.WAT_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
@@ -1976,7 +1925,7 @@ annotate service.WAT_Input with {
 annotate service.CEC_Input with {
     CRITER @(
         Common: {
-            Text: CRITER.CRITER_DESCR,
+            Text: CRITER.CRITER_SHORT_DESCR,
             TextArrangement : #TextOnly,
             ValueList: {
                 Label: 'Criteria',
