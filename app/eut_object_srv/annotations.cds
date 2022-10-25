@@ -368,7 +368,7 @@ annotate service.EUT_Activities with @(
         },
          {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Climate Adapatation',
+            Label : 'Climate Adaptation',
             ID    : 'CCA_Inputs',
             Target: 'CCA_Input/@UI.LineItem#CCAInput'
         },
@@ -597,7 +597,7 @@ annotate service.FINANCIAL_INPUT with @(
             Target : '@UI.FieldGroup#Group1'
         }
     ],
-    UI.HeaderInfo : {
+  /*  UI.HeaderInfo : {
         TypeName : 'Financial Statement',
         TypeNamePlural : 'Financial Statements',
         Description : {
@@ -608,7 +608,7 @@ annotate service.FINANCIAL_INPUT with @(
             $Type : 'UI.DataField',
             Value : 'Financial Input',
         },
-    },
+    }, */
 );
 
 /*************************************************************************************************/
@@ -1102,7 +1102,7 @@ annotate service.CCM_Input with @(
         },
 
     ],
-    UI.HeaderInfo : {
+ /*   UI.HeaderInfo : {
         TypeName : 'CCM Input',
         TypeNamePlural : 'Climate Mitigation Inputs',
         Description : {
@@ -1113,7 +1113,7 @@ annotate service.CCM_Input with @(
             $Type : 'UI.DataField',
             Value : 'CRITER_CRITER',
         },
-    },
+    }, */
 );
 
 
@@ -1202,7 +1202,6 @@ annotate service.CCA_Input with @(
                 Value : CRITER.CRIT_DNSH_U,
             },            
             ],
-
     },
     
      UI.DataPoint #Criteria :{
@@ -1239,7 +1238,7 @@ annotate service.CCA_Input with @(
             Target : '@UI.FieldGroup#CCAGroup2'
         },
     ],
-    UI.HeaderInfo : {
+ /*   UI.HeaderInfo : {
         TypeName : 'CCA Input',
         TypeNamePlural : 'Climate Adaptation Inputs',
         Description : {
@@ -1250,7 +1249,7 @@ annotate service.CCA_Input with @(
             $Type : 'UI.DataField',
             Value : 'CRITER_CRITER',
         },
-    },
+    }, */
 );
 
 
@@ -1344,27 +1343,27 @@ annotate service.POL_Input with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value :  APPL.LVL1_VAL,
-                Label : 'Type of combustion'
+                Value :  APPL.LVL1_VAL.VAL_DESCR,
+                Label : 'Combustion type'
             },
             {
                 $Type : 'UI.DataField',
-                Value :  APPL.LVL2_VAL,
+                Value :  APPL.LVL2_VAL.VAL_DESCR,
                 Label : 'Combustion unit'
             },
             {
                 $Type : 'UI.DataField',
-                Value :  APPL.LVL3_VAL,
+                Value :  APPL.LVL3_VAL.VAL_DESCR,
                 Label : 'Type of plant'
             },
             {
                 $Type : 'UI.DataField',
-                Value :  APPL.LVL4_VAL,
+                Value :  APPL.LVL4_VAL.VAL_DESCR,
                 Label : 'Combustion range'
             },
             {
                 $Type : 'UI.DataField',
-                Value :  APPL.SUBST,
+                Value :  APPL.SUBST.VAL_DESCR,
                 Label : 'Substance'
             },                       
             ],
@@ -1411,7 +1410,7 @@ annotate service.POL_Input with @(
             Target : '@UI.FieldGroup#POLGroup3'
         },
     ],
-    UI.HeaderInfo : {
+ /*   UI.HeaderInfo : {
         TypeName : 'POL Input',
         TypeNamePlural : 'Pollution Inputs',
         Description : {
@@ -1420,9 +1419,9 @@ annotate service.POL_Input with @(
         },
         Title : {
             $Type : 'UI.DataField',
-            Value : 'CRITER_CRITER',
+            Value : CRITER_CRITER,
         },
-    },
+    }, */
 );
 
 
@@ -1544,7 +1543,7 @@ annotate service.BIO_Input with @(
             Target : '@UI.FieldGroup#BIOGroup2'
         },
     ],
-    UI.HeaderInfo : {
+ /*   UI.HeaderInfo : {
         TypeName : 'BIO Input',
         TypeNamePlural : 'Biodiversity Inputs',
         Description : {
@@ -1555,7 +1554,7 @@ annotate service.BIO_Input with @(
             $Type : 'UI.DataField',
             Value : 'CRITER_CRITER',
         },
-    },
+    }, */
 );
 
 
@@ -1676,7 +1675,7 @@ annotate service.WAT_Input with @(
             Target : '@UI.FieldGroup#WATGroup2'
         },
     ],
-    UI.HeaderInfo : {
+  /*  UI.HeaderInfo : {
         TypeName : 'WAT Input',
         TypeNamePlural : 'Water Inputs',
         Description : {
@@ -1687,7 +1686,7 @@ annotate service.WAT_Input with @(
             $Type : 'UI.DataField',
             Value : 'CRITER_CRITER',
         },
-    },
+    }, */
 );
 
 
@@ -1808,7 +1807,7 @@ annotate service.CEC_Input with @(
             Target : '@UI.FieldGroup#CECGroup2'
         },
     ],
-    UI.HeaderInfo : {
+  /*  UI.HeaderInfo : {
         TypeName : 'CEC Input',
         TypeNamePlural : 'Circular economy Inputs',
         Description : {
@@ -1819,7 +1818,7 @@ annotate service.CEC_Input with @(
             $Type : 'UI.DataField',
             Value : 'CRITER_CRITER',
         },
-    },
+    }, */
 );
 
  annotate service.CCM_Input with {
