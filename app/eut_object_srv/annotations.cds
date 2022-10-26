@@ -954,31 +954,37 @@ annotate service.CCM_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ],
@@ -1099,31 +1105,37 @@ annotate service.CCA_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ]
@@ -1231,31 +1243,37 @@ annotate service.POL_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ]
@@ -1403,31 +1421,37 @@ annotate service.BIO_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ]
@@ -1536,31 +1560,37 @@ annotate service.WAT_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ]
@@ -1582,16 +1612,16 @@ annotate service.WAT_Input with @(
             $Type : 'UI.DataField',
             Value : CRITER.CRIT_UNIT,
         },
-         {
-                $Type : 'UI.DataField',
-                Value : CRITER.SC_FLAG,
-                Label : 'Substantial Contribution Flag'
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : CRITER.DNSH_FLAG,
-                Label : 'Do No Significant Harm Flag'
-            },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.SC_FLAG,
+            Label : 'Substantial Contribution Flag'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.DNSH_FLAG,
+            Label : 'Do No Significant Harm Flag'
+        },
         ],
     },
      UI.FieldGroup #WATGroup2 : {
@@ -1668,31 +1698,37 @@ annotate service.CEC_Input with @(
         {
             $Type : 'UI.DataField',
             Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '20%'},
+            ![@HTML5.CssDefaults] : {width : '16%'},
         },
         {          
             $Type : 'UI.DataField',
             Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : KEY_FIGURE,
             Criticality : CRITER.CRITICALITY,
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : CRITER.CRIT_UNIT,
+            Label : 'Screening Criteria Unit',
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.SC_FLAG,
             Label : 'Substantial Contribution Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
         {
             $Type : 'UI.DataField',
             Value : CRITER.DNSH_FLAG,
             Label : 'Do No Significant Harm Flag',
-            ![@HTML5.CssDefaults] : {width : '16%'},
+            ![@HTML5.CssDefaults] : {width : '15%'},
         },
 
     ]
