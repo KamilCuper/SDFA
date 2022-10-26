@@ -474,6 +474,21 @@
 							editable="false"
 							layout="ResponsiveGridLayout">
 							<form:content>
+								<Label text="Pollution from CO"/>
+								<Text id="POL_CRITER_1" text="50.0"/>
+								<Label text="Pollution from NOX"/>
+								<Text id="POL_CRITER_2" text="50.0"/>
+								<Label text="Pollution from SO2"/>
+								<Text id="POL_CRITER_3" text="32.0"/>
+								<Label text="Pollution from HCI"/>
+								<Text id="POL_CRITER_4" text="3.0"/>
+								<Label text="Pollution from HIF"/>
+								<Text id="POL_CRITER_5" text="1.0"/>
+								<Label text="Pollution from dust"/>
+								<Text id="POL_CRITER_6" text="11.0"/>
+								<Label text="Pollution from Mercury"/>
+								<Text id="POL_CRITER_7" text="3.0"/>
+								<Link press="handler.editStepFive" text="Edit" />
 							</form:content>
 						</form:SimpleForm>
 

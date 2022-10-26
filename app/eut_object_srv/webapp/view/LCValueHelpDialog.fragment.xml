@@ -1,0 +1,22 @@
+<core:FragmentDefinition 
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}">
+	<SelectDialog
+		id="selectLCDialog"
+		title="Available Inputs"
+        contentHeight="400px"
+		search="handler.onLCValueHelpSearch"
+		confirm="handler.onLCValueHelpClose"
+		cancel="handler.onLCValueHelpClose">
+        <items>
+            <StandardListItem title="Lower than 100"/>
+            <StandardListItem title="Lower than 50"/>
+            <StandardListItem title="Greater than or equal to 1000"/>
+            <StandardListItem title="Greater than or equal to 300"/>
+            <StandardListItem title="Greater than or equal to 50"/>
+            <StandardListItem title="Between 100 and 300"/>
+            <StandardListItem title="Between 300 and 1000"/>
+        </items>
+    </SelectDialog>
+</core:FragmentDefinition>

@@ -39,8 +39,8 @@ sap.ui.define([
 			this.sCriteriaForm = sap.ui.getCore().byId("PollutionPreventionForm");
 			this.sCriteriaForm.setVisible(true);
 
-			this.sCriteriaTable = sap.ui.getCore().byId("idPOLTable");
-			this.sCriteriaTable.setVisible(true);
+			//this.sCriteriaTable = sap.ui.getCore().byId("idPOLTable");
+			//this.sCriteriaTable.setVisible(true);
 		},
 
         onDialogBackButton: function () {	
@@ -159,9 +159,11 @@ sap.ui.define([
 
 		onValueHelpSearch: function (oEvent) {
 			var sValue = oEvent.getParameter("value");
-			var oFilter = new sap.ui.model.Filter("CRIT_UNIT", FilterOperator.Contains, sValue);
+			var oFilter = new sap.ui.model.Filter("", FilterOperator.Contains, sValue);
 
-			oEvent.getSource().getBinding("items").filter([oFilter]);
+			//alert(oEvent.getSource());
+			//oEvent.getSource().getBinding("items").filter([oFilter]);
+			
 		},
 
 		onValueHelpClose: function (oEvent) {
@@ -176,7 +178,10 @@ sap.ui.define([
 //		Functions for Value Help Dialog of Combution Type
 //------------------------------------------------------------------
 
-		onCTValueHelpRequest: function (oEvent) {		
+		onCTValueHelpRequest: function (oEvent) {	
+			var sInputValue = oEvent.getSource().getValue();
+			this.eventSource = oEvent.getSource();
+
 			if (!this._pCTValueHelpDialog) {
 				this._pCTValueHelpDialog = this.loadFragment({
 					name: "eut.eutobjectsrv.view.CTValueHelpDialog",
@@ -186,15 +191,16 @@ sap.ui.define([
 			}
 
 			this._pCTValueHelpDialog.then(function(ctDialog) {
-				ctDialog.open();
+				//ctDialog.getBinding("items").filter([new sap.ui.model.Filter("VAL_DESCR", FilterOperator.Contains, "Lignite")]);
+				ctDialog.open(sInputValue);
 			});
 		},
 
 		onCTValueHelpSearch: function (oEvent) {
 			var sCTValue = oEvent.getParameter("value");
-			var oCTFilter = new sap.ui.model.Filter("TYP_COMB", FilterOperator.Contains, sCTValue);
+			var oCTFilter = new sap.ui.model.Filter("VAL_DESCR", FilterOperator.EQ, sCTValue);
 
-			oEvent.getSource().getBinding("items").filter([oCTFilter]);
+			//oEvent.getSource().getBinding("items").filter([oCTFilter]);
 			
 			
 			/*var a = [];
@@ -227,7 +233,115 @@ sap.ui.define([
 			if (!oSelectedItem) {
 				return;
 			}
-			this.eventCTSource.setValue(oSelectedItem.getTitle());
+			this.eventSource.setValue(oSelectedItem.getTitle());
+		},
+
+//------------------------------------------------------------------
+//		Functions for Value Help Dialog of Combution Unit
+//------------------------------------------------------------------
+
+		onCUValueHelpRequest: function (oEvent) {	
+			var sInputValue = oEvent.getSource().getValue();
+			this.eventSource = oEvent.getSource();
+
+			if (!this._pCUValueHelpDialog) {
+				this._pCUValueHelpDialog = this.loadFragment({
+					name: "eut.eutobjectsrv.view.CUValueHelpDialog",
+				}).then(function(cuDialog) {
+					return cuDialog;
+				}.bind(this));
+			}
+
+			this._pCUValueHelpDialog.then(function(cuDialog) {
+				cuDialog.open(sInputValue);
+			});
+		},
+
+		onCUValueHelpSearch: function (oEvent) {
+			var sCUValue = oEvent.getParameter("value");
+			var oCUFilter = new sap.ui.model.Filter("VAL_DESCR", FilterOperator.EQ, sCUValue);
+
+		},
+
+		onCUValueHelpClose: function (oEvent) {
+			var oSelectedItem = oEvent.getParameter("selectedItem");
+			if (!oSelectedItem) {
+				return;
+			}
+			this.eventSource.setValue(oSelectedItem.getTitle());
+		},
+
+//------------------------------------------------------------------
+//		Functions for Value Help Dialog of plant type
+//------------------------------------------------------------------
+
+		onPNValueHelpRequest: function (oEvent) {	
+			var sInputValue = oEvent.getSource().getValue();
+			this.eventSource = oEvent.getSource();
+
+			if (!this._pPNValueHelpDialog) {
+				this._pPNValueHelpDialog = this.loadFragment({
+					name: "eut.eutobjectsrv.view.PNValueHelpDialog",
+				}).then(function(pnDialog) {
+					return pnDialog;
+				}.bind(this));
+			}
+
+			this._pPNValueHelpDialog.then(function(pnDialog) {
+				pnDialog.open(sInputValue);
+			});
+		},
+
+		onPNValueHelpSearch: function (oEvent) {
+			var sPNValue = oEvent.getParameter("value");
+			var oPNFilter = new sap.ui.model.Filter("VAL_DESCR", FilterOperator.EQ, sPNValue);
+
+		},
+
+		onPNValueHelpClose: function (oEvent) {
+			var oSelectedItem = oEvent.getParameter("selectedItem");
+			if (!oSelectedItem) {
+				return;
+			}
+			this.eventSource.setValue(oSelectedItem.getTitle());
+		},
+
+//------------------------------------------------------------------
+//		Functions for Value Help Dialog of combation range
+//------------------------------------------------------------------
+
+		onLCValueHelpRequest: function (oEvent) {	
+			var sInputValue = oEvent.getSource().getValue();
+			this.eventSource = oEvent.getSource();
+
+			if (!this._pLCValueHelpDialog) {
+				this._pLCValueHelpDialog = this.loadFragment({
+					name: "eut.eutobjectsrv.view.LCValueHelpDialog",
+				}).then(function(lcDialog) {
+					return lcDialog;
+				}.bind(this));
+			}
+
+			this._pLCValueHelpDialog.then(function(lcDialog) {
+				lcDialog.open(sInputValue);
+			});
+		},
+
+		onPNValueHelpSearch: function (oEvent) {
+			var sLCValue = oEvent.getParameter("value");
+			var oLCFilter = new sap.ui.model.Filter("VAL_DESCR", FilterOperator.EQ, sLCValue);
+
+		},
+
+		onLCValueHelpClose: function (oEvent) {
+			var oSelectedItem = oEvent.getParameter("selectedItem");
+			if (!oSelectedItem) {
+				return;
+			}
+			this.eventSource.setValue(oSelectedItem.getTitle());
+
+			this.sCriteriaTable = sap.ui.getCore().byId("idPOLTable");
+			this.sCriteriaTable.setVisible(true);
 		},
 
     }

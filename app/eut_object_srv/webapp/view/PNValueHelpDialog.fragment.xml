@@ -3,15 +3,15 @@ xmlns="sap.m"
 xmlns:core="sap.ui.core"
 core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}">
 	<SelectDialog
-		id="selectDialog"
+		id="selectPNDialog"
 		title="Available Inputs"
-		contentHeight="200px"
-		search="handler.onValueHelpSearch"
-		confirm="handler.onValueHelpClose"
-		cancel="handler.onValueHelpClose">
+        contentHeight="400px"
+		search="handler.onPNValueHelpSearch"
+		confirm="handler.onPNValueHelpClose"
+		cancel="handler.onPNValueHelpClose">
         <items>
-            <StandardListItem title="Yes"/>
-            <StandardListItem title="No"/>
+            <StandardListItem title="Existing"/>
+            <StandardListItem title="New"/>
         </items>
     </SelectDialog>
 </core:FragmentDefinition>
