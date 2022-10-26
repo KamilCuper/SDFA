@@ -212,13 +212,13 @@ annotate service.EUTObject with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Details on Economic Activities',
+            Label : 'Economic Activities',
             ID    : 'Activities',
             Target: 'Activities/@UI.LineItem#Activities'
         },
                 {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Minimum Social Safeguard Inputs',
+            Label : 'Minimum Social Safeguard',
             ID    : 'MS_Inputs',
             Target: 'MSInput/@UI.LineItem#MSInput'
         },
@@ -690,11 +690,11 @@ annotate service.ContributionTypeObject with {
 
 annotate service.MSInput with @(
     UI.HeaderInfo : {
-        TypeName : 'Miniumum Social Input',
-        TypeNamePlural : 'Miniumum Social Inputs',
+        TypeName : 'Miniumum Social Safeguard Input',
+        TypeNamePlural : 'Miniumum Social Safeguard Inputs',
         Description : {
             $Type : 'UI.DataField',
-            Value : 'Miniumum Social Input',
+            Value : 'Miniumum Social Safeguard Input',
         },
         Title : {
             $Type : 'UI.DataField',
@@ -711,17 +711,22 @@ annotate service.MSInput with @(
            {
                 $Type : 'UI.DataField',
                 Value : TYP_CONT.Description,
+                Label : 'Criteria Type',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : RBUKRS.Description,
+                Label : 'Company'
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : GJAHR,
+                Label : 'Year'
             },
            {
                 $Type : 'UI.DataField',
                 Value : INDICATOR_IV,
                 @UI.Hidden : CRITER.HELP_I,
-                Criticality : CRITICALITY
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : KEY_FIGURE,
-                @UI.Hidden : CRITER.HELP,
                 Criticality : CRITICALITY
             },
             {
@@ -766,15 +771,8 @@ annotate service.MSInput with @(
     UI.LineItem #MSInput : [
         {
             $Type : 'UI.DataField',
-            Value : TYP_CONT.Description,
-           Label : 'Type of Contribution',
-           ![@HTML5.CssDefaults] : {width : '15rem'},           
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : GJAHR,
-            Label : 'Year',
-            ![@HTML5.CssDefaults] : {width : '10rem'},
+            Value : CRITER_CRITER,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
         },
         {
             $Type : 'UI.DataField',
@@ -784,35 +782,18 @@ annotate service.MSInput with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : CRITER_CRITER,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_UNIT,
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-            },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_L,
-            Label : 'Lower Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : CRITER.CRIT_U,
-            Label : 'Upper Limit',
-            ![@HTML5.CssDefaults] : {width : '15rem'},
-        },
-         {
-            $Type : 'UI.DataField',
-            Value : INDICATOR_IV,
-            Criticality : CRITER.CRITICALITY,
+            Value : GJAHR,
+            Label : 'Year',
             ![@HTML5.CssDefaults] : {width : '10rem'},
         },
         {
             $Type : 'UI.DataField',
-            Value : KEY_FIGURE,
+            Value : CRITER.CRIT_UNIT,
+            ![@HTML5.CssDefaults] : {width : '15rem'},
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : INDICATOR_IV,
             Criticality : CRITER.CRITICALITY,
             ![@HTML5.CssDefaults] : {width : '10rem'},
         },
@@ -822,14 +803,6 @@ annotate service.MSInput with @(
             SemanticObject: 'MSInputs',
             Action: 'manage'
         },
-     /*   {
-          $Type : 'UI.DataFieldWithUrl',
-          Url : EUT_COMPASS,
-          Value : EUT_COMPASS,
-          Label : 'Link to EUT Compass',
-          ![@HTML5.CssDefaults] : {width : '12rem'},
-} , */
-               
     ]);
 annotate service.MSInput with {
     CRITER @(
