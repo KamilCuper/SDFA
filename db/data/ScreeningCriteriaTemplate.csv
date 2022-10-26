@@ -196,3 +196,7 @@ GHG,HMT,Carbon Emission - Hot Metal manufacturing step,Carbon Emission - Hot Met
 GHG,STO,Carbon Emission - Sintered Ore manufacturing step,Carbon Emission - Sintered Ore,tCO2e/t,0.163,,0.242,,true,true,,,,,,,,,,,,,,,,,,,,,,,1
 GHG,EFA,Carbon Emission - Electric Arc Furnace High Alloy Steel manufacturing step,Carbon Emission - EAF High Alloy Steel,tCO2e/t,0.266,,0.36,,true,true,,,,,,,,,,,,,,,,,,,,,,,3
 GHG,EFC,Carbon Emission - Electric Arc Furnace Carbon Steel manufacturing step,Carbon Emission - EAF Carbon Steel,tCO2e/t,0.209,,0.276,,true,true,,,,,,,,,,,,,,,,,,,,,,,1
+,MS_IBH,International Bill of Human Rights,International Bill of Human Rights,INDICATOR (Y/N),,,,,false,false,,,,,,,,,,,,,,,,,,,,,,,
+,MS_ILO,ILO Declaration on Fundamental Rights and Principles at Work,ILO Declaration on Fundamental Rights and Principles at Work,INDICATOR (Y/N),,,,,false,false,,,,,,,,,,,,,,,,,,,,,,,
+,MS_OEC,OECD Guidelines for Multinational Enterprises,OECD Guidelines for Multinational Enterprises,INDICATOR (Y/N),,,,,false,false,,,,,,,,,,,,,,,,,,,,,,,
+,MS_UNG,UN Guiding Principles on Business and Human Rights,UN Guiding Principles on Business and Human Rights,INDICATOR (Y/N),,,,,false,false,,,,,,,,,,,,,,,,,,,,,,,
