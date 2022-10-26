@@ -105,7 +105,6 @@ entity MSInput : managed {
     TYP_CONT            : Association to one ContributionTypeObject;
     RBUKRS              : Association to one CorporateMD @title : 'Company Name';
     CRITICALITY         : Integer;
-    EUT_COMPASS         : String;
 };
 
 
