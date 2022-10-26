@@ -83,7 +83,7 @@ service DataService {
             key CRITER as Criteria,
             CRITER_DESCR as CriteriaDescription
         from ScreeningCriteriaTemplate
-        where CRITER in ('MS_IBH','MS_ILO','MS_UNG','MS_OEC')
+        where CRITER in ('MS_IBH','MS_ILO','MS_UNG','MS_OEC');
 
     /*entity YearsListView as
         select
@@ -97,7 +97,7 @@ service EUTObjectService {
     @odata.draft.enabled
     entity ACC_TYPE_MAPPING as projection on accountmapping;
     @odata.draft.enabled
-    entity EA_MAPPING as projection on ecoactmapping
+    entity EA_MAPPING as projection on ecoactmapping;
     @odata.draft.enabled
     @cds.odata.valuelist
     entity EUTObject as projection on Eobject order by ID;

@@ -5,11 +5,22 @@ core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardCont
 	<SelectDialog
 		id="selectCTDialog"
 		title="Available Inputs"
-        items="{path: '/ScreeningCriteriaTemplate'}"
+		contentHeight="600px"
 		search="handler.onCTValueHelpSearch"
 		confirm="handler.onCTValueHelpClose"
 		cancel="handler.onCTValueHelpClose">
-        <StandardListItem
-            title="{TYP_COMB}"/>
+        <items>
+            <StandardListItem title="Coal"/>
+            <StandardListItem title="100 % Process Fuels From The Chemical Industry In Boilers"/>
+			<StandardListItem title="Gaseous Fuels In Open-Cycle Gas Turbines On Offshore Platforms"/>
+			<StandardListItem title="Gas Oil In Gas Turbines, Including Dual Fuel Gas Turbines"/>
+			<StandardListItem title="Hfo- And/Or Gas-Oil-Fired Boilers"/>
+			<StandardListItem title="Hfo And/Or Gas Oil In Reciprocating Engines"/>
+			<StandardListItem title="100 % Iron And Steel Process Gases"/>
+			<StandardListItem title="Lignite"/>
+			<StandardListItem title="Natural Gas In Gas Turbines"/>
+			<StandardListItem title="Natural Gas In A Spark-Ignited Lean-Burn Gas Engine"/>
+			<StandardListItem title="Solid Biomass And/Or Peat"/>
+        </items>
     </SelectDialog>
 </core:FragmentDefinition>

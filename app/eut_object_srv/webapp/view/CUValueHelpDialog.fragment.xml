@@ -1,0 +1,20 @@
+<core:FragmentDefinition 
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+core:require="{handler: 'eut/eutobjectsrv/controller/ScreeningCriteriaWizardController'}">
+	<SelectDialog
+		id="selectCUDialog"
+		title="Available Inputs"
+        contentHeight="400px"
+		search="handler.onCUValueHelpSearch"
+		confirm="handler.onCUValueHelpClose"
+		cancel="handler.onCUValueHelpClose">
+        <items>
+            <StandardListItem title="Boiler"/>
+            <StandardListItem title="Ccgt"/>
+			<StandardListItem title="Engine"/>
+            <StandardListItem title="Fluidised Bed Boiler"/>
+			<StandardListItem title="Pc Boiler"/>
+        </items>
+    </SelectDialog>
+</core:FragmentDefinition>

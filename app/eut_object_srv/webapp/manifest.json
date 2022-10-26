@@ -206,12 +206,6 @@
                                                 "DataFieldForIntentBasedNavigation::Plants::app",
                                                 "DataFieldForIntentBasedNavigation::ProfitCenters::app"
                                             ]
-                                        },
-                                        "importData": {
-                                            "id": "importDataButton",
-                                            "text": "Import Data",
-                                            "press": "eut.eutobjectsrv.controller.ImportWizard.handleOpenDialog",
-                                            "requiresSelection": false
                                         }
                                     }
                                 }
@@ -327,31 +321,6 @@
                                 "Financial_Input/@com.sap.vocabularies.UI.v1.LineItem#FinInputs": {
                                     "tableSettings": {
                                         "enableMassEdit": false
-                                    }
-                                },
-                                "Screening_Input/@com.sap.vocabularies.UI.v1.LineItem#ScreenInputs": {
-                                    "tableSettings": {
-                                        "enableMassEdit": true
-                                    },
-                                    "actions": {
-                                        "importData": {
-                                            "id": "insertInputValueButton"
-                                        }
-                                    }
-                                },
-                                "SCInput/@com.sap.vocabularies.UI.v1.LineItem#SCInput": {
-                                    "tableSettings": {
-                                        "enableMassEdit": true,
-                                        "quickVariantSelection": {
-                                            "paths": [
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWith"
-                                                },
-                                                {
-                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SCWithout"
-                                                }
-                                            ]
-                                        }
                                     }
                                 },
                                 "CCM_Input/@com.sap.vocabularies.UI.v1.LineItem#CCMInputs": {
